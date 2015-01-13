@@ -40,4 +40,4 @@ $RECYCLE.BIN/
 
 # -- GOOGLE KEY ---------------------------------------
 
-src\Main\Page\FrontendBundle\GoogleKeys\humber.p12
+src/Main/Page/FrontendBundle/GoogleKeys/humber.p12
