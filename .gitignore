@@ -1,0 +1,43 @@
+
+# -- Symfony2 -----------------------------------------
+app/bootstrap.php.cache
+app/bootstrap_cache.php.cache
+app/config/parameters.ini
+app/config/parameters.yml
+app/config/parameters.yml.dist
+app/cache/*
+app/logs/*
+vendor/*
+web/bundles/*
+web/uploads/*
+!app/cache/.gitkeep
+!app/logs/.gitkeep
+com
+bin
+bin/*
+# -- Composer -----------------------------------------
+composer.phar
+composer.lock
+
+# -- PHPUnit ------------------------------------------
+app/phpunit.xml  
+
+# -- Netbeans  ----------------------------------------
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+nbactions.xml
+nb-configuration.xml
+
+# -- Sistemas Operativos ------------------------------
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# -- GOOGLE KEY ---------------------------------------
+
+src\Main\Page\FrontendBundle\GoogleKeys\humber.p12
