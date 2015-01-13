@@ -13,3 +13,8 @@ samples_fitrition:
 samples_symbiosis:
     path:     /samples/symbiosis
     defaults: { _controller: MainPageFrontendBundle:Default:symbiosis }
+
+blog:
+    path:     /blog
+    defaults: { _controller: MainPageFrontendBundle:Blog:index }
+    

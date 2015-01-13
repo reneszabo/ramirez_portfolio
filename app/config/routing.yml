@@ -1,3 +1,7 @@
+main_page_blog:
+    resource: "@MainPageBlogBundle/Resources/config/routing.yml"
+    prefix:   /
+
 main_entity:
     resource: "@MainEntityBundle/Resources/config/routing.yml"
     prefix:   /

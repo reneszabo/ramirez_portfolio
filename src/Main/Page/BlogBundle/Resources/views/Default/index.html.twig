@@ -1,0 +1,14 @@
+{% extends 'MainPageFrontendBundle:Default:base.html.twig' %}
+{% block stylesheets %}
+  {{ parent() }}
+  <link href="/libs/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+{% endblock stylesheets %}
+{% block body %}
+  {{ include('MainPageBlogBundle:Default:header.html.twig') }}
+
+{% endblock body %}
+{% block javascripts %}
+  {{ parent() }}
+  <script type="text/javascript">
+  </script>
+{% endblock javascripts %}
