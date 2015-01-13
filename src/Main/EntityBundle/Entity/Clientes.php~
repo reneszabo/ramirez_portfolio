@@ -1,0 +1,1085 @@
+<?php
+
+namespace Verlas\Page\EntityBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Clientes
+ *
+ * @ORM\Table(name="clientes")
+ * @ORM\Entity
+ */
+class Clientes
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="cb", type="integer", nullable=false)
+     */
+    private $cb;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="cliente", type="string", length=254, nullable=true)
+     */
+    private $cliente;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="rif", type="string", length=254, nullable=true)
+     */
+    private $rif;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="telf_loc_cero", type="string", length=254, nullable=true)
+     */
+    private $telfLocCero;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="telf_loc_uno", type="string", length=254, nullable=true)
+     */
+    private $telfLocUno;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="telf_loc_dos", type="string", length=254, nullable=true)
+     */
+    private $telfLocDos;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="telf_loc_tres", type="string", length=254, nullable=true)
+     */
+    private $telfLocTres;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="especialidad", type="string", length=254, nullable=true)
+     */
+    private $especialidad;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="extra", type="string", length=254, nullable=true)
+     */
+    private $extra;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="fecha", type="datetime", nullable=true)
+     */
+    private $fecha;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="cclata", type="string", length=10, nullable=true)
+     */
+    private $cclata;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ccllata", type="string", length=10, nullable=true)
+     */
+    private $ccllata;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="chinlata", type="string", length=10, nullable=true)
+     */
+    private $chinlata;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="chinlight", type="string", length=10, nullable=true)
+     */
+    private $chinlight;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="sodalata", type="string", length=10, nullable=true)
+     */
+    private $sodalata;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="kinalata", type="string", length=10, nullable=true)
+     */
+    private $kinalata;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="cc300", type="string", length=10, nullable=true)
+     */
+    private $cc300;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ccl300", type="string", length=10, nullable=true)
+     */
+    private $ccl300;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="sodapsh", type="string", length=10, nullable=true)
+     */
+    private $sodapsh;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="kinapsh", type="string", length=10, nullable=true)
+     */
+    private $kinapsh;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="cc350", type="string", length=10, nullable=true)
+     */
+    private $cc350;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="chin350", type="string", length=10, nullable=true)
+     */
+    private $chin350;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ccbib", type="string", length=10, nullable=true)
+     */
+    private $ccbib;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="cclbib", type="string", length=10, nullable=true)
+     */
+    private $cclbib;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="chinbib", type="string", length=10, nullable=true)
+     */
+    private $chinbib;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="co2", type="string", length=10, nullable=true)
+     */
+    private $co2;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nestea", type="string", length=10, nullable=true)
+     */
+    private $nestea;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="agua350", type="string", length=10, nullable=true)
+     */
+    private $agua350;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="observaciones", type="text", nullable=true)
+     */
+    private $observaciones;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="direccion_uno", type="string", length=200, nullable=true)
+     */
+    private $direccionUno;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="direccion_dos", type="string", length=200, nullable=true)
+     */
+    private $direccionDos;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="direccion_tres", type="string", length=200, nullable=true)
+     */
+    private $direccionTres;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="lat", type="float", nullable=true)
+     */
+    private $lat;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="lng", type="float", nullable=true)
+     */
+    private $lng;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_map_set", type="boolean", nullable=false)
+     */
+    private $isMapSet;
+
+
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set cb
+     *
+     * @param integer $cb
+     * @return Clientes
+     */
+    public function setCb($cb)
+    {
+        $this->cb = $cb;
+    
+        return $this;
+    }
+
+    /**
+     * Get cb
+     *
+     * @return integer 
+     */
+    public function getCb()
+    {
+        return $this->cb;
+    }
+
+    /**
+     * Set cliente
+     *
+     * @param string $cliente
+     * @return Clientes
+     */
+    public function setCliente($cliente)
+    {
+        $this->cliente = $cliente;
+    
+        return $this;
+    }
+
+    /**
+     * Get cliente
+     *
+     * @return string 
+     */
+    public function getCliente()
+    {
+        return $this->cliente;
+    }
+
+    /**
+     * Set rif
+     *
+     * @param string $rif
+     * @return Clientes
+     */
+    public function setRif($rif)
+    {
+        $this->rif = $rif;
+    
+        return $this;
+    }
+
+    /**
+     * Get rif
+     *
+     * @return string 
+     */
+    public function getRif()
+    {
+        return $this->rif;
+    }
+
+    /**
+     * Set telfLocCero
+     *
+     * @param string $telfLocCero
+     * @return Clientes
+     */
+    public function setTelfLocCero($telfLocCero)
+    {
+        $this->telfLocCero = $telfLocCero;
+    
+        return $this;
+    }
+
+    /**
+     * Get telfLocCero
+     *
+     * @return string 
+     */
+    public function getTelfLocCero()
+    {
+        return $this->telfLocCero;
+    }
+
+    /**
+     * Set telfLocUno
+     *
+     * @param string $telfLocUno
+     * @return Clientes
+     */
+    public function setTelfLocUno($telfLocUno)
+    {
+        $this->telfLocUno = $telfLocUno;
+    
+        return $this;
+    }
+
+    /**
+     * Get telfLocUno
+     *
+     * @return string 
+     */
+    public function getTelfLocUno()
+    {
+        return $this->telfLocUno;
+    }
+
+    /**
+     * Set telfLocDos
+     *
+     * @param string $telfLocDos
+     * @return Clientes
+     */
+    public function setTelfLocDos($telfLocDos)
+    {
+        $this->telfLocDos = $telfLocDos;
+    
+        return $this;
+    }
+
+    /**
+     * Get telfLocDos
+     *
+     * @return string 
+     */
+    public function getTelfLocDos()
+    {
+        return $this->telfLocDos;
+    }
+
+    /**
+     * Set telfLocTres
+     *
+     * @param string $telfLocTres
+     * @return Clientes
+     */
+    public function setTelfLocTres($telfLocTres)
+    {
+        $this->telfLocTres = $telfLocTres;
+    
+        return $this;
+    }
+
+    /**
+     * Get telfLocTres
+     *
+     * @return string 
+     */
+    public function getTelfLocTres()
+    {
+        return $this->telfLocTres;
+    }
+
+    /**
+     * Set especialidad
+     *
+     * @param string $especialidad
+     * @return Clientes
+     */
+    public function setEspecialidad($especialidad)
+    {
+        $this->especialidad = $especialidad;
+    
+        return $this;
+    }
+
+    /**
+     * Get especialidad
+     *
+     * @return string 
+     */
+    public function getEspecialidad()
+    {
+        return $this->especialidad;
+    }
+
+    /**
+     * Set extra
+     *
+     * @param string $extra
+     * @return Clientes
+     */
+    public function setExtra($extra)
+    {
+        $this->extra = $extra;
+    
+        return $this;
+    }
+
+    /**
+     * Get extra
+     *
+     * @return string 
+     */
+    public function getExtra()
+    {
+        return $this->extra;
+    }
+
+    /**
+     * Set fecha
+     *
+     * @param \DateTime $fecha
+     * @return Clientes
+     */
+    public function setFecha($fecha)
+    {
+        $this->fecha = $fecha;
+    
+        return $this;
+    }
+
+    /**
+     * Get fecha
+     *
+     * @return \DateTime 
+     */
+    public function getFecha()
+    {
+        return $this->fecha;
+    }
+
+    /**
+     * Set cclata
+     *
+     * @param string $cclata
+     * @return Clientes
+     */
+    public function setCclata($cclata)
+    {
+        $this->cclata = $cclata;
+    
+        return $this;
+    }
+
+    /**
+     * Get cclata
+     *
+     * @return string 
+     */
+    public function getCclata()
+    {
+        return $this->cclata;
+    }
+
+    /**
+     * Set ccllata
+     *
+     * @param string $ccllata
+     * @return Clientes
+     */
+    public function setCcllata($ccllata)
+    {
+        $this->ccllata = $ccllata;
+    
+        return $this;
+    }
+
+    /**
+     * Get ccllata
+     *
+     * @return string 
+     */
+    public function getCcllata()
+    {
+        return $this->ccllata;
+    }
+
+    /**
+     * Set chinlata
+     *
+     * @param string $chinlata
+     * @return Clientes
+     */
+    public function setChinlata($chinlata)
+    {
+        $this->chinlata = $chinlata;
+    
+        return $this;
+    }
+
+    /**
+     * Get chinlata
+     *
+     * @return string 
+     */
+    public function getChinlata()
+    {
+        return $this->chinlata;
+    }
+
+    /**
+     * Set chinlight
+     *
+     * @param string $chinlight
+     * @return Clientes
+     */
+    public function setChinlight($chinlight)
+    {
+        $this->chinlight = $chinlight;
+    
+        return $this;
+    }
+
+    /**
+     * Get chinlight
+     *
+     * @return string 
+     */
+    public function getChinlight()
+    {
+        return $this->chinlight;
+    }
+
+    /**
+     * Set sodalata
+     *
+     * @param string $sodalata
+     * @return Clientes
+     */
+    public function setSodalata($sodalata)
+    {
+        $this->sodalata = $sodalata;
+    
+        return $this;
+    }
+
+    /**
+     * Get sodalata
+     *
+     * @return string 
+     */
+    public function getSodalata()
+    {
+        return $this->sodalata;
+    }
+
+    /**
+     * Set kinalata
+     *
+     * @param string $kinalata
+     * @return Clientes
+     */
+    public function setKinalata($kinalata)
+    {
+        $this->kinalata = $kinalata;
+    
+        return $this;
+    }
+
+    /**
+     * Get kinalata
+     *
+     * @return string 
+     */
+    public function getKinalata()
+    {
+        return $this->kinalata;
+    }
+
+    /**
+     * Set cc300
+     *
+     * @param string $cc300
+     * @return Clientes
+     */
+    public function setCc300($cc300)
+    {
+        $this->cc300 = $cc300;
+    
+        return $this;
+    }
+
+    /**
+     * Get cc300
+     *
+     * @return string 
+     */
+    public function getCc300()
+    {
+        return $this->cc300;
+    }
+
+    /**
+     * Set ccl300
+     *
+     * @param string $ccl300
+     * @return Clientes
+     */
+    public function setCcl300($ccl300)
+    {
+        $this->ccl300 = $ccl300;
+    
+        return $this;
+    }
+
+    /**
+     * Get ccl300
+     *
+     * @return string 
+     */
+    public function getCcl300()
+    {
+        return $this->ccl300;
+    }
+
+    /**
+     * Set sodapsh
+     *
+     * @param string $sodapsh
+     * @return Clientes
+     */
+    public function setSodapsh($sodapsh)
+    {
+        $this->sodapsh = $sodapsh;
+    
+        return $this;
+    }
+
+    /**
+     * Get sodapsh
+     *
+     * @return string 
+     */
+    public function getSodapsh()
+    {
+        return $this->sodapsh;
+    }
+
+    /**
+     * Set kinapsh
+     *
+     * @param string $kinapsh
+     * @return Clientes
+     */
+    public function setKinapsh($kinapsh)
+    {
+        $this->kinapsh = $kinapsh;
+    
+        return $this;
+    }
+
+    /**
+     * Get kinapsh
+     *
+     * @return string 
+     */
+    public function getKinapsh()
+    {
+        return $this->kinapsh;
+    }
+
+    /**
+     * Set cc350
+     *
+     * @param string $cc350
+     * @return Clientes
+     */
+    public function setCc350($cc350)
+    {
+        $this->cc350 = $cc350;
+    
+        return $this;
+    }
+
+    /**
+     * Get cc350
+     *
+     * @return string 
+     */
+    public function getCc350()
+    {
+        return $this->cc350;
+    }
+
+    /**
+     * Set chin350
+     *
+     * @param string $chin350
+     * @return Clientes
+     */
+    public function setChin350($chin350)
+    {
+        $this->chin350 = $chin350;
+    
+        return $this;
+    }
+
+    /**
+     * Get chin350
+     *
+     * @return string 
+     */
+    public function getChin350()
+    {
+        return $this->chin350;
+    }
+
+    /**
+     * Set ccbib
+     *
+     * @param string $ccbib
+     * @return Clientes
+     */
+    public function setCcbib($ccbib)
+    {
+        $this->ccbib = $ccbib;
+    
+        return $this;
+    }
+
+    /**
+     * Get ccbib
+     *
+     * @return string 
+     */
+    public function getCcbib()
+    {
+        return $this->ccbib;
+    }
+
+    /**
+     * Set cclbib
+     *
+     * @param string $cclbib
+     * @return Clientes
+     */
+    public function setCclbib($cclbib)
+    {
+        $this->cclbib = $cclbib;
+    
+        return $this;
+    }
+
+    /**
+     * Get cclbib
+     *
+     * @return string 
+     */
+    public function getCclbib()
+    {
+        return $this->cclbib;
+    }
+
+    /**
+     * Set chinbib
+     *
+     * @param string $chinbib
+     * @return Clientes
+     */
+    public function setChinbib($chinbib)
+    {
+        $this->chinbib = $chinbib;
+    
+        return $this;
+    }
+
+    /**
+     * Get chinbib
+     *
+     * @return string 
+     */
+    public function getChinbib()
+    {
+        return $this->chinbib;
+    }
+
+    /**
+     * Set co2
+     *
+     * @param string $co2
+     * @return Clientes
+     */
+    public function setCo2($co2)
+    {
+        $this->co2 = $co2;
+    
+        return $this;
+    }
+
+    /**
+     * Get co2
+     *
+     * @return string 
+     */
+    public function getCo2()
+    {
+        return $this->co2;
+    }
+
+    /**
+     * Set nestea
+     *
+     * @param string $nestea
+     * @return Clientes
+     */
+    public function setNestea($nestea)
+    {
+        $this->nestea = $nestea;
+    
+        return $this;
+    }
+
+    /**
+     * Get nestea
+     *
+     * @return string 
+     */
+    public function getNestea()
+    {
+        return $this->nestea;
+    }
+
+    /**
+     * Set agua350
+     *
+     * @param string $agua350
+     * @return Clientes
+     */
+    public function setAgua350($agua350)
+    {
+        $this->agua350 = $agua350;
+    
+        return $this;
+    }
+
+    /**
+     * Get agua350
+     *
+     * @return string 
+     */
+    public function getAgua350()
+    {
+        return $this->agua350;
+    }
+
+    /**
+     * Set observaciones
+     *
+     * @param string $observaciones
+     * @return Clientes
+     */
+    public function setObservaciones($observaciones)
+    {
+        $this->observaciones = $observaciones;
+    
+        return $this;
+    }
+
+    /**
+     * Get observaciones
+     *
+     * @return string 
+     */
+    public function getObservaciones()
+    {
+        return $this->observaciones;
+    }
+
+    /**
+     * Set direccionUno
+     *
+     * @param string $direccionUno
+     * @return Clientes
+     */
+    public function setDireccionUno($direccionUno)
+    {
+        $this->direccionUno = $direccionUno;
+    
+        return $this;
+    }
+
+    /**
+     * Get direccionUno
+     *
+     * @return string 
+     */
+    public function getDireccionUno()
+    {
+        return $this->direccionUno;
+    }
+
+    /**
+     * Set direccionDos
+     *
+     * @param string $direccionDos
+     * @return Clientes
+     */
+    public function setDireccionDos($direccionDos)
+    {
+        $this->direccionDos = $direccionDos;
+    
+        return $this;
+    }
+
+    /**
+     * Get direccionDos
+     *
+     * @return string 
+     */
+    public function getDireccionDos()
+    {
+        return $this->direccionDos;
+    }
+
+    /**
+     * Set direccionTres
+     *
+     * @param string $direccionTres
+     * @return Clientes
+     */
+    public function setDireccionTres($direccionTres)
+    {
+        $this->direccionTres = $direccionTres;
+    
+        return $this;
+    }
+
+    /**
+     * Get direccionTres
+     *
+     * @return string 
+     */
+    public function getDireccionTres()
+    {
+        return $this->direccionTres;
+    }
+
+    /**
+     * Set lat
+     *
+     * @param float $lat
+     * @return Clientes
+     */
+    public function setLat($lat)
+    {
+        $this->lat = $lat;
+    
+        return $this;
+    }
+
+    /**
+     * Get lat
+     *
+     * @return float 
+     */
+    public function getLat()
+    {
+        return $this->lat;
+    }
+
+    /**
+     * Set lng
+     *
+     * @param float $lng
+     * @return Clientes
+     */
+    public function setLng($lng)
+    {
+        $this->lng = $lng;
+    
+        return $this;
+    }
+
+    /**
+     * Get lng
+     *
+     * @return float 
+     */
+    public function getLng()
+    {
+        return $this->lng;
+    }
+
+    /**
+     * Set isMapSet
+     *
+     * @param boolean $isMapSet
+     * @return Clientes
+     */
+    public function setIsMapSet($isMapSet)
+    {
+        $this->isMapSet = $isMapSet;
+    
+        return $this;
+    }
+
+    /**
+     * Get isMapSet
+     *
+     * @return boolean 
+     */
+    public function getIsMapSet()
+    {
+        return $this->isMapSet;
+    }
+}

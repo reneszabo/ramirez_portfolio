@@ -1,0 +1,54 @@
+<?php
+
+namespace Verlas\Page\EntityBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Price
+ *
+ * @ORM\Table(name="price")
+ * @ORM\Entity
+ */
+class Price
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="if", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $if;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=45, nullable=false)
+     */
+    private $name;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Client", inversedBy="priceIf")
+     * @ORM\JoinTable(name="client_has_price",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="price_if", referencedColumnName="if")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="client_id", referencedColumnName="id")
+     *   }
+     * )
+     */
+    private $client;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->client = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+}

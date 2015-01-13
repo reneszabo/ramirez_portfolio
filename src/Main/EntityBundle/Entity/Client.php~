@@ -1,0 +1,232 @@
+<?php
+
+namespace Verlas\Page\EntityBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Client
+ *
+ * @ORM\Table(name="client")
+ * @ORM\Entity
+ */
+class Client
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="lat", type="float", nullable=true)
+     */
+    private $lat;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="lng", type="float", nullable=true)
+     */
+    private $lng;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_map_set", type="boolean", nullable=false)
+     */
+    private $isMapSet;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="trade_name", type="string", length=128, nullable=true)
+     */
+    private $tradeName;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="socal_name", type="string", length=128, nullable=true)
+     */
+    private $socalName;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="rif", type="string", length=32, nullable=true)
+     */
+    private $rif;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="anniversary", type="datetime", nullable=true)
+     */
+    private $anniversary;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="attention_supplier", type="string", length=128, nullable=true)
+     */
+    private $attentionSupplier;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="attention_client", type="string", length=128, nullable=true)
+     */
+    private $attentionClient;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="delivery", type="boolean", nullable=false)
+     */
+    private $delivery;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="reservation", type="boolean", nullable=false)
+     */
+    private $reservation;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Channel", inversedBy="client")
+     * @ORM\JoinTable(name="client_has_channel",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="client_id", referencedColumnName="id")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="channel_id", referencedColumnName="id")
+     *   }
+     * )
+     */
+    private $channel;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Material", inversedBy="client")
+     * @ORM\JoinTable(name="client_has_material",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="client_id", referencedColumnName="id")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="material_id", referencedColumnName="id")
+     *   }
+     * )
+     */
+    private $material;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="PaymenyMethod", inversedBy="client")
+     * @ORM\JoinTable(name="client_has_paymeny_method",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="client_id", referencedColumnName="id")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="paymeny_method_id", referencedColumnName="id")
+     *   }
+     * )
+     */
+    private $paymenyMethod;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Price", mappedBy="client")
+     */
+    private $priceIf;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Product", inversedBy="client")
+     * @ORM\JoinTable(name="client_has_product",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="client_id", referencedColumnName="id")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="product_id", referencedColumnName="id")
+     *   }
+     * )
+     */
+    private $product;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Route", inversedBy="client")
+     * @ORM\JoinTable(name="client_has_route",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="client_id", referencedColumnName="id")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="route_id", referencedColumnName="id")
+     *   }
+     * )
+     */
+    private $route;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Specialty", inversedBy="client")
+     * @ORM\JoinTable(name="client_has_specialty",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="client_id", referencedColumnName="id")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="specialty_id", referencedColumnName="id")
+     *   }
+     * )
+     */
+    private $specialty;
+
+    /**
+     * @var \Basis
+     *
+     * @ORM\ManyToOne(targetEntity="Basis")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="basis_id", referencedColumnName="id")
+     * })
+     */
+    private $basis;
+
+    /**
+     * @var \Kof
+     *
+     * @ORM\ManyToOne(targetEntity="Kof")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="kof_id", referencedColumnName="id")
+     * })
+     */
+    private $kof;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->channel = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->material = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->paymenyMethod = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->priceIf = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->product = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->route = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->specialty = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+}

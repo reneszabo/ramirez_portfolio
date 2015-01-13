@@ -1,0 +1,433 @@
+{% extends 'MainPageFrontendBundle:Default:base.html.twig' %}
+{% block stylesheets %}
+  {{ parent() }}
+  <link href="/libs/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+{% endblock stylesheets %}
+{% block body %}
+  <header>
+    <div id="content" class="navbar navbar-default navbar-fixed-top" id="top" role="banner">
+      <div class="container">
+        <div class="navbar-header">
+          <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".ramirez-navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a id="logo" href="#hero" class="navbar-brand">
+            Rene Ramirez Portfolio
+          </a>
+        </div>
+        <nav id="ramirez-menu" class="collapse navbar-collapse ramirez-navbar-collapse" role="navigation">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#know">Skills</a></li>
+            <li><a href="#samples">Samples</a></li>
+            <li><a href="#direction">Contact</a></li>
+            <li><a href="http://ca.linkedin.com/in/reneszabo" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+            <li><a href="https://twitter.com/reneszabo" target="_blank"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="https://www.facebook.com/rene.roberto.ramirez.szabo" target="_blank"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="https://github.com/reneszabo" target="_blank"><i class="fa fa-github-alt"></i></a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+  <section id="hero">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="box-text">
+            <h1 class="bolder text-center">Team + Project + Good Comunication = Home</h1>
+            <h2 class="text-center">If you do what you love = you will never work in your life</h2>
+            <h1 class="bolder text-center">Designing and developing for:</h1>
+          </div>
+          <div class="me hidden-sm hidden-xs">
+            <img src="/img/portfolio/me.png" alt="" class="" />
+          </div>
+          <div class="box-image">
+            <img src="/img/portfolio/responsive.png" alt="" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>      
+  <section id="know">     
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <legend>
+            <h2 class="text-center bolder">Skills</h2>
+          </legend>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-2 col-md-3 col-xs-4">
+          <div class="thumbnail">
+            <a href="http://www.w3.org/html/" target="_blank">
+              <img class="img-responsive" src="/img/portfolio/logo/html5.jpg" alt="HTML5"/>
+            </a>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-3 col-xs-4">
+          <div class="thumbnail">
+            <a href="http://www.w3.org/Style/CSS/" target="_blank">
+              <img class="img-responsive-ramirez" src="/img/portfolio/logo/css3.jpg" alt="CSS3"/>
+            </a>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-3 col-xs-4">
+          <div class="thumbnail">
+            <a href="http://lesscss.org/" target="_blank">
+              <img class="img-responsive-ramirez" src="/img/portfolio/logo/less.jpg" alt="less CSS pre-processor"/>
+            </a>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-3 col-xs-4">
+          <div class="thumbnail">
+            <a href="http://sass-lang.com/" target="_blank">
+              <img class="img-responsive-ramirez" src="/img/portfolio/logo/sass.jpg" alt="SASS grade CSS extension"/>
+            </a>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-3 col-xs-4">
+          <div class="thumbnail">
+            <a href="http://jquery.com/" target="_blank">
+              <img class="img-responsive-ramirez" src="/img/portfolio/logo/jQuery.jpg" alt="jQuery"/>
+            </a>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-3 col-xs-4">
+          <div class="thumbnail">
+            <a href="http://cordova.apache.org/" target="_blank">
+              <img class="img-responsive-ramirez" src="/img/portfolio/logo/cordova.jpg" alt="Apache Cordova"/>
+            </a>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-3 col-xs-4">
+          <div class="thumbnail">
+            <a href="http://getbootstrap.com/" target="_blank">
+              <img class="img-responsive-ramirez" src="/img/portfolio/logo/bootstrap.jpg" alt="Bootstrap 3"/>
+            </a>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-3 col-xs-4">
+          <div class="thumbnail">
+            <a href="http://php.net/" target="_blank">
+              <img class="img-responsive-ramirez" src="/img/portfolio/logo/php.jpg" alt="PHP"/>
+            </a>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-3 col-xs-4">
+          <div class="thumbnail">
+            <a href="http://twig.sensiolabs.org/" target="_blank">
+              <img class="img-responsive-ramirez" src="/img/portfolio/logo/twig.jpg" alt="TWIG template engine for PHP"/>
+            </a>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-3 col-xs-4">
+          <div class="thumbnail">
+            <a href="http://symfony.com/" target="_blank">
+              <img class="img-responsive-ramirez" src="/img/portfolio/logo/symfony.jpg" alt="Symfony"/>
+            </a>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-3 col-xs-4">
+          <div class="thumbnail">
+            <a href="https://developers.google.com/" target="_blank">
+              <img class="img-responsive-ramirez" src="/img/portfolio/logo/developers_logo.jpg" alt="Google Developers"/>
+            </a>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-3 col-xs-4">
+          <div class="thumbnail">
+            <a href="http://nodejs.org/" target="_blank">
+              <img class="img-responsive-ramirez" src="/img/portfolio/logo/nodejs-light.jpg" alt="Node.js"/>
+            </a>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-3 col-xs-4">
+          <div class="thumbnail">
+            <a href="http://git.rrrproducciones.com" target="_blank">
+              <img class="img-responsive-ramirez" src="/img/portfolio/logo/gitlab.jpg" alt="GitLab"/>
+            </a>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-3 col-xs-4">
+          <div class="thumbnail">
+            <a href="https://github.com/" target="_blank">
+              <img class="img-responsive-ramirez" src="/img/portfolio/logo/github.jpg" alt="GitHub"/>
+            </a>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-3 col-xs-4">
+          <div class="thumbnail">
+            <a href="https://getcomposer.org/" target="_blank">
+              <img class="img-responsive-ramirez" src="/img/portfolio/logo/composer.jpg" alt="Composer"/>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="analytics-api" class="text-center">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+
+          <div class="on-top">
+            <h3 class="light">Visits since November 16th, 2014</h3>
+            <h1 class="visits_count bolder">
+              {{ storedAnalytics.sessions }}
+            </h1>
+            <div class="h6">
+              Last Update
+            </div>
+            <div class="h6">
+              {{ storedAnalytics.updatedAt|date('F jS, Y h:i a e', "America/Toronto") }}
+            </div>
+            <div class="bolder">
+              Top 6 Cities visits
+            </div>
+            {% for cityVisit in cityVisits %}
+              <div>
+                {{ cityVisit[0] }}
+                {{ cityVisit[1] }}
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+    <img id="analyticsLogo" src="/img/portfolio/logo/google_analytics_logo.png" alt=""/>
+    <div class="box-image">
+      <img id="heart" src="/img/portfolio/heart.png" alt=""/>
+    </div>
+  </section>
+
+  <section id="success"> 
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <legend>
+            <h2 class="text-center bolder">Last fun major achievement</h2>
+          </legend>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4 col-xs-12">
+          <div class="thumbnail">
+            <img class="img-responsive-ramirez" src="/img/portfolio/logo/edAppHack.jpg" alt=""/>
+          </div>
+        </div>
+        <div class="col-md-8 col-xs-12">
+          <p><strong>Fist Place Winner of the EdAppHack </strong><br>Toronto, Canada. Octuber 2014</p>
+          <p><strong>About the EdAppHack</strong></p>
+          <p>
+            Supported by the
+            <a href="http://www.marsdd.com/" target="_blank">MaRS Discovery District (MaRS DD)</a>,
+            <a href="https://twitter.com/search?q=%23edapphack" target="_blank">#EdAppHack</a>
+            is a 2-day Education-focused Hackathon that aims to unite Students, Teachers and Community App Developers through the theme of
+            <a href="http://www.tdsb.on.ca/AboutUs/DirectorofEducation/YearsofAction/StudentAchievement.aspx" target="_blank">STEM</a>.
+            As an experiential and inquiry-based learning opportunity based on the
+            <a href="https://www.youtube.com/watch?v=nMz-JLg8bWQ" target="_blank">Hackathon Model</a>,
+            the goal of the weekend event is to empower Student Voice in the creation of
+            original Apps that support learning needs identified by Student participants.
+            Teachers and App Developers will support each other and collaborate in teams with Students
+            as they imagine, prototype, build and pitch their App ideas!
+          </p>
+          <p><strong>My experience in the EdAppHack </strong></p>
+          <p>
+            Best randomly created ever.  We were conformed by 4 school students 
+            and Andrew a Humber graduated Student and my self. We divided the 
+            team in 2 hustlers, 2 designers and 2 hackers. The first day was 
+            coming up with the idea, what was going to be created, the colour 
+            palette, the name, the muck ups and layouts. The second day was pure
+            actions, hustlers did an excellent job making the room know about us
+            and our app. The designers created the logo and UI and the Hackers 
+            created a Frontend and backend in hours. The communication and 
+            collaboration was perfect. We were happy with the results, and 
+            the announcement that we were the winners a filling that was 
+            indescribable. I want to thanks the <a href="https://twitter.com/SwitchOn_EAH1"  target="_blank">SwitchOn</a> team, 
+            the best team ever.
+          </p>
+          <p><strong>The SwitchOn team:</strong></p>
+          <ul>
+            <li>Nisha Telesford</li>
+            <li>Drew Barot</li>
+            <li>Liza Leshchynska</li>
+            <li>Faiq Ahmad</li>
+            <li>Andrew Apperley</li>
+            <li>Rene Ramirez</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="git" class="separation-inner-shadow parallax-separator">
+  <div class="git-center text-center">
+    <div class="bolder h2">Samples</div>
+    <div class="dot-overlay"></div>
+  </div>
+</section>
+
+<section id="samples">      
+  <div class="container">
+
+    <div class="row">
+      <div class="col-md-6 ">
+        <a href="{{ path('samples_fitrition') }}"  target="_blank">
+          <img src="/img/portfolio/lo/ramirez-portfolio-002-lo.jpg" alt="Fitrition" class="img-thumbnail"/>
+        </a>
+      </div>
+      <div class="col-md-6">
+        <h2 class="light">Landing Page for Fitrition App</h2>
+        <ul>
+          <li>Final muck up of web look and feel, it is <strong>not intended to lunch commercially</strong></li>
+          <br>
+          <li>Responsive design with <a href="http://getbootstrap.com/"  target="_blank">Bootstrap3</a></li>
+          <br>
+          <li><a href="https://www.youtube.com/watch?v=gF0rrpMH-Jo"  target="_blank">Video</a> - Inspirational Running Video HD</li>
+          <br>
+          <li>
+            Created fast muck up based on:
+            <ul>
+              <li><a href="http://fitstar.com/" target="_blank">fitstar.com</a></li>
+              <li><a href="https://www.codyapp.com/" target="_blank">codyapp.com</a></li>
+              <li><a href="http://www.gym-pact.com/" target="_blank">gym-pact.com</a></li>
+            </ul>
+          </li>
+          <br>
+          <li>
+            Thanks to the team for pulling out the muck ups in such a short period:
+            <ul>
+              <li>Aegean Diker</li>
+              <li>Ariel Villa-Veluz</li>
+              <li>Eric Tai</li>
+            </ul>
+          </li>
+        </ul>
+        <div class="text-center">
+          <a class="btn btn-info" href="{{ path('samples_fitrition') }}" target="_blank">View Demo</a>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <a href="{{ path('samples_symbiosis') }}" target="_blank">
+          <img src="/img/portfolio/lo/ramirez-portfolio-003-lo.jpg" alt="Symbiosis" class="img-thumbnail"/>
+        </a>
+      </div>
+      <div class="col-md-6">
+        <h2 class="light">Meaghan Ogilvie - Symbiosis</h2>
+        <br>
+        <ul>
+          <li>Promotional page for <a href="http://meaghanogilvie.com/" target="_blank">Meaghan Ogilvie</a></li>
+          <br>
+          <li>All photos were provided by <a href="http://meaghanogilvie.com/" target="_blank">Meaghan Ogilvie</a></li>
+          <br>
+          <li>Website <strong>NOT</strong> responsive</li>
+          <br>
+          <li>Usage of <a href="http://www.ianlunn.co.uk/plugins/jquery-parallax" target="_blank">jQuery Parallax</a> for section separation </li>
+          <br>
+          <li>
+            This project was created with a awsome team, special thanks to: 
+            <ul>
+              <li>Jemela Vergara</li>
+              <li>Nicole Ornales</li>
+            </ul>
+          </li>
+          <br>
+        </ul>
+        <div class="text-center">
+          <a class="btn btn-info" href="{{ path('samples_symbiosis') }}" target="_blank">View Demo</a>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <a href="{{ path('samples_to_do_list') }}" target="_blank">
+          <img src="/img/portfolio/lo/ramirez-portfolio-001-lo.jpg" alt="To-do List" class="img-thumbnail"/>
+        </a>
+      </div>
+      <div class="col-md-6">
+        <h2 class="light">To-Do List - powered by Google API</h2>
+        <br>
+        <ul>
+          <li>Integrated with <a href="https://developers.google.com/gdata/docs/client-libraries" target="_blank">Google API</a></li>
+          <br>
+          <li>Secure Sign in and out</li>
+          <br>
+          <li>Responsive design with <a href="http://getbootstrap.com/" target="_blank">Bootstrap3</a></li>
+          <br>
+          <li>Animated with <a href="http://daneden.github.io/animate.css/" target="_blank">Animate.css</a> created by <a href="http://daneden.me/" target="_blank">Daniel Eden</a></li>
+          <br>
+          <li>List Design bt <a href="http://sarasoueidan.com/blog/creative-list-effects/" target="_blank">Sara Soucidan</a></li>
+          <br>
+          <li>100% frontend development</li>
+        </ul>
+        <div class="text-center">
+          <a class="btn btn-info" href="{{ path('samples_to_do_list') }}" target="_blank">View Demo</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="direction">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3 text-center">
+        <h2 class=" bolder">
+          Like what you see ? lets have a talk
+        </h2>
+        <h4 class=" light">
+          Toronto, Canada
+          <br>
+          <a href="mailto:rene.ramirez@fersz.com" >
+            rene.ramirez@fersz.com
+          </a>
+          <br>
+          +1 647-772-1613
+        </h4>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock body %}
+{% block javascripts %}
+  {{ parent() }}
+  <script src="/libs/jquery-localScroll/jquery.localScroll.min.js" type="text/javascript"></script>
+  <script src="/libs/jquery-scrollTo/jquery.scrollTo.min.js" type="text/javascript"></script>
+  <script src="/libs/jquery-parallax/jquery-parallax.js" type="text/javascript"></script>
+  <script src="/libs/waypoints/waypoints.min.js" type="text/javascript"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      $('body > header').localScroll({offset: -50});
+      $('#git').parallax("50%", 0.6);
+      $('#know').waypoint(function (direction) {                                    // WAYPOINT PLUGIN
+        if (direction === 'down') {
+          $('#know').addClass('active');
+          $('#know .thumbnail img').addClass('active');
+        } else {
+          $('#know').removeClass('active');
+          $('#know .thumbnail img').removeClass('active');
+        }
+      }, {offset: 450});
+      $('body > section:nth-of-type(1) h1:nth-of-type(1)').waypoint(function (direction) {
+        if (direction === "down") {
+          $('body > header .navbar-default').addClass('down');
+        } else {
+          $('body > header .navbar-default').removeClass('down');
+        }
+      }, {offset: 50});
+    });
+    $('#ramirez-menu').on('hidden.bs.collapse', function () {
+      $('body > header .navbar-default').removeClass('down-togle');
+    });
+    $('#ramirez-menu').on('show.bs.collapse', function () {
+      $('body > header .navbar-default').addClass('down-togle');
+    });
+  </script>
+{% endblock javascripts %}

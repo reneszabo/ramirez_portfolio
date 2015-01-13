@@ -1,0 +1,396 @@
+
+@import "../variables";
+
+$color-green-strong: #1fa149;
+$color-green-strong-rgba: rgba(31, 161, 73, 0.5);
+$color-green-light: #acd373;
+$color-green-light-rgba: rgba(172,211,155,0.5);
+
+@mixin transition($property, $time, $curve) {
+  -webkit-transition: $property $time $curve;
+  -moz-transition: $property $time $curve;
+  transition: $property $time $curve;
+}
+body,html{
+  height: 100%;
+}
+body{
+  font-family: 'Raleway', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #333;
+}
+
+.light{
+  font-weight: 100;
+}
+.btn-success{
+  background-color: $color-green-strong;
+  border-color: $color-green-strong; 
+}
+
+
+body>header{
+  .navbar-fitrition{
+    background: #000;
+    background: rgba(0, 0, 0, 0.5);
+    border-bottom: 0px solid #000;
+    border-bottom: 0px solid rgba(0, 0, 0, 0.5);
+  }
+  .fitrition-navbar-brand{
+    float: none;
+    padding: 15px 15px;
+    font-size: 40px;
+    font-weight: 100;
+    line-height:78px;
+    position: relative;
+    span{
+      position: relative;
+      z-index: 2;
+      color: white;
+      margin-left: 24px;
+    } 
+    img{
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1;
+    }
+    &:hover,&:focus{
+      text-decoration: none;
+    }
+  }
+  #logo {
+    height: 75px;
+  }
+  .navbar-default .navbar-nav>li>a{
+    padding-top: 30px;
+    padding-bottom: 30px;
+    color: white;
+    @include transition(all, 0.3s, ease);
+    &:hover{
+      color: white;
+      background-color: $color-green-light;
+      background-color: $color-green-light-rgba;
+    }
+  }
+  .navbar-default .navbar-nav>.active>a{
+    color: white;
+    background-color: $color-green-strong;
+    background-color: $color-green-strong-rgba;
+  }
+}
+
+body > section{
+  padding-top: 30px;
+  padding-bottom: 30px;
+  min-height:200px;
+  overflow: hidden;
+  &:nth-of-type(1){
+    text-align: center;
+    padding-top: 100px;
+    height: 100%;
+    min-height: 500px;
+    color:white;
+    .container{
+      height: 100%;
+      .row{
+        height: 100%;
+        .col-md-12{
+          height: 100%;
+          position: relative;
+          .fitrition-box{
+            position: absolute;
+            bottom: 15%;
+            width: 97%;
+            .nav-pills{
+              display: inline-block;
+              a{
+                color: white;
+                font-size: 22px;
+                &:hover{
+                  background-color: #1fa149;
+                  background-color: rgba(31, 161, 73, 0.5);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  &.green{
+    background-color: #c4df9b;
+  }
+}
+#hero{
+  background: url(/img/fitrition/hero-background.jpg) no-repeat;
+  background-size: auto 100%;
+  background-position: center top;
+}
+
+#features{
+  .section-subtitle{
+    margin-bottom: 50px;
+  }
+  .margin-top{
+    margin-top: 30px;
+  }
+  .col-md-4{
+    height: 100px;
+  }
+  .fitrition-feature-title{
+    font-size: 15px;
+    display: table;
+    span{
+      font-size: 24px;
+      color:gray;
+      margin-right: 15px;
+    }
+    strong{
+      vertical-align: middle;
+      display: table-cell;
+    }
+  }
+}
+
+#work{
+  background: url(/img/fitrition/work.jpg) no-repeat;
+  background-size: 1980px auto;
+  background-position: center center;
+  padding-top:120px; 
+  padding-bottom:120px;
+  position: relative;
+  overflow: hidden;
+  color: white;
+}
+
+#gallery{
+  .text-danger{
+    color:red;
+  }
+}
+
+#food{
+  background: url(/img/fitrition/food.jpg) no-repeat;
+  background-size: 1980px auto;
+  background-position: center center;
+  padding-top:120px; 
+  padding-bottom:120px;
+  position: relative;
+  overflow: hidden;
+  color: white;
+}
+
+#compare{
+  padding-bottom: 0px;
+  margin-bottom: 0px;
+  .small{
+    font-size: 11px;
+  }
+  .have-table{
+    padding-bottom: 30px;
+  }
+  .container{
+    height: 100%;
+    background: url(/img/fitrition/girl-shirt-logo.jpg) 0 60px no-repeat;
+    @media (max-width: $screen-xs-max) { 
+      background: white;
+    }
+    @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) { 
+      background: white;
+    }
+    @media (min-width: $screen-md-min) and (max-width: $screen-md-max) { 
+      .title{
+        margin-bottom: 50px;
+      }
+    }
+    @media (min-width: $screen-lg-min) { 
+      .title{
+        margin-bottom: 150px;
+      }
+    }
+  }
+  .btn-success{
+    margin-top: 20px;
+  }
+  table{
+    width: 100%;
+  }
+  th, td {
+    border: 1px solid #d8d8d8;
+    text-align: center;
+    vertical-align: middle;
+    width: 152px;
+  }
+  th {
+    font-weight: 300;
+    font-size: 18px;
+    padding: 15px 0px;
+    border-top: 0;
+  }
+  th:first-child {
+    border-left: 0;
+  }
+  th:last-child, td:last-child {
+    border-right: 0;
+  }
+  th.moves, td.moves {
+    position: relative;
+    background-color: #00d55a;
+    border-right: 0;
+    border-left: 0;
+    border-bottom: 1px solid #FFF;
+  }
+  td.table-rowlabel {
+    text-align: right;
+    width: 244px;
+    padding: 15px 30px 15px 10px;
+    border-left: 0;
+    font-size: 16px;
+    color: #555;
+  }
+  .fa-check{
+    font-size: 25px;
+  }
+  .moves{
+    color: white;
+  }
+}
+#team-crew{
+  position: relative;
+  overflow: hidden;
+  .title{
+    margin-bottom: 40px;
+  }
+  .nav-pills{
+    display: inline-block;
+    a{
+    }
+  }
+
+}
+.text-white{
+  color:white;
+  a{
+    color:white;
+    &:hover{
+      color: $color-green-strong;
+
+    }
+  }
+}
+.text-green{
+  a{
+    color: $color-green-strong;
+  }
+}
+
+.green_block{
+  transform: rotate(350deg);
+  -ms-transform: rotate(350deg);
+  -webkit-transform: rotate(350deg);
+  background-color: $color-green-strong;
+  width: 5000px;
+  height: 1000px;
+  position: absolute;
+  top: 330px;
+  z-index: 0;
+}
+
+.video-overlay {
+  background: url(/img/fitrition/dot.png) rgba(0,0,0,0.5);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 34;
+  opacity: 0.7;
+}
+.section-video-content {
+  z-index: 35;
+  position: relative;
+  opacity: 0.98;
+}
+#run{
+  padding: 0;
+
+  .video{
+    position: relative;
+    overflow: hidden;
+    border-top:1px solid #eee; 
+    border-bottom:1px solid #eee; 
+    background:#fff;
+    color: white;
+    padding-top:120px; 
+    padding-bottom:120px;
+  }
+  .section-video {
+    position: absolute;
+    z-index: 33;
+    left: 0;
+    top: 0;
+    width: 100% ;
+    height: 100%;
+  }
+  .section-video-player{
+    position: absolute;
+    top: -100px;
+    width: auto !important ;
+    @media (max-width: $screen-xs-max) { 
+    top: -50px;
+      height: 450px;
+    }
+    @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) { 
+      height: 560px;
+    }
+    @media (min-width: $screen-md-min) and (max-width: $screen-md-max) { 
+      height: 670px;
+    }
+    @media (min-width: $screen-lg-min) { 
+      height: 1100px;
+    }
+  }
+}
+
+#direction{
+  background: url(/img/fitrition/toronto.jpg) no-repeat;
+  background-size: 1980px auto;
+  background-position: center center;
+  padding-top:120px; 
+  padding-bottom:120px;
+  position: relative;
+  overflow: hidden;
+  color: white;
+  .container{
+
+    z-index: 100;
+    position: relative;
+    .box{
+      background: $color-green-light;
+      background: $color-green-light-rgba;
+      padding-bottom: 20px;
+    }
+    a,i{
+      color: #333;
+    }
+    .punch {
+      background: $color-green-strong;
+      color: #fff;
+      margin: 0;
+      padding: 10px 0;
+    }
+    .directions{
+      display: block;
+      margin: 20px 20px;
+      color: white;
+      a,i{
+        color: white;
+      }
+      a{
+        &:hover{
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}

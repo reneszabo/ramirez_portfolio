@@ -1,0 +1,504 @@
+{% extends 'MainPageFrontendBundle:Default:base-clean.html.twig' %}
+{% block stylesheets %}
+  {{ parent() }}
+  <link href='http://fonts.googleapis.com/css?family=Raleway:400,100,200,300,500,600,700,800,900' rel='stylesheet' type='text/css'>
+  <link href="/libs/twitter-bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+  <link href="/libs/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+  <link href="/css/fitrition/fitrition.css" rel="stylesheet" type="text/css"/>
+  <style type="text/css">
+  </style>
+  <link href="/libs/animate.css/animate.css" rel="stylesheet" type="text/css"/>
+{% endblock stylesheets %}
+{% block body %}
+  <header>
+    <div class="navbar navbar-default navbar-fixed-top navbar-fitrition" role="banner">
+      <div class="container">
+        <div class="navbar-header">
+          <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".fitrition-navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a href="#home" class=" fitrition-navbar-brand">
+            <span>Fitrition</span>
+            <img id="logo"  src="/img/fitrition/logo-2-small.png" alt="Fitrition"/>
+          </a>
+        </div>
+        <nav class="collapse navbar-collapse fitrition-navbar-collapse" role="navigation">
+          <ul class="nav navbar-nav navbar-right">
+            <li class="active"><a href="#hero">Home</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#compare">Compare</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#team-crew">Team</a></li>
+            <li><a href="#direction">Contact Us</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <section id="hero" class="green">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="fitrition-box">
+            <h3 class="light">2 droids and a Melon presents:</h3>
+            <h1>The #1 Fitness App World Wide</h1>
+            <h3 class="light">free for all plataforms</h3>
+            <div>
+              <ul class="nav nav-pills" role="navigation">
+                <li>
+                  <a href="#">
+                    <i class="fa fa-apple"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <i class="fa fa-android"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <i class="fa fa-windows"></i>
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div class="btn btn-success">
+              <span class="h3 light">Suscribe NOW !</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="features">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <h3 class="light">All Features Include</h3>
+          <h4 class="section-subtitle">Fitrition gives you everything you need to get fit anytime, anywhere</h4>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4 col-sm-6">
+          <div class="fitrition-feature-title">
+            <span class="glyphicon glyphicon-phone benefit-glyph"></span> <strong>On-the-go Learning</strong>
+          </div>
+          <p>Watch wherever you go. All video is formatted to work on your PC, Mac, Mobile or Tablet.</p>
+        </div>
+        <div class="col-md-4 col-sm-6">
+          <div class="fitrition-feature-title">
+            <span class="glyphicon glyphicon-comment benefit-glyph"></span><strong>Supportive Community</strong>
+          </div>
+          <p>Connect with other plan members, trade tips and cheer each other on as you make progress.</p>
+        </div>
+        <div class="col-md-4 col-sm-6">
+          <div class="fitrition-feature-title">
+            <span class="glyphicon glyphicon-user benefit-glyph"></span><strong>All-Star Coaches</strong>
+          </div>
+          <p>Fitrition coaches are experts in their fields. They get results, while making sure you have fun along the way.</p>
+        </div>
+        <div class="col-md-4 col-sm-6">
+          <div class="fitrition-feature-title">
+            <span class="glyphicon glyphicon-time benefit-glyph"></span><strong>Unlimited Access</strong>
+          </div>
+          <p>Your access to a plan never expires. Watch it hundreds of times and never pay another dime.</p>
+        </div>
+        <div class="col-md-4 col-sm-6">
+          <div class="fitrition-feature-title">
+            <span class="glyphicon glyphicon-facetime-video benefit-glyph"></span><strong>High-Quality Video</strong>
+          </div>
+          <p>Videos on Fitrition are long-format and tightly edited to deliver the best learning experience.</p>
+        </div>
+        <div class="col-md-4 col-sm-6">
+          <div class="fitrition-feature-title">
+            <span class="glyphicon glyphicon-envelope benefit-glyph"></span><strong>Friendly Support</strong>
+          </div>
+          <p>Our helpful, expert team is here to help you reach your fitness goals. Contact us whenever you have a question.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+  <section id="run">
+    <div class="video">
+      <div class="section-video-content text-center">
+        <h1 class="light">
+          Fitrition
+        </h1>
+        <h1>WORKOUTS</h1>
+      </div>
+      <div class="section-video" style="">
+        <video class="section-video-player" poster="/img/fitrition/run.jpg" autoplay="" loop="" preload="none" src="/img/fitrition/video-run-low.mp4" width="1140" height="641" style="width: 100%;">
+          <!-- MP4 source must come first for iOS -->
+          <source type="video/mp4" src="/img/fitrition/video-run-low.mp4">
+        </video>
+      </div>
+      <div class="video-overlay"></div>
+    </div>
+  </section>
+  <section id="compare">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <h2 class="text-center light title">Compare Fitrition to other products</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-8 col-md-offset-4 have-table">
+          <table>
+            <tbody>
+              <tr>
+                <th></th>
+                <th class="moves">
+                  <span class=" h2 light">
+                    Fitrition
+                  </span>
+                </th>
+                <th>
+                  Gadgets<br>
+                  <span class="small">
+                    Nike+ Fuelband, Fitbit, etc.
+                  </span>
+                </th>
+                <th>
+                  Sports tracking apps<br>
+                  <span class="small">Nike+ Running, Runkeeper, Runtastic, etc.</span>
+                </th>
+              </tr>
+              <tr>
+                <td class="table-rowlabel">Automatic recognition of walking, bicycling and running</td>
+                <td class="moves"><i class="fa fa-check" ></i></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="table-rowlabel">Calorie counter</td>
+                <td class="moves"><i class="fa fa-check" ></i></td>
+                <td><i class="fa fa-check" ></i></td>
+                <td><i class="fa fa-check" ></i></td>
+              </tr>
+              <tr>
+                <td class="table-rowlabel">Routes on map</td>
+                <td class="moves"><i class="fa fa-check" ></i></td>
+                <td></td>
+                <td><i class="fa fa-check" ></i></td>
+              </tr>
+              <tr>
+                <td class="table-rowlabel">Daily storyline with places</td>
+                <td class="moves"><i class="fa fa-check" ></i></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="table-rowlabel">No need to start and stop</td>
+                <td class="moves"><i class="fa fa-check" ></i></td>
+                <td><i class="fa fa-check" ></i></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="table-rowlabel">No need to charge and carry an extra device</td>
+                <td class="moves"><i class="fa fa-check" ></i></td>
+                <td></td>
+                <td><i class="fa fa-check" ></i></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="text-center">
+            <div class="btn btn-success">
+              <span class="h3 light">Start TODAY !</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="work">
+    <div class="container">
+      <div class="section-video-content text-center">
+        <h1 class="light">
+          Motivational 
+        </h1>
+        <h1>Title</h1>
+      </div>
+      <div class="video-overlay"></div>
+    </div>
+  </section>
+  <section id="gallery">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <img id="logo"  src="/img/fitrition/app-devices.png" alt="Fitrition"/>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <h2 class="light">Fitrition Runs in all Mobiles</h2>
+          <h2>and Mac, PC or Linux</h2>
+          <h2 class="light">we love everyone <i class="fa fa-heart text-danger"></i></h2>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="food">
+    <div class="container">
+      <div class="section-video-content text-center">
+        <h1 class="light">
+          Motivational 
+        </h1>
+        <h1>Eat Better</h1>
+      </div>
+      <div class="video-overlay"></div>
+    </div>
+  </section>
+  <section id="team-crew">
+    <div class="green_block"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h2 class="light text-center title">The Team</h2>
+        </div>
+      </div>
+      <div class="row text-green">
+
+        <div class="col-md-4">
+          <div class="text-center">
+            <img src="/img/fitrition/u001.jpg" alt="" class="img-circle"/>
+            <h2 class="">Amanda Coelho</h2>
+            <h4 class="light">CEO</h4>
+            <ul class="nav nav-pills" role="navigation">
+              <li>
+                <a href="#">
+                  <i class="fa fa-facebook"></i>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <i class="fa fa-twitter"></i>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <i class="fa fa-linkedin"></i>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <i class="fa fa-envelope"></i>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="text-center">
+            <img src="/img/fitrition/u002.jpg" alt="" class="img-circle"/>
+            <h2 class="">Easton Davis</h2>
+            <h4 class="light">SEO</h4>
+            <ul class="nav nav-pills" role="navigation">
+              <li>
+                <a href="#">
+                  <i class="fa fa-facebook"></i>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <i class="fa fa-twitter"></i>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <i class="fa fa-linkedin"></i>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <i class="fa fa-envelope"></i>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="text-center">
+            <img src="/img/fitrition/u003.jpg" alt="" class="img-circle"/>
+            <h2 class="">Dan McCahon</h2>
+            <h4 class="light">DESIGNER</h4>
+            <ul class="nav nav-pills" role="navigation">
+              <li>
+                <a href="#">
+                  <i class="fa fa-facebook"></i>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <i class="fa fa-twitter"></i>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <i class="fa fa-linkedin"></i>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <i class="fa fa-envelope"></i>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+      <div class="row text-white">
+
+        <div class="col-md-4 col-md-offset-2">
+          <div class="text-center">
+            <img src="/img/fitrition/u004.jpg" alt="" class="img-circle"/>
+            <h2 class="">Mohamed Farah</h2>
+            <h4 class="light">FRONTEND DEVELOPER</h4>
+            <ul class="nav nav-pills" role="navigation">
+              <li>
+                <a href="#">
+                  <i class="fa fa-facebook"></i>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <i class="fa fa-twitter"></i>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <i class="fa fa-linkedin"></i>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <i class="fa fa-envelope"></i>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="text-center">
+            <img src="/img/fitrition/u005.jpg" alt="" class="img-circle"/>
+            <h2 class="">Talha Ansari</h2>
+            <h4 class="light">BACKEND DEVELOPER</h4>
+            <ul class="nav nav-pills" role="navigation">
+              <li>
+                <a href="#">
+                  <i class="fa fa-facebook"></i>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <i class="fa fa-twitter"></i>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <i class="fa fa-linkedin"></i>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <i class="fa fa-envelope"></i>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+  <section id="direction">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3 text-center">
+          <div class="box">
+            <div class="punch">
+              <h2 class=" light">
+                Walk, bike, or run on over
+              </h2>
+            </div>
+            <div class="directions">
+
+              <h4 class=" light">
+                <i class="fa fa-location-arrow"></i>
+                <a target="_blank" href="https://www.google.ca/maps/place/Humber+College/@43.728133,-79.607958,15z/data=!4m2!3m1!1s0x0:0xdadd88718b1895d7?sa=X&ei=uwB6VP_lDeHIsQSSiYCoAQ&ved=0CIwBEPwSMAo">
+                  205 Humber College Blvd, Toronto, ON M9W 5L7, CANADA
+                </a>
+                <br>
+                <a href="info@fitrition.com.com" class="icon-email-line">
+                  info@fitrition.com
+                </a>
+              </h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="video-overlay"></div>
+  </section>
+
+{% endblock body %}
+{% block javascripts %}
+  {{ parent() }}
+  <script src="/libs/jquery/jquery.min.js" type="text/javascript"></script>
+  <script src="/libs/twitter-bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+  <script src="/libs/jquery-localScroll/jquery.localScroll.min.js" type="text/javascript"></script>
+  <script src="/libs/jquery-scrollTo/jquery.scrollTo.min.js" type="text/javascript"></script>
+  <script src="/libs/waypoints/waypoints.min.js" type="text/javascript"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      $('body > header').localScroll({offset: -80});
+      $('#features').waypoint(function (direction) {                                    // WAYPOINT PLUGIN
+        if (direction === 'down') {
+          manageHeaderNav(2);
+        } else {
+          manageHeaderNav(1);
+        }
+      }, {offset: 90});
+      $('#compare').waypoint(function (direction) {                                    // WAYPOINT PLUGIN
+        if (direction === 'down') {
+          manageHeaderNav(3);
+        } else {
+          manageHeaderNav(2);
+        }
+      }, {offset: 90});
+      $('#gallery').waypoint(function (direction) {                                    // WAYPOINT PLUGIN
+        if (direction === 'down') {
+          manageHeaderNav(4);
+        } else {
+          manageHeaderNav(3);
+        }
+      }, {offset: 90});
+      $('#team-crew').waypoint(function (direction) {                                    // WAYPOINT PLUGIN
+        if (direction === 'down') {
+          manageHeaderNav(5);
+        } else {
+          manageHeaderNav(4);
+        }
+      }, {offset: 90});
+      $('#direction').waypoint(function (direction) {                                    // WAYPOINT PLUGIN
+        if (direction === 'down') {
+          manageHeaderNav(6);
+        } else {
+          manageHeaderNav(5);
+        }
+      }, {offset: 700});
+    });
+
+    function manageHeaderNav(num) {
+      $('body > header li').removeClass('active');
+      $('body > header li:nth-child(' + num + ')').addClass('active');
+    }
+  </script>
+{% endblock javascripts %}

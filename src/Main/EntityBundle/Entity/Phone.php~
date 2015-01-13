@@ -1,0 +1,49 @@
+<?php
+
+namespace Verlas\Page\EntityBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Phone
+ *
+ * @ORM\Table(name="phone")
+ * @ORM\Entity
+ */
+class Phone
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="number", type="string", length=32, nullable=false)
+     */
+    private $number;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="sequence", type="integer", nullable=false)
+     */
+    private $sequence;
+
+    /**
+     * @var \Client
+     *
+     * @ORM\ManyToOne(targetEntity="Client")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="client_id", referencedColumnName="id")
+     * })
+     */
+    private $client;
+
+
+}

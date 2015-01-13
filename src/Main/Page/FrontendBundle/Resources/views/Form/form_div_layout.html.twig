@@ -1,0 +1,113 @@
+{# FORM SIMPLE #}
+
+{% block form_widget_simple %}
+  {% spaceless %}
+    {% set type = type|default('text') %}
+    <input  type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
+    {% if help is defined %}
+      <span class="text-muted"><small>{{ help }}</small></span>
+        {% endif %}
+      {% endspaceless %}
+    {% endblock form_widget_simple %}
+
+{# FORM TEXTAREA #}
+
+{% block textarea_widget %}
+  {% spaceless %}
+    <textarea  {{ block('widget_attributes') }}
+      rows="3" 
+      style="resize: none;" 
+      onfocus="this.rows = '6';" 
+      onblur="if (this.value.length <= 0) {
+            this.rows = '3';
+          }"  
+      >{{ value }}</textarea>
+  {% endspaceless %}
+{% endblock textarea_widget %}
+
+{# FORM ROW #}
+
+{% block form_row %}
+  {% spaceless %}
+    <div class="">
+      <div class="form-group {{ errors|length > 0 ? 'has-error' : '' }}">
+        {{ form_label(form) }}
+        <div class="controls">
+          {{ form_widget(form) }}
+          {{ form_errors(form) }}
+        </div>
+      </div>
+    </div>
+  {% endspaceless %}
+{% endblock form_row %}
+
+{# FORM LABEL #}
+
+{% block form_label %}
+  {% spaceless %}
+    {% if label is not sameas(false) %}
+      {% if not compound %}
+        {% set label_attr = label_attr|merge({'for': id}) %}
+      {% endif %}
+      {% if required %}
+        {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' required')|trim}) %}
+      {% endif %}
+      {% if label is empty %}
+        {% set label = name|humanize %}
+      {% endif %}
+      <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
+        {{ label|trans({}, translation_domain) }}
+        {% if required %}
+{#          <span class="label label-info tool-tip" title="{% trans %}form.required{% endtrans %}">*</span>#}
+        {% endif %}
+      </label>
+    {% endif %}
+  {% endspaceless %}
+{% endblock form_label %}
+
+{# FORM ERRORS #}
+
+{% block form_errors %}
+  {% spaceless %}
+    <div>
+      {% if errors|length > 0 %}
+        <span class=" text-danger">
+          <ul class="nav">
+
+            {% for error in errors %}
+              <li>
+                {{ error.message | trans | raw }}
+              <li>
+              {% endfor %}
+          </ul>
+        </span>
+      {% endif %}
+    </div>
+  {% endspaceless %}
+{% endblock form_errors %}
+
+{% block widget_attributes %}
+  {% spaceless %}
+    {% set insideclass = false %}
+    id="{{ id }}" name="{{ full_name }}"
+    {%- if read_only %} readonly="readonly"{% endif -%}
+      {%- if disabled %} disabled="disabled"{% endif -%}
+        {%- if required %} required="required"{% endif -%}
+          {%- for attrname, attrvalue in attr -%}
+          {{- " " -}}
+          {%- if attrname in ['placeholder', 'title'] -%}
+          {{- attrname }}="{{ attrvalue|trans({}, translation_domain) }}"
+          {%- elseif attrname in ['class'] -%}
+          {{- attrname }}="form-control {{ attrvalue }}"
+          {% set insideclass = true %}
+          {%- elseif attrvalue is sameas(true) -%}
+          {{- attrname }}="{{ attrname }}"
+          {%- elseif attrvalue is not sameas(false) -%}
+          {{- attrname }}="{{ attrvalue }}"
+          {%- endif -%}
+          {%- endfor -%}
+          {%- if insideclass == false -%}
+          class="form-control"
+          {%- endif -%}
+          {% endspaceless %}
+            {% endblock widget_attributes %}

@@ -1,0 +1,435 @@
+{% extends 'MainPageFrontendBundle:Default:base-clean.html.twig' %}
+{% block stylesheets %}
+  {{ parent() }}
+  <link href="/css/symbiosis/normalize.css" rel="stylesheet" type="text/css"/>
+  <link href="/css/symbiosis/mo.css" rel="stylesheet" type="text/css"/>
+{% endblock stylesheets %}
+{% block body %}
+  <div class="modal">
+    <div class="box">
+      <img src="">
+    </div>
+  </div>
+  <!--
+  HEADER NAVEGATION
+  
+  This is the header for the navegation of the website
+  TRANSITIONS are handled with addClass and Remove class using Waypoint.js
+  It has the Logo Hidden at first and fade in has you scroll down
+  The navegation transistions the font color from white to black
+  The background transitions from transparent to white
+  -->
+  <header class="navbar navbar-default navbar-trasparent" id="header-navbar" role="banner">
+    <div class="container">
+      <a href="#hero" class="navbar-logo">MEAGHAN OGILVIE</a>
+      <nav>
+        <ul id="nav" class="navbar-nav">
+          <li><a href="#hero">HOME</a></li>
+          <li><a href="#about">ABOUT</a></li> 
+          <li><a href="#symbiosis">GALLERY</a></li>
+          <li><a href="#news">NEWS</a></li>
+          <li><a href="#contact">CONTACT</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header> <!--END OF HEADER NAVEGATION-->
+  <!-- 
+  HERO
+  Image that fills the parent, and the container has position absolute.
+  Inside of the container the is 
+  a box rotated 45 deg
+  an H2 and a p With negative margin top so it can overlap the rotated box.
+  -->
+  <div id="hero" class="separate-bottom">
+    <img src="/img/symbiosis/hero-001.jpg" alt="" class="image-hero">
+    <div class="container-hero">
+      <div class="squere">
+      </div>
+      <div class="box-hero text-center">
+        <h2 id="hero-title">SYMBIOSIS</h2>
+        <p id="hero-subtitle">Meaghan Ogilvie</p>
+      </div>
+    </div>
+    <div class="hero-line">
+    </div>
+  </div> <!--END OF HERO-->
+  <!--
+  ABOUT
+  The about section are 2 columns 50% floated left 
+  The images as the design is out of the column so it has a negative margin left.
+  -->
+  <div id="about" class="separate-bottom separate-top">
+    <div class="container">
+      <section class="col-6"> 
+        <article>
+          <img src="/img/symbiosis/meaghanselfportrait.png" alt="Photographer" class="img-circle pull-left text-arrownd">
+          <p>
+            Born in Toronto Canada, Meaghan Ogilvie was exposed to a diversity
+            of cultures and experiences that she embraces whole-heartedly. 
+            Her work has been featured in exhibitions and magazines both 
+            locally and internationally. Meaghan is the recipient of awards 
+            and recognitions from across North America and internationally as 
+            a shortlisted photographer in the Sony World Photography Awards, 
+            being selected from 62,654 photographs entered from 170 countries 
+            worldwide.
+          </p>
+          <p>
+            Recognized for her ethereal underwater images, Meaghan Ogilvie 
+            continues to experiment to further her experiences, exploring new 
+            technologies and working with early photographic processes.  
+            Employing the human figure to dissect movement and space 
+            underwater and on land, her investigations are articulated 
+            through poetic, sensual and sometimes enigmatic imagery.  
+            Meaghan’s fascination extends with uncovering new territory 
+            within her medium and better understanding our relationship to 
+            nature. Compelled by a sense of exploration and compassion, she 
+            takes on challenging experiences at every opportunity and 
+            articulates them in the images she creates.
+          </p>
+          <p>
+            Meaghan Ogilvie’s biggest accomplishment to date has been the 
+            commission awarded to her by the 2015 Toronto Pan Am/Parapan Am 
+            Games Committee. This incredible opportunity allows Meaghan to 
+            create a large-scale body of work to present at the world premiere 
+            in the summer of 2015.
+          </p>
+        </article>
+      </section>
+      <section id="latestnews" class="col-6">
+        <legend>LATEST NEWS</legend>
+        <div>
+          <a href="#news1">  
+            <h4>
+              Commissioned by Toronto 2015 Pan Am and Parapan Am Games
+            </h4>
+          </a>
+        </div>
+        <div>
+          <a href="#news2">  
+            <h4>
+              "SUCCUMBED” WINS CREATIVE CATEGORY AT CAIRNS UNDERWATER FILM FESTIVAL
+            </h4>
+          </a>
+        </div>
+        <div>
+          <a href="#news3">  
+            <h4>
+              PUBLISHED IN 43MM MAGAZINE
+            </h4>
+          </a>
+        </div>
+        <div>
+          <a href="#news4">  
+            <h4>
+              “SUCCUMBED” RECEIVES AN HONOURABLE MENTION
+            </h4>
+          </a>
+        </div>
+        <div>
+          <a href="#news5">  
+            <h4>
+              SHORTLISTED IN THE TOP 10 OF THE SONY WORLD PHOTOGRAPHY COMPETITION
+            </h4>
+          </a>
+        </div>
+      </section>
+    </div> 
+  </div><!--END OF ABOUT-->
+  <div class="parallax-window parallax-image-01">
+  </div>
+  <!-- 
+  SYMBIOSIS 
+  Images placed side by side with % and no CSS file
+  The Header of SYMFIOSIS is float to the left so the text can go around it
+  -->
+  <div id="symbiosis" class="separate-bottom">
+    <section class="container separate-bottom">
+      <header class="pull-left title-box">
+        <h3 class="section-title">SYMBIOSIS</h3>
+      </header>
+      <div class="start-content text-justify separate-bottom">
+        <p>
+          “Symbiosis” attempts to connect the visual and culturally 
+          familiar experience of a landscape, so that the viewer can 
+          identify with the pleasure of existing and also become aware of 
+          issues that imperil our fragile earth. By employing the human 
+          figure within these landscapes, a symbiotic relationship is 
+          formed. The landscapes chosen are protected and serve as a means
+          to preserve the area’s ecology.
+        </p>
+        <p>
+          “Humility”, “Introspection” and “Paha” were shot in Lençóis 
+          Maranhenses National Park in Maranhão, Brazil. It is 155 hectare
+          oasis, full of high dunes up to 40 feet tall and freshwater 
+          ponds, whose waters range from shades of green and blue.
+        </p>
+        <p>
+          “Speciation”, “Capsized”, “Obligate” were shot on the beaches of
+          Play Grande, Costa Rica, home to Parque Nacional Marino Las 
+          Baulas, the nesting ground of the largest marine reptile, the 
+          Leatherback Turtle. The continued survival of the Leatherback 
+          Seaturtle depends upon the preservation of Costa Rica’s beaches 
+          including Playa Grande. For more information please visit 
+          seaturtles.org
+        </p>
+      </div>
+      <div style="margin-bottom: 2px;">
+        <img src="/img/symbiosis/gallery/burrow-ld.jpg" data-hd="/img/symbiosis/gallery/burrow.jpg" alt="" style="width: 45%;">
+        <img src="/img/symbiosis/gallery/introspection-ld.jpg" data-hd="/img/symbiosis/gallery/introspection.jpg" alt="" style="width: 16.5%;">
+        <img src="/img/symbiosis/gallery/obligate-ld.jpg" alt="" data-hd="/img/symbiosis/gallery/obligate.jpg" style="width: 37%;">
+      </div>
+      <div>
+        <img src="/img/symbiosis/gallery/capsized-ld.jpg" alt="" data-hd="/img/symbiosis/gallery/capsized.jpg" style="width: 27.7%;">
+        <img src="/img/symbiosis/gallery/humility-ld.jpg" alt="" data-hd="/img/symbiosis/gallery/humility.jpg" style="width: 28.7%;">
+        <img src="/img/symbiosis/gallery/paha-ld.jpg" alt="" data-hd="/img/symbiosis/gallery/paha.jpg" style="width: 28.7%;">
+        <img src="/img/symbiosis/gallery/speciation-ld.jpg" data-hd="/img/symbiosis/gallery/speciation.jpg" alt="" style="width: 12.9%;">
+      </div>
+    </section>
+  </div><!--END OF SYMBIOSIS-->
+  <div class="parallax-window parallax-image-02">
+  </div>
+  <!--
+  NEWS
+  Al the articles with their header and body content and date.
+  -->
+  <div id="news" class="separate-bottom">
+    <section class="container">
+      <header>
+        <h3 class="section-title">NEWS</h3>
+      </header>
+      <article id="news1">
+        <header>
+          <h4>Commissioned by Toronto 2015 Pan Am and Parapan Am Games</h4>
+          <p>April 2, 2014</p>
+        </header>
+        <p>
+          I’ve had to keep this a secret for 9 months, but am happy to 
+          finally share that I’m one of the artists chosen to be 
+          commissioned by the Arts and Culture Program of the TORONTO 
+          2015 Pan Am and Parapan Am Games! 
+          <a href="http://www.toronto2015.org">[www.toronto2015.org]</a>
+        </p>
+        <p>
+          I’m incredibly honoured to be in the company of successful 
+          creatives like Ed Burtynsky, Veronica Tennant and Robert 
+          LePage. Congratulations to all selected commissioned artists! 
+          It’s a diverse power group that Toronto will be proud of.
+        </p>
+        <p>
+          Thank you to the Arts and Culture Program of the TORONTO 2015 
+          Pan Am and Parapan Am Games for seeing the potential in my 
+          work and giving me this once in a lifetime opportunity. I’m 
+          so excited to work on this project!
+        </p>
+      </article>
+      <article id="news2">
+        <header>
+          <h4>
+            “Succumbed” wins Creative category at Cairns Underwater Film Festival 
+          </h4>
+          <p>
+            September 12, 2013
+          </p>
+        </header>
+        <p>
+          So happy with the news that “Succumbed” won the creative 
+          category at the Cairns Underwater Film Festival Photography 
+          Competition in Australia. The event raised over $20,000 that 
+          will go towards ocean conservation efforts. Happy to be a part
+          of an event with a positive purpose.
+        </p>
+        <p>
+          The award is a 7 day Palau Dive &amp; Stay Package for 2 
+          sponsored by Sam’s Tours Palau. Sam’s Tours is a PADI Five 
+          Star National Geographic Center. Kind of epic. Can’t believe
+          it’s happening.
+        </p>
+        <p>
+          Thank you Cairns Underwater Film Festival and Sam’s Tours for
+          this golden opportunity! Cairns Underwater Film Festival site 
+          <a href="http://www.cairnsunderwaterfilmfestival.com/">[http://www.cairnsunderwaterfilmfestival.com/]</a>
+        </p>
+      </article>
+      <article id="news3">
+        <header>
+          <h4>
+            Published in 43MM Magazine
+          </h4>
+          <p>
+            August 8, 2013
+          </p>
+        </header>
+        <p>
+          Thank you 43mm Magazine for giving me the opportunity to talk about my work. 
+        </p>
+        <p>
+          Story on Page 120
+        </p>
+        <p>
+          <a href="http://issuu.com/tzipac/docs/43mm_issue_1">[http://issuu.com/tzipac/docs/43mm_issue_1]</a>
+        </p>
+      </article>
+      <article id="news4">
+        <header>
+          <h4>
+            “Succumbed” receives an honourable mention 
+          </h4>
+          <p>
+            February 8, 2013
+          </p>
+        </header>
+        <p>
+          Grateful for another moment of recognition from the All 
+          Women 2013 Art Exhibition. “Succumbed” received an honourable
+          mention in the photography category. 
+          <a href="http://www.lightspacetime.com/all-women-art-exhibition-february-2013/">[http://www.lightspacetime.com/all-women-art-exhibition-february-2013/]</a>
+        </p>
+      </article>
+      <article id="news5">
+        <header>
+          <h4>
+            Shortlisted in the top 10 of the Sony World Photography Competition 
+          </h4>
+          <p>
+            February 6, 2013
+          </p>
+        </header>
+        <p>
+          Wow! …shortlisted in the top 10 in the Fashion category, of 
+          the 2013 Sony World Photography Awards. Selected from 62,654 
+          images entered from 170 countries. I’m truly honoured to be 
+          recognized at this level of a competition. Congrats to all 
+          shortlisted photographers.
+          <a href="http://www.dailymail.co.uk/news/article-2273284/World-Photography-Awards-Stunning-images-world-shortlisted-prestigious-photography-prize.html#axzz2K15PUlqK">[http://www.dailymail.co.uk/news/article-2273284/World-Photography-Awards-Stunning-images-world-shortlisted-prestigious-photography-prize.html#axzz2K15PUlqK]</a>
+        </p>
+      </article>
+    </section>
+  </div><!-- END OF NEWS-->
+  <div class="parallax-window parallax-image-03">
+  </div>
+  <!--
+  CONTACT
+  The info and the form
+  -->
+  <div id="contact" class="separate-bottom">
+    <div class="container separate-bottom">
+      <header>
+        <h3 class="section-title">CONTACT</h3>
+      </header>
+      <p>Meaghan Ogilvie is based in Toronto, Canada.</p>
+      <p>
+        For all inquiries regarding the purchase of artworks and 
+        commissioned work, please use the contact form below or email her 
+        directly at 
+        <a href="mailto:info@meaghanogilvie.com">info@meaghanogilvie.com</a>
+      </p>
+      <div id="form-container">
+        <form action="index.html#contact">
+          <div>
+            <label for="moInputName">Name</label>
+            <input type="text" class="form-control" id="moInputName" placeholder="Enter name">
+          </div>
+          <div>
+            <label for="moInputEmail">Email address</label>
+            <input type="email" class="form-control" id="moInputEmail" placeholder="Enter email">
+          </div>
+          <div>
+            <label for="moInputSubject">Subject</label>
+            <input type="text" class="form-control" id="moInputSubject" placeholder="Enter subject">
+          </div>
+          <div>
+            <label for="moInputContent">Content</label>
+            <textarea class="form-control" id="moInputContent" placeholder="Enter subject" rows="6">              </textarea>
+          </div>
+          <div class="clearfix">
+            <button type="submit" class="pull-right">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <footer>
+    <div class="container">
+      <nav>
+        <ul id="nav" class="navbar-nav">
+          <li><a href="mailto:info@meaghanogilvie.com">info@meaghanogilvie.com</a></li>
+          <li>
+            <a href="https://twitter.com/meaghan_ogilvie" target="_blank">
+              <img src="/img/symbiosis/twitter-icon.png" alt="twitter">
+            </a>
+          </li>
+          <li>
+            <a href="https://www.facebook.com/pages/Meaghan-Ogilvie-Photographer/125933377478256" target="_blank">
+              <img src="/img/symbiosis/facebook-icon.png" alt="facebook">
+            </a>
+          </li>
+          <li>
+            <a href="https://plus.google.com/u/0/102155739810228835696/posts" target="_blank">
+              <img src="/img/symbiosis/google-plus-icon.png" alt="google plus">
+            </a>
+          </li>
+          <li>
+            <a href="http://instagram.com/meaghan_ogilvie" target="_blank">
+              <img src="/img/symbiosis/picasa-icon.png" alt="picasa">
+            </a>
+          </li>
+          <li>
+            <a href="http://www.linkedin.com/pub/meaghan-ogilvie/6/aa4/687" target="_blank">
+              <img src="/img/symbiosis/linked-in-icon.png" alt="linkedin">
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+
+{% endblock body %}
+{% block javascripts %}
+  {{ parent() }}
+
+
+
+  <script src="/libs/jquery/jquery.min.js" type="text/javascript"></script>
+  <script src="/libs/jquery-localScroll/jquery.localScroll.min.js" type="text/javascript"></script>
+  <script src="/libs/jquery-scrollTo/jquery.scrollTo.min.js" type="text/javascript"></script>
+  <script src="/libs/jquery-parallax/jquery-parallax.js" type="text/javascript"></script>
+  <script src="/libs/waypoints/waypoints.min.js" type="text/javascript"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      $.localScroll({offset: -50});
+
+      $('.parallax-window').parallax("0%", 0.2);
+
+      $('#about').waypoint(function (direction) {
+        console.log(direction);
+        if (direction === 'down') {
+          $('#header-navbar').addClass('navbar-white');
+          $('#header-navbar').removeClass('navbar-trasparent');
+        } else {
+          $('#header-navbar').addClass('navbar-trasparent');
+          $('#header-navbar').removeClass('navbar-white');
+        }
+      }, {offset: 50})
+
+
+      $('.modal').on('click', function () {
+        $('.modal .box').removeClass('box-animation');
+        setTimeout(function () {
+          $('.modal').fadeOut('fast');
+        }, 200);
+      });
+
+      $('#symbiosis img').on('click', function () {
+        console.log('show modal');
+        $('.modal').show();
+        $('.modal img').attr('src', $(this).attr('data-hd'));
+        setTimeout(function () {
+          $('.modal .box').addClass('box-animation');
+        }, 100);
+      });
+
+    });
+  </script>
+
+</script>
+{% endblock javascripts %}

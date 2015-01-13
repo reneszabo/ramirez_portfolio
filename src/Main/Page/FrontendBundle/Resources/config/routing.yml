@@ -1,0 +1,15 @@
+homepage:
+    path:     /
+    defaults: { _controller: MainPageFrontendBundle:Default:index }
+google_call_back:
+    path:     /oauth2callback
+    defaults: { _controller: MainPageFrontendBundle:Default:oauth2callback }
+samples_to_do_list:
+    path:     /samples/todo-list
+    defaults: { _controller: MainPageFrontendBundle:Default:toDoList }
+samples_fitrition:
+    path:     /samples/fitrition
+    defaults: { _controller: MainPageFrontendBundle:Default:fitrition }
+samples_symbiosis:
+    path:     /samples/symbiosis
+    defaults: { _controller: MainPageFrontendBundle:Default:symbiosis }

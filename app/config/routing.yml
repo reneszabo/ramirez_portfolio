@@ -1,0 +1,8 @@
+main_entity:
+    resource: "@MainEntityBundle/Resources/config/routing.yml"
+    prefix:   /
+
+main_page_frontend:
+    resource: "@MainPageFrontendBundle/Resources/config/routing.yml"
+    prefix:   /
+

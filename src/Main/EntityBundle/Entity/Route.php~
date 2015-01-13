@@ -1,0 +1,53 @@
+<?php
+
+namespace Verlas\Page\EntityBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Route
+ *
+ * @ORM\Table(name="route")
+ * @ORM\Entity
+ */
+class Route
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=45, nullable=false)
+     */
+    private $name;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="special", type="boolean", nullable=false)
+     */
+    private $special;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Client", mappedBy="route")
+     */
+    private $client;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->client = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+}

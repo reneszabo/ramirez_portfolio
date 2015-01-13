@@ -1,0 +1,377 @@
+/*-- GLOBAL CONFIG -----------------------------------------------------------*/
+/*-- GLOBAL CONFIG -----------------------------------------------------------*/
+/*-- GLOBAL CONFIG -----------------------------------------------------------*/
+@font-face {
+  font-family: bigNoodle;
+  src: url(/css/symbiosis/font/big_noodle_titling.ttf);
+}
+/*Container all most be inside this 970px box so so it can fit in standard monitors*/
+.container {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  width: 970px;
+}
+/*class por the 2 colums texts*/
+.col-6{
+  float: left;
+  width: 50%;
+}
+/*Separations between sections*/
+.separate-top{
+  margin-top: 50px;
+}
+.separate-bottom{
+  margin-bottom: 50px;
+}
+/*Circle the image for profile*/
+.img-circle {
+  border-radius: 50%;
+}
+/*To align the text to the center at any time (Used in HERO)*/
+.text-center {
+  text-align: center;
+}
+/*TITLE FOR EACH SECTION*/
+.section-title{
+  font-family: bigNoodle;
+  font-size: 90px;
+  margin-bottom: 0px; 
+  line-height: 98px;
+}
+.pull-right {
+  float: right !important;
+}
+.pull-left {
+  float: left !important;
+}
+/* JUST IN CASE THERE ARE SOME FLOATS INSIDE THOSE CLASSES */
+.clearfix:before,
+.clearfix:after,
+.container:before,
+.container:after,
+.row:before,
+.row:after,
+.nav:before,
+.nav:after {
+  content: " ";
+  display: table;
+}
+/* JUST IN CASE THERE ARE SOME FLOATS INSIDE THOSE CLASSES */
+.clearfix:after,
+.container:after,
+.row:after,
+.nav:after {
+  clear: both;
+}
+legend {
+  display: block;
+  width: 100%;
+  padding: 0;
+  margin-bottom: 10px;
+  font-size: 21px;
+  line-height: inherit;
+  color: #333;
+  border: 0;
+  border-bottom: 1px solid #e5e5e5;
+}
+/*-- HEADER ------------------------------------------------------------------*/
+/*-- HEADER ------------------------------------------------------------------*/
+/*-- HEADER ------------------------------------------------------------------*/
+.navbar {
+  min-height: 50px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+  position: fixed;
+  right: 0;
+  left: 0;
+  z-index: 1030;
+  border-radius: 0;
+  top: 0;
+  border-width: 0 0 1px;
+  background-color: #f8f8f8;
+  border-color: #e7e7e7;
+}
+.navbar-logo {
+  float: left;
+  height: 50px;
+  padding: 15px 15px;
+  font-size: 18px;
+  line-height: 20px;
+  margin-left: -15px;
+  color: #777;
+}
+.navbar-logo:hover,
+.navbar-logo:focus {
+  text-decoration: none;
+  background-color: transparent;
+  color: #5e5e5e;
+}
+.navbar-nav {
+  margin: 7.5px -15px;
+  margin: 0;
+  padding-left: 0;
+  list-style: none;
+  float: right;
+  margin-right: -15px;
+}
+.navbar-nav > li {
+  float: left;
+}
+.navbar-nav > li > a {
+  position: relative;
+  display: block;
+  padding:  15px;
+  line-height: 20px;
+  color: #777;
+}
+.navbar-nav > li > a:hover,
+.navbar-nav > li > a:focus {
+  text-decoration: none;
+  background-color: #eee;
+  color: #333;
+  background-color: transparent;
+}
+/*-- HEADER NAV TO TRANSITION TRASPARENT TO WHITE BACKGROND ------------------*/
+/*-- HEADER NAV TO TRANSITION TRASPARENT TO WHITE BACKGROND ------------------*/
+/*-- HEADER NAV TO TRANSITION TRASPARENT TO WHITE BACKGROND ------------------*/
+#header-navbar, #header-navbar li>a, #header-navbar .navbar-logo{
+  transition: all 0.6s ease;
+}
+#header-navbar.navbar-trasparent{
+  background: transparent;
+  border-bottom: none;
+}
+#header-navbar.navbar-white{
+  background: white;
+  -webkit-box-shadow: 0 0 10px #333;
+  -moz-box-shadow: 0 0 10px #333;
+  box-shadow: 0 0 10px #333;
+}
+#header-navbar.navbar-white .navbar-logo{
+  opacity: 1;
+}
+#header-navbar.navbar-trasparent .navbar-logo{
+  opacity: 0;
+}
+#header-navbar.navbar-trasparent li > a{
+  color: white;
+  text-shadow: 0 1px 2px rgba(0,0,0,.8);
+  background: rgba(0,0,0,0);
+}
+#header-navbar.navbar-trasparent li > a:hover{
+  background: rgba(0,0,0,.7);
+}
+/*-- HERO --------------------------------------------------------------------*/
+/*-- HERO --------------------------------------------------------------------*/
+/*-- HERO --------------------------------------------------------------------*/
+.text-arrownd{
+  -webkit-shape-outside:circle();
+  shape-outside:circle();
+  margin-right: 50px;
+  margin-left: -80px;
+  margin-bottom: 20px;
+  margin-top: -20px;
+}
+#hero{
+  overflow: hidden;
+}
+.container-hero{
+  position: absolute;
+  top: 20%;
+  left: 1.8%;
+  right: auto;
+  width: 96.66666666666666%;
+  color: #fff;
+}
+.carousel-caption{
+  bottom: 0px;
+}
+#hero-title{
+  font-family: bigNoodle;
+  font-size: 120px;
+  margin-bottom: 0px;
+  line-height: 90px;
+  text-shadow: 0 1px 2px rgba(0,0,0,.6);
+}
+#hero-subtitle{
+  font-family: Cambria, Georgia, Palatino, Times New Roman, serif;
+  font-size: 26px;
+}
+#hero .item{
+  border-bottom: 1px black solid;
+  height: 444px;
+}
+#hero .hero-line{
+  height: 5px;
+  background: black;
+  width: 100%;
+  top: 494px;
+  position: absolute;
+  opacity: 0.5;
+}
+#hero .image-hero{
+  width: 2000px;
+  max-width: none !important;
+}
+.box-hero{
+  width: 600px;
+  margin: 0 auto;
+  margin-top: 10px;
+  position: relative;
+  z-index: 2;
+}
+.squere{
+  width: 200px;
+  height: 200px;
+  background: rgba(0,0,0,0.5);;
+  margin: 0 auto;
+  margin-top: -50px;
+  margin-bottom: -180px;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+  z-index: 1;
+} 
+/*-- ABOUT -------------------------------------------------------------------*/
+/*-- ABOUT -------------------------------------------------------------------*/
+/*-- ABOUT -------------------------------------------------------------------*/
+
+#about section a {
+  color: black; 
+}
+#about section a:hover {
+  color: grey;
+  text-decoration: none;
+}
+#latestnews {
+  padding-left: 15px;
+}
+/*-- SYMBIOSIS ---------------------------------------------------------------*/
+/*-- SYMBIOSIS ---------------------------------------------------------------*/
+/*-- SYMBIOSIS ---------------------------------------------------------------*/
+.title-box{
+  margin-right: 15px;
+}
+.start-content{
+  margin-top: 30px;
+}
+#symbiosis img{
+  cursor: pointer;
+}
+/*-- NEWS --------------------------------------------------------------------*/
+/*-- NEWS --------------------------------------------------------------------*/
+/*-- NEWS --------------------------------------------------------------------*/
+#news article header{
+  border-bottom: 1px solid #e1e1e8;
+}
+#news article header h4, #about section h4 {
+  text-transform: uppercase;
+  font-family: bigNoodle;
+  font-size: 26px;
+}
+#news article header h4, #news article header p{
+  margin-bottom: 0px;
+}
+#news article header{
+  margin-bottom: 15px;
+}
+/*-- CONTACT -----------------------------------------------------------------*/
+/*-- CONTACT -----------------------------------------------------------------*/
+/*-- CONTACT -----------------------------------------------------------------*/
+#form-container
+{
+  margin-top: 50px;
+  background-color: #f7f7f9;
+  border: 1px solid #e1e1e8;
+  padding: 50px;
+}
+form div label, form div input, form div textarea {
+  display: block;
+}
+form div input, form div textarea {
+  width: 100%;
+  margin-bottom: 10px;
+  border: 1px solid #DADADA;
+  color: #888;
+  margin-bottom: 16px;
+  margin-right: 6px;
+  margin-top: 2px;
+  outline: 0 none;
+  padding: 3px 3px 3px 5px;
+  font-size: 12px;
+  line-height:15px;
+  box-shadow: inset 0px 1px 4px #ECECEC;
+}
+form div input {
+  height: 30px;
+}
+/*-- MODAL -------------------------------------------------------------------*/
+/*-- MODAL -------------------------------------------------------------------*/
+/*-- MODAL -------------------------------------------------------------------*/
+.modal{
+  display: none;
+  background: black;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: 0;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.6);
+  /* For IE 5.5 - 7*/
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);
+  /* For IE 8*/
+  -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";
+  z-index: 2000;
+}
+.box{
+  position: fixed;
+  transition: all .4s ease;
+  top: 150px;
+  bottom:  150px;
+  left:  150px;
+  right:   150px;
+  opacity: 0;
+}
+.box-animation{
+  opacity: 1;
+}
+.modal .box{
+  text-align: center;
+}
+.modal img{
+  height: 100%;
+}
+/*-- PARALLAX ----------------------------------------------------------------*/
+/*-- PARALLAX ----------------------------------------------------------------*/
+/*-- PARALLAX ----------------------------------------------------------------*/
+.parallax-window{
+  height: 200px;
+  background: white 50% 0 no-repeat fixed;
+  color: white;
+  margin: 0 auto;
+  overflow: hidden;
+  padding: 0;
+}
+.parallax-image-01{
+  background-image: url(/img/symbiosis/parallax-001.jpg); 
+}
+.parallax-image-02{
+  background-image: url(/img/symbiosis/parallax-002.jpg); 
+} 
+.parallax-image-03{
+  background-image: url(/img/symbiosis/parallax-003.jpg); 
+} 
+/*-- FOOTER ------------------------------------------------------------------*/
+/*-- FOOTER ------------------------------------------------------------------*/
+/*-- FOOTER ------------------------------------------------------------------*/
+footer{
+  background: black;
+}
+footer .navbar-nav > li > a,footer .navbar-nav > li > a:hover{
+  padding: 15px 5px; 
+  color: white;
+}
