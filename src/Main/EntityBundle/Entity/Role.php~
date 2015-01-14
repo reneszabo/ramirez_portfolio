@@ -1,53 +1,48 @@
 <?php
 
-namespace Verlas\Page\EntityBundle\Entity;
+namespace Main\EntityBundle\Entity;
 
+use Symfony\Component\Security\Core\Role\RoleInterface;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Role
- *
  * @ORM\Table(name="role")
- * @ORM\Entity
+ * @ORM\Entity()
  */
-class Role
-{
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="id", type="integer", nullable=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     */
-    private $id;
+class Role implements RoleInterface {
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="name", type="string", length=30, nullable=false)
-     */
-    private $name;
+  /**
+   * @ORM\Column(name="id", type="integer")
+   * @ORM\Id()
+   * @ORM\GeneratedValue(strategy="AUTO")
+   */
+  private $id;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="role", type="string", length=20, nullable=false)
-     */
-    private $role;
+  /**
+   * @ORM\Column(name="name", type="string", length=30)
+   */
+  private $name;
 
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ORM\ManyToMany(targetEntity="User", mappedBy="role")
-     */
-    private $user;
+  /**
+   * @ORM\Column(name="role", type="string", length=20, unique=true)
+   */
+  private $role;
 
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->user = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-    
+  /**
+   * @ORM\ManyToMany(targetEntity="User", mappedBy="roles")
+   */
+  private $users;
+
+  public function __construct() {
+    $this->users = new ArrayCollection();
+  }
+
+  /**
+   * @see RoleInterface
+   */
+  public function getRole() {
+    return $this->role;
+  }
+
 }

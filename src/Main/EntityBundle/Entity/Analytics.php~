@@ -61,6 +61,13 @@ class Analytics {
    * @return Analytics
    */
   public function setCreatedAt($createdAt = null) {
+    if (!($createdAt instanceof \DateTime)) {
+      if (!(is_string($createdAt))) {
+        if (!(is_int($createdAt) || is_integer($createdAt))) {
+          $createdAt = null;
+        }
+      }
+    }
     $this->createdAt = null === $createdAt ? new \DateTime() : $createdAt;
 
     return $this;
@@ -85,6 +92,13 @@ class Analytics {
    * @return Analytics
    */
   public function setUpdatedAt($updatedAt = null) {
+    if (!($updatedAt instanceof \DateTime)) {
+      if (!(is_string($updatedAt))) {
+        if (!(is_int($updatedAt) || is_integer($updatedAt))) {
+          $updatedAt = null;
+        }
+      }
+    }
     $this->updatedAt = null === $updatedAt ? new \DateTime() : $updatedAt;
 
     return $this;
@@ -99,27 +113,25 @@ class Analytics {
     return $this->updatedAt;
   }
 
+  /**
+   * Set sessions
+   *
+   * @param integer $sessions
+   * @return Analytics
+   */
+  public function setSessions($sessions) {
+    $this->sessions = $sessions;
 
-    /**
-     * Set sessions
-     *
-     * @param integer $sessions
-     * @return Analytics
-     */
-    public function setSessions($sessions)
-    {
-        $this->sessions = $sessions;
+    return $this;
+  }
 
-        return $this;
-    }
+  /**
+   * Get sessions
+   *
+   * @return integer 
+   */
+  public function getSessions() {
+    return $this->sessions;
+  }
 
-    /**
-     * Get sessions
-     *
-     * @return integer 
-     */
-    public function getSessions()
-    {
-        return $this->sessions;
-    }
 }

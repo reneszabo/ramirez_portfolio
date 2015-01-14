@@ -1,54 +1,101 @@
 <?php
+
 namespace Main\EntityBundle\Entity;
 
+
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\EquatableInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Doctrine\Common\Collections\ArrayCollection;
+use HWI\Bundle\OAuthBundle\Security\Core\User\OAuthUser;
 
 /**
  * User
  *
  * @ORM\Table(name="user")
  * @ORM\Entity(repositoryClass="Acme\UserBundle\Entity\UserRepository")
+ * @UniqueEntity(fields="username", message="Username must be unique")
+ * @UniqueEntity(fields="email", message="Email must be unique")
  */
-class User implements AdvancedUserInterface, \Serializable {
+class User extends OAuthUser implements EquatableInterface, \Serializable {
 
   /**
    * @ORM\Column(type="integer")
    * @ORM\Id
    * @ORM\GeneratedValue(strategy="AUTO")
    */
-  private $id;
+  protected $id;
 
   /**
-   * @ORM\Column(type="string", length=25, unique=true)
+   * @ORM\Column(name="username", type="string", length=255, unique=true)
    */
-  private $username;
+  protected $username;
 
   /**
-   * @ORM\Column(type="string", length=64)
+   * @var string
+   *
+   * @ORM\Column(name="realname", type="string", length=255, nullable=true)
    */
-  private $password;
+  protected $realname;
 
   /**
-   * @ORM\Column(type="string", length=60, unique=true)
+   * @var string
+   *
+   * @ORM\Column(name="nickname", type="string", length=255, nullable=true)
    */
-  private $email;
+  protected $nickname;
+
+  /**
+   * @var string
+   *
+   * @ORM\Column(name="salt", type="string", length=32)
+   */
+  protected $salt;
+
+  /**
+   * @var string
+   *
+   * @ORM\Column(name="password", type="string", length=255)
+   */
+  protected $password;
+
+  /**
+   * @var string
+   *
+   * @ORM\Column(name="email", type="string", length=255, unique=true)
+   */
+  protected $email;
 
   /**
    * @ORM\Column(name="is_active", type="boolean")
    */
-  private $isActive;
+  protected $isActive;
 
   /**
    * @ORM\ManyToMany(targetEntity="Role", inversedBy="users")
    *
    */
-  private $roles;
+  protected $roles;
+
+  /**
+   * @var string
+   *
+   * @ORM\Column(name="google_id", type="string", length=255, unique=true, nullable=true)
+   */
+  protected $googleId;
+
+  /**
+   * @var string
+   *
+   * @ORM\Column(name="avatar", type="string", nullable=true)
+   */
+  protected $avatar;
 
   public function __construct() {
     $this->isActive = true;
     $this->roles = new ArrayCollection();
-    // may not be needed, see section on salt below
-    // $this->salt = md5(uniqid(null, true));
+    $this->salt = md5(uniqid(null, true));
   }
 
   /**
@@ -88,9 +135,6 @@ class User implements AdvancedUserInterface, \Serializable {
     return serialize(array(
         $this->id,
         $this->username,
-        $this->password,
-            // see section on salt below
-            // $this->salt,
     ));
   }
 
@@ -101,9 +145,6 @@ class User implements AdvancedUserInterface, \Serializable {
     list (
             $this->id,
             $this->username,
-            $this->password,
-            // see section on salt below
-            // $this->salt
             ) = unserialize($serialized);
   }
 
@@ -125,6 +166,206 @@ class User implements AdvancedUserInterface, \Serializable {
 
   public function isEnabled() {
     return $this->isActive;
+  }
+
+  public function isEqualTo(UserInterface $user) {
+    if ((int) $this->getId() === $user->getId()) {
+      return true;
+    }
+
+    return false;
+  }
+
+  /**
+   * Get id
+   *
+   * @return integer 
+   */
+  public function getId() {
+    return $this->id;
+  }
+
+  /**
+   * Set username
+   *
+   * @param string $username
+   * @return User
+   */
+  public function setUsername($username) {
+    $this->username = $username;
+
+    return $this;
+  }
+
+  /**
+   * Set realname
+   *
+   * @param string $realname
+   * @return User
+   */
+  public function setRealname($realname) {
+    $this->realname = $realname;
+
+    return $this;
+  }
+
+  /**
+   * Get realname
+   *
+   * @return string 
+   */
+  public function getRealname() {
+    return $this->realname;
+  }
+
+  /**
+   * Set nickname
+   *
+   * @param string $nickname
+   * @return User
+   */
+  public function setNickname($nickname) {
+    $this->nickname = $nickname;
+
+    return $this;
+  }
+
+  /**
+   * Get nickname
+   *
+   * @return string 
+   */
+  public function getNickname() {
+    return $this->nickname;
+  }
+
+  /**
+   * Set salt
+   *
+   * @param string $salt
+   * @return User
+   */
+  public function setSalt($salt) {
+    $this->salt = $salt;
+
+    return $this;
+  }
+
+  /**
+   * Set password
+   *
+   * @param string $password
+   * @return User
+   */
+  public function setPassword($password) {
+    $this->password = $password;
+
+    return $this;
+  }
+
+  /**
+   * Set email
+   *
+   * @param string $email
+   * @return User
+   */
+  public function setEmail($email) {
+    $this->email = $email;
+
+    return $this;
+  }
+
+  /**
+   * Get email
+   *
+   * @return string 
+   */
+  public function getEmail() {
+    return $this->email;
+  }
+
+  /**
+   * Set isActive
+   *
+   * @param boolean $isActive
+   * @return User
+   */
+  public function setIsActive($isActive) {
+    $this->isActive = $isActive;
+
+    return $this;
+  }
+
+  /**
+   * Get isActive
+   *
+   * @return boolean 
+   */
+  public function getIsActive() {
+    return $this->isActive;
+  }
+
+  /**
+   * Set googleId
+   *
+   * @param string $googleId
+   * @return User
+   */
+  public function setGoogleId($googleId) {
+    $this->googleId = $googleId;
+
+    return $this;
+  }
+
+  /**
+   * Get googleId
+   *
+   * @return string 
+   */
+  public function getGoogleId() {
+    return $this->googleId;
+  }
+
+  /**
+   * Set avatar
+   *
+   * @param string $avatar
+   * @return User
+   */
+  public function setAvatar($avatar) {
+    $this->avatar = $avatar;
+
+    return $this;
+  }
+
+  /**
+   * Get avatar
+   *
+   * @return string 
+   */
+  public function getAvatar() {
+    return $this->avatar;
+  }
+
+  /**
+   * Add roles
+   *
+   * @param \Main\EntityBundle\Entity\Role $roles
+   * @return User
+   */
+  public function addRole(\Main\EntityBundle\Entity\Role $roles) {
+    $this->roles[] = $roles;
+
+    return $this;
+  }
+
+  /**
+   * Remove roles
+   *
+   * @param \Main\EntityBundle\Entity\Role $roles
+   */
+  public function removeRole(\Main\EntityBundle\Entity\Role $roles) {
+    $this->roles->removeElement($roles);
   }
 
 }
