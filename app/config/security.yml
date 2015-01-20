@@ -27,9 +27,9 @@ security:
             oauth:
                 resource_owners:
                     google: "/login/check-google"
-                login_path: /login
+                login_path: /connect/google
                 failure_path: /login
-                success_handler:    security_handler
+                success_handler: security_handler
                 oauth_user_provider:
                     service: ib_user.oauth_user_provider
  

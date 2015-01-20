@@ -1,12 +1,27 @@
-{# empty Twig template #}
 <article class="post">
   <header>
-    <h2>Title</h2>
+    <h2 class="bolder">
+      <a href="#" rel="bookmark">
+        {{ post.title }}
+      </a>
+    </h2>
     <div class="entry-meta">
-      <span><i class="fa fa-calendar"> </i> Dec 23, 2014</span>
-      <span><i class="fa fa-user"></i> <a class="author-link" href="#" rel="author">Hrvoje Jurisic</a></span>
+      <span><i class="fa fa-calendar"> </i> {{ post.createdAt | date('M d, Y') }}</span>
+      <span><i class="fa fa-user"></i> <a class="author-link" href="#" rel="author">{{ post.author.realname }}</a></span>
       <span class="categories-links"> <i class="fa fa-tags"></i> <a href="#" rel="category tag">Life at Inchoo</a></span>
-      <span><i class="fa fa-comment"></i> <a href="http://inchoo.net/life-at-inchoo/core/#comments" title="Comment on The Core"><span class="leave-reply">3 Comments</span></a></span>
+      <span><i class="fa fa-comment"></i> <a href="#" title="Comment on The Core"><span class="leave-reply">3 Comments</span></a></span>
     </div>
   </header>
+  <div class="entry-thumbnail">
+    <a href="#" class="more-link">
+      <img src="http://lorempixel.com/744/244/business?id={{ random() }} " class="img-responsive img-rounded" alt="">				
+    </a>
+  </div>
+  <div class="entry-content">
+    {{ post.content|raw }}
+  </div>
+  <footer class="clearfix">
+      
+    <a href="#" class="btn btn-info pull-right">Read more</a>
+  </footer>
 </article>

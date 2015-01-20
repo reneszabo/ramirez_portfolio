@@ -1,0 +1,7 @@
+backend_homepage:
+    path:     /
+    defaults: { _controller: MainPageBackendBundle:Default:index }
+    
+backend_post:
+    resource: "@MainPageBackendBundle/Resources/config/routing_post.yml"
+    prefix:   /post

@@ -1,3 +1,7 @@
+main_page_backend:
+    resource: "@MainPageBackendBundle/Resources/config/routing.yml"
+    prefix:   /s/a
+
 main_page_blog:
     resource: "@MainPageBlogBundle/Resources/config/routing.yml"
     prefix:   /blog

@@ -1,0 +1,6 @@
+backend_post_form_create:
+    path:     /new
+    defaults: { _controller: MainPageBackendBundle:Post:form }
+backend_post_form_edit:
+    path:     /{slug}/edit
+    defaults: { _controller: MainPageBackendBundle:Post:form }

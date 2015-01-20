@@ -15,6 +15,9 @@ body,html{
 body{
   font-family: 'Raleway', "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
+a{
+  color: $color-blue-light;
+}
 h1,h2,h3,h4,h5,h6{
 }
 .light{
@@ -28,6 +31,9 @@ h1,h2,h3,h4,h5,h6{
 }
 .text-dark{
   color: $text-color;
+}
+pre[class*="language-"] {
+	max-height: 30em !important;
 }
 body > header{
   min-height: 50px;
@@ -325,19 +331,33 @@ body > section{
 
 article.post{
   border-bottom-width: 2px;
-  border-bottom-width: 0.125rem;
   border-bottom-style: solid;
   padding-bottom: 22px;
-  padding-bottom: 1.375rem;
   margin-bottom: 24px;
-  margin-bottom: 1.5rem;
   border-color: silver;
-
-  .entry-meta span {
-    margin-right: 0.375rem;
-    &:first-of-type {
-      white-space: nowrap;
+  header{
+    h2 a{
+      &:hover{
+        text-decoration: none;
+      }
+    }
+    .entry-meta {
+      font-size: 14px;
+      line-height: 24px;
+      margin-bottom: 24px;
+      span {
+        margin-right: 12px;
+        &:first-of-type {
+          white-space: nowrap;
+        }
+        i {
+          margin-right: 2px;
+          white-space: nowrap;
+        }
+      }
     }
   }
-
+  .entry-thumbnail{
+    margin-bottom: 20px;
+  }
 }

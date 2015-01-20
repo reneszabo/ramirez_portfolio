@@ -1,0 +1,4 @@
+services:
+#    main_page_backend.example:
+#        class: Main\Page\BackendBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

@@ -2,7 +2,6 @@
 
 namespace Main\EntityBundle\Entity;
 
-
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\EquatableInterface;
@@ -92,9 +91,16 @@ class User extends OAuthUser implements EquatableInterface, \Serializable {
    */
   protected $avatar;
 
+  /**
+   * @ORM\OneToMany(targetEntity="Post", mappedBy="author")
+   * @ORM\OrderBy({"createdAt" = "ASC"})
+   */
+  private $posts;
+
   public function __construct() {
     $this->isActive = true;
     $this->roles = new ArrayCollection();
+    $this->posts = new ArrayCollection();
     $this->salt = md5(uniqid(null, true));
   }
 
@@ -366,6 +372,36 @@ class User extends OAuthUser implements EquatableInterface, \Serializable {
    */
   public function removeRole(\Main\EntityBundle\Entity\Role $roles) {
     $this->roles->removeElement($roles);
+  }
+
+  /**
+   * Add posts
+   *
+   * @param \Main\EntityBundle\Entity\Post $posts
+   * @return User
+   */
+  public function addPost(\Main\EntityBundle\Entity\Post $posts) {
+    $this->posts[] = $posts;
+
+    return $this;
+  }
+
+  /**
+   * Remove posts
+   *
+   * @param \Main\EntityBundle\Entity\Post $posts
+   */
+  public function removePost(\Main\EntityBundle\Entity\Post $posts) {
+    $this->posts->removeElement($posts);
+  }
+
+  /**
+   * Get posts
+   *
+   * @return \Doctrine\Common\Collections\Collection 
+   */
+  public function getPosts() {
+    return $this->posts;
   }
 
 }

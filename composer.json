@@ -19,7 +19,8 @@
         "sensio/framework-extra-bundle": "~3.0",
         "incenteev/composer-parameter-handler": "~2.0",
         "hwi/oauth-bundle": "dev-master",
-        "google/apiclient": "dev-master"
+        "google/apiclient": "dev-master",
+        "stof/doctrine-extensions-bundle": "~1.1@dev"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"
@@ -55,7 +56,7 @@
             "file": "app/config/parameters.yml"
         },
         "branch-alias": {
-            "dev-master": "2.5-dev"
+            "dev-master": "2.6-dev"
         }
     }
 }
