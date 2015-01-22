@@ -1,3 +1,6 @@
+{% if read_more is not defined %}
+  {% set read_more = false %}
+{% endif %}
 <article class="post">
   <header>
     <h2 class="bolder">
@@ -18,10 +21,11 @@
     </a>
   </div>
   <div class="entry-content">
-    {{ post.content|raw }}
+    {{ post.content(read_more)|raw }}
   </div>
-  <footer class="clearfix">
-      
-    <a href="#" class="btn btn-info pull-right">Read more</a>
-  </footer>
+  {% if read_more == true %}
+    <footer class="clearfix">
+      <a href="{{ path("blog_homepage_post",{slug: post.slug}) }}" class="btn btn-info pull-right">Read more</a>
+    </footer>
+  {% endif %}
 </article>

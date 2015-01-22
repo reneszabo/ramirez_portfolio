@@ -148,7 +148,6 @@ class Post {
     return $this->title;
   }
 
-  
   /**
    * Set content
    *
@@ -166,8 +165,12 @@ class Post {
    *
    * @return string 
    */
-  public function getContent() {
-    return $this->content;
+  public function getContent($read_more = false) {
+    if ($read_more === true) {
+      $split_text = explode("[split]", $this->content, 2);
+      return $split_text[0];
+    }
+    return str_replace('[split]', '', $this->content);
   }
 
   /**
@@ -212,27 +215,25 @@ class Post {
     return $this->slug;
   }
 
+  /**
+   * Set image
+   *
+   * @param \Main\EntityBundle\Entity\Image $image
+   * @return Post
+   */
+  public function setImage(\Main\EntityBundle\Entity\Image $image = null) {
+    $this->image = $image;
 
-    /**
-     * Set image
-     *
-     * @param \Main\EntityBundle\Entity\Image $image
-     * @return Post
-     */
-    public function setImage(\Main\EntityBundle\Entity\Image $image = null)
-    {
-        $this->image = $image;
+    return $this;
+  }
 
-        return $this;
-    }
+  /**
+   * Get image
+   *
+   * @return \Main\EntityBundle\Entity\Image 
+   */
+  public function getImage() {
+    return $this->image;
+  }
 
-    /**
-     * Get image
-     *
-     * @return \Main\EntityBundle\Entity\Image 
-     */
-    public function getImage()
-    {
-        return $this->image;
-    }
 }

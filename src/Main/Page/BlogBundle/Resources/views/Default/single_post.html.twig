@@ -9,9 +9,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-8">
-          {% for post in posts %}
-            {{ include('MainPageBlogBundle:Blog:single.html.twig', {post: post, read_more: true}) }}
-          {% endfor %}
+          {{ include('MainPageBlogBundle:Blog:single.html.twig', {post: post, read_more: false}) }}
         </div>
         <div class="col-md-4">
         </div>

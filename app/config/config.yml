@@ -85,6 +85,9 @@ hwi_oauth:
                 access_type:     offline
 
 stof_doctrine_extensions:
+    uploadable:
+        # Default file path: This is one of the three ways you can configure the path for the Uploadable extension
     orm:
         default:
             sluggable: true
+            uploadable: true  

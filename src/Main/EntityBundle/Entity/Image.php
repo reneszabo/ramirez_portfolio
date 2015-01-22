@@ -10,7 +10,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  *
  * @ORM\Table(name="image")
  * @ORM\Entity
- * @Gedmo\Uploadable(path="/img/blog/gallery", callback="myCallbackMethod", filenameGenerator="SHA1", allowOverwrite=true, appendNumber=true)
+ * @Gedmo\Uploadable(path="img/post/img", callback="myCallbackMethod", filenameGenerator="SHA1", allowOverwrite=true, appendNumber=true)
  * @ORM\HasLifecycleCallbacks()
  */
 class Image {
@@ -59,6 +59,10 @@ class Image {
    * @ORM\Column(name="updated_at", type="datetime", nullable=true)
    */
   protected $updatedAt;
+
+  public function __construct() {
+    $this->path = "/img/post/img";
+  }
 
   /**
    * @ORM\PrePersist()
@@ -117,106 +121,100 @@ class Image {
     // Do some stuff with the file..
   }
 
+  /**
+   * Get id
+   *
+   * @return integer 
+   */
+  public function getId() {
+    return $this->id;
+  }
 
-    /**
-     * Get id
-     *
-     * @return integer 
-     */
-    public function getId()
-    {
-        return $this->id;
+  /**
+   * Set path
+   *
+   * @param string $path
+   * @return Image
+   */
+  public function setPath($path) {
+    $this->path = $path;
+
+    return $this;
+  }
+
+  /**
+   * Get path
+   *
+   * @return string 
+   */
+  public function getPath() {
+    if ($this->path[0] != "/") {
+      return "/" . $this->path;
     }
+    return $this->path;
+  }
 
-    /**
-     * Set path
-     *
-     * @param string $path
-     * @return Image
-     */
-    public function setPath($path)
-    {
-        $this->path = $path;
+  /**
+   * Set name
+   *
+   * @param string $name
+   * @return Image
+   */
+  public function setName($name) {
+    $this->name = $name;
 
-        return $this;
-    }
+    return $this;
+  }
 
-    /**
-     * Get path
-     *
-     * @return string 
-     */
-    public function getPath()
-    {
-        return $this->path;
-    }
+  /**
+   * Get name
+   *
+   * @return string 
+   */
+  public function getName() {
+    return $this->name;
+  }
 
-    /**
-     * Set name
-     *
-     * @param string $name
-     * @return Image
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
+  /**
+   * Set mimeType
+   *
+   * @param string $mimeType
+   * @return Image
+   */
+  public function setMimeType($mimeType) {
+    $this->mimeType = $mimeType;
 
-        return $this;
-    }
+    return $this;
+  }
 
-    /**
-     * Get name
-     *
-     * @return string 
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
+  /**
+   * Get mimeType
+   *
+   * @return string 
+   */
+  public function getMimeType() {
+    return $this->mimeType;
+  }
 
-    /**
-     * Set mimeType
-     *
-     * @param string $mimeType
-     * @return Image
-     */
-    public function setMimeType($mimeType)
-    {
-        $this->mimeType = $mimeType;
+  /**
+   * Set size
+   *
+   * @param string $size
+   * @return Image
+   */
+  public function setSize($size) {
+    $this->size = $size;
 
-        return $this;
-    }
+    return $this;
+  }
 
-    /**
-     * Get mimeType
-     *
-     * @return string 
-     */
-    public function getMimeType()
-    {
-        return $this->mimeType;
-    }
+  /**
+   * Get size
+   *
+   * @return string 
+   */
+  public function getSize() {
+    return $this->size;
+  }
 
-    /**
-     * Set size
-     *
-     * @param string $size
-     * @return Image
-     */
-    public function setSize($size)
-    {
-        $this->size = $size;
-
-        return $this;
-    }
-
-    /**
-     * Get size
-     *
-     * @return string 
-     */
-    public function getSize()
-    {
-        return $this->size;
-    }
 }

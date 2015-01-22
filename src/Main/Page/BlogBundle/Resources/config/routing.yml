@@ -1,3 +1,8 @@
 blog_homepage:
     path:     /
     defaults: { _controller: MainPageBlogBundle:Default:index }
+    methods:  [GET]  
+blog_homepage_post:
+    path:     /{slug}
+    defaults: { _controller: MainPageBlogBundle:Default:post }
+    methods:  [GET]

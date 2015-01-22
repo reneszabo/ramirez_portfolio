@@ -1,0 +1,4 @@
+backend_image_create:
+    path:     /create
+    defaults: { _controller: MainPageBackendBundle:Image:create }
+    methods:  [POST]
