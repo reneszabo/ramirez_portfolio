@@ -21,6 +21,7 @@ class AppKernel extends Kernel {
         new HWI\Bundle\OAuthBundle\HWIOAuthBundle(),
         new Main\Page\BackendBundle\MainPageBackendBundle(),
         new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
+        new WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle(),
     );
 
     if (in_array($this->getEnvironment(), array('dev', 'test'))) {

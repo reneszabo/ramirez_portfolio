@@ -2,3 +2,7 @@ backend_image_create:
     path:     /create
     defaults: { _controller: MainPageBackendBundle:Image:create }
     methods:  [POST]
+backend_image_list:
+    path:     /list/{page}
+    defaults: { _controller: MainPageBackendBundle:Image:list, page: 1 }
+    methods:  [GET]

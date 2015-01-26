@@ -10,6 +10,9 @@ class PostType extends AbstractType {
 
   public function buildForm(FormBuilderInterface $builder, array $options) {
     $builder
+            ->add('image', 'image_to_id', array(
+                'required' => false,
+            ))
             ->add('title', 'text', array(
                 'required' => true,
                 'max_length' => 255,

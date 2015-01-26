@@ -17,7 +17,9 @@
   </header>
   <div class="entry-thumbnail">
     <a href="#" class="more-link">
-      <img src="http://lorempixel.com/744/244/business?id={{ random() }} " class="img-responsive img-rounded" alt="">				
+      {% if post.image %}
+        <img src="{{ post.image.path }}" class="img-responsive img-rounded" alt="{{ post.image.alt }}">				
+      {% endif %}
     </a>
   </div>
   <div class="entry-content">

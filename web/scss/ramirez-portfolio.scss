@@ -33,7 +33,7 @@ h1,h2,h3,h4,h5,h6{
   color: $text-color;
 }
 pre[class*="language-"] {
-	max-height: 30em !important;
+  max-height: 30em !important;
 }
 body > header{
   min-height: 50px;
@@ -359,5 +359,16 @@ article.post{
   }
   .entry-thumbnail{
     margin-bottom: 20px;
+  }
+}
+
+#image-gallery{
+  .thumbnail{
+  height: 358px;
+    .img-responsive{
+      display:block;
+      max-width:100%;
+      height: 240px;
+    }
   }
 }

@@ -9,7 +9,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * Image
  *
  * @ORM\Table(name="image")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Main\EntityBundle\Entity\ImageRepository")
  * @Gedmo\Uploadable(path="img/post/img", callback="myCallbackMethod", filenameGenerator="SHA1", allowOverwrite=true, appendNumber=true)
  * @ORM\HasLifecycleCallbacks()
  */
@@ -27,6 +27,11 @@ class Image {
    * @Gedmo\UploadableFilePath
    */
   private $path;
+
+  /**
+   * @ORM\Column(name="alt", type="string", length=255 , nullable=true)
+   */
+  private $alt;
 
   /**
    * @ORM\Column(name="name", type="string")
@@ -61,7 +66,7 @@ class Image {
   protected $updatedAt;
 
   public function __construct() {
-    $this->path = "/img/post/img";
+    $this->alt = "Rene Ramirez - BLOG";
   }
 
   /**
@@ -215,6 +220,27 @@ class Image {
    */
   public function getSize() {
     return $this->size;
+  }
+
+  /**
+   * Set alt
+   *
+   * @param string $alt
+   * @return Image
+   */
+  public function setAlt($alt) {
+    $this->alt = $alt;
+
+    return $this;
+  }
+
+  /**
+   * Get alt
+   *
+   * @return string 
+   */
+  public function getAlt() {
+    return $this->alt;
   }
 
 }

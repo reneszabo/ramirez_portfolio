@@ -13,7 +13,7 @@ use HWI\Bundle\OAuthBundle\Security\Core\User\OAuthUser;
  * User
  *
  * @ORM\Table(name="user")
- * @ORM\Entity(repositoryClass="Acme\UserBundle\Entity\UserRepository")
+ * @ORM\Entity(repositoryClass="Main\EntityBundle\Entity\UserRepository")
  * @UniqueEntity(fields="username", message="Username must be unique")
  * @UniqueEntity(fields="email", message="Email must be unique")
  */

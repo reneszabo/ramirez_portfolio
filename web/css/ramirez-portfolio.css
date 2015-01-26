@@ -278,4 +278,11 @@ article.post {
   article.post .entry-thumbnail {
     margin-bottom: 20px; }
 
+#image-gallery .thumbnail {
+  height: 358px; }
+  #image-gallery .thumbnail .img-responsive {
+    display: block;
+    max-width: 100%;
+    height: 240px; }
+
 /*# sourceMappingURL=ramirez-portfolio.css.map */

@@ -9,6 +9,25 @@ use Main\EntityBundle\Entity\Image;
 
 class ImageController extends Controller {
 
+  public function listAction(Request $request, $page = 1) {
+    $imageRepo = $this->getDoctrine()->getRepository('MainEntityBundle:Image');
+    $results = $imageRepo->findAllOrderByCreatedAt();
+    $adapter = new \Pagerfanta\Adapter\ArrayAdapter($results);
+    $pagerfanta = new \Pagerfanta\Pagerfanta($adapter);
+    $pagerfanta->setMaxPerPage(15);    // We fix the number of results to 15 in each page.
+    // if $page doesn't exist, we fix it to 1
+    if (!$page) {
+      $page = 1;
+    }
+
+    try {
+      $pagerfanta->setCurrentPage($page);
+    } catch (NotValidCurrentPageException $e) {
+      throw new NotFoundHttpException();
+    }
+    return $this->render('MainPageBackendBundle:Image:list.html.twig', array('pager' => $pagerfanta));
+  }
+
   public function createAction(Request $request) {
     $image = new Image();
     $uploadedFile = $request->files->get('file');

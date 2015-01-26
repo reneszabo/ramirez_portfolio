@@ -2,3 +2,8 @@ services:
 #    main_page_backend.example:
 #        class: Main\Page\BackendBundle\Example
 #        arguments: [@service_id, "plain_value", %parameter%]
+  main_page_backend.type.image_to_id:
+    class: Main\Page\BackendBundle\Form\SelectorType\ImageToIdSelectorType
+    arguments: ["@doctrine.orm.entity_manager"]
+    tags:
+      - { name: form.type, alias: image_to_id }
