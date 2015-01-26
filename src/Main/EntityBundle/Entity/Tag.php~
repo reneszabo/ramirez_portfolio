@@ -6,14 +6,13 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * Image
+ * Tag
  *
- * @ORM\Table(name="image")
- * @ORM\Entity(repositoryClass="Main\EntityBundle\Entity\ImageRepository")
- * @Gedmo\Uploadable(path="img/post/img", callback="myCallbackMethod", filenameGenerator="SHA1", allowOverwrite=true, appendNumber=true)
+ * @ORM\Table(name="Tag")
+ * @ORM\Entity
  * @ORM\HasLifecycleCallbacks()
  */
-class Image {
+class Tag {
 
   /**
    * @ORM\Column(name="id", type="integer")
@@ -23,33 +22,30 @@ class Image {
   private $id;
 
   /**
-   * @ORM\Column(name="path", type="string")
-   * @Gedmo\UploadableFilePath
+   * @ORM\Column(name="name", type="string", length=32, nullable=false)
    */
-  private $path;
+  protected $name;
 
   /**
-   * @ORM\Column(name="alt", type="string", length=255 , nullable=true)
+   * @Gedmo\Slug(fields={"name"})
+   * @ORM\Column(name="slug" , type="string", length=64, unique=true)
    */
-  private $alt;
+  private $slug;
 
   /**
-   * @ORM\Column(name="name", type="string")
-   * @Gedmo\UploadableFileName
+   * @var \Doctrine\Common\Collections\Collection
+   *
+   * @ORM\ManyToMany(targetEntity="Post", inversedBy="tags", cascade={"persist"})
+   * @ORM\JoinTable(name="post_has_tag",
+   *   joinColumns={
+   *     @ORM\JoinColumn(name="tag_id", referencedColumnName="id")
+   *   },
+   *   inverseJoinColumns={
+   *     @ORM\JoinColumn(name="post_id", referencedColumnName="id")
+   *   }
+   * )
    */
-  private $name;
-
-  /**
-   * @ORM\Column(name="mime_type", type="string")
-   * @Gedmo\UploadableFileMimeType
-   */
-  private $mimeType;
-
-  /**
-   * @ORM\Column(name="size", type="decimal")
-   * @Gedmo\UploadableFileSize
-   */
-  private $size;
+  protected $posts;
 
   /**
    * @var \DateTime
@@ -65,17 +61,13 @@ class Image {
    */
   protected $updatedAt;
 
-  public function __construct() {
-    $this->alt = "Rene Ramirez - BLOG";
-  }
-
   /**
    * @ORM\PrePersist()
    * 
    * Set createdAt
    *
    * @param \DateTime $createdAt
-   * @return Analytics
+   * @return Tag
    */
   public function setCreatedAt($createdAt = null) {
     if (!($createdAt instanceof \DateTime) && !(is_string($createdAt)) && !(is_int($createdAt) || is_integer($createdAt))) {
@@ -102,7 +94,7 @@ class Image {
    * Set updatedAt
    *
    * @param \DateTime $updatedAt
-   * @return Analytics
+   * @return Tag
    */
   public function setUpdatedAt($updatedAt = null) {
     if (!($updatedAt instanceof \DateTime) && !(is_string($updatedAt)) && !(is_int($updatedAt) || is_integer($updatedAt))) {
@@ -122,10 +114,6 @@ class Image {
     return $this->updatedAt;
   }
 
-  public function myCallbackMethod(array $info) {
-    // Do some stuff with the file..
-  }
-
   /**
    * Get id
    *
@@ -136,34 +124,17 @@ class Image {
   }
 
   /**
-   * Set path
-   *
-   * @param string $path
-   * @return Image
+   * Constructor
    */
-  public function setPath($path) {
-    $this->path = $path;
-
-    return $this;
-  }
-
-  /**
-   * Get path
-   *
-   * @return string 
-   */
-  public function getPath() {
-    if ($this->path[0] != "/") {
-      return "/" . $this->path;
-    }
-    return $this->path;
+  public function __construct() {
+    $this->posts = new \Doctrine\Common\Collections\ArrayCollection();
   }
 
   /**
    * Set name
    *
    * @param string $name
-   * @return Image
+   * @return Tag
    */
   public function setName($name) {
     $this->name = $name;
@@ -181,66 +152,53 @@ class Image {
   }
 
   /**
-   * Set mimeType
+   * Set slug
    *
-   * @param string $mimeType
-   * @return Image
+   * @param string $slug
+   * @return Tag
    */
-  public function setMimeType($mimeType) {
-    $this->mimeType = $mimeType;
+  public function setSlug($slug) {
+    $this->slug = $slug;
 
     return $this;
   }
 
   /**
-   * Get mimeType
+   * Get slug
    *
    * @return string 
    */
-  public function getMimeType() {
-    return $this->mimeType;
+  public function getSlug() {
+    return $this->slug;
   }
 
   /**
-   * Set size
+   * Add posts
    *
-   * @param string $size
-   * @return Image
+   * @param \Main\EntityBundle\Entity\Post $posts
+   * @return Tag
    */
-  public function setSize($size) {
-    $this->size = $size;
-
+  public function addPost(\Main\EntityBundle\Entity\Post $posts) {
+    $this->posts[] = $posts;
     return $this;
   }
 
   /**
-   * Get size
+   * Remove posts
    *
-   * @return string 
+   * @param \Main\EntityBundle\Entity\Post $posts
    */
-  public function getSize() {
-    return $this->size;
+  public function removePost(\Main\EntityBundle\Entity\Post $posts) {
+    $this->posts->removeElement($posts);
   }
 
   /**
-   * Set alt
+   * Get posts
    *
-   * @param string $alt
-   * @return Image
+   * @return \Doctrine\Common\Collections\Collection 
    */
-  public function setAlt($alt) {
-    $this->alt = $alt;
-
-    return $this;
-  }
-
-  /**
-   * Get alt
-   *
-   * @return string 
-   */
-  public function getAlt() {
-    return $this->alt;
+  public function getPosts() {
+    return $this->posts;
   }
 
 }

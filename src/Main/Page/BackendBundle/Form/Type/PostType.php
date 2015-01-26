@@ -23,6 +23,11 @@ class PostType extends AbstractType {
                 'max_length' => 255,
                 'attr' => array('class' => 'summernote')
             ))
+            ->add('tags', 'entity', array(
+                'class' => 'MainEntityBundle:Tag',
+                'multiple' => true,
+                'expanded' => true,
+            ))
             ->add('save', 'submit', array('attr' => array('class' => 'pull-right btn btn-primary'), 'label' => 'save'))
 
     ;

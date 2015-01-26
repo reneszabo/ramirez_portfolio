@@ -48,8 +48,12 @@ class Post {
    * @ORM\JoinColumn(name="author_id", referencedColumnName="id")
    */
   protected $author;
-//  protected $tags;
-//  protected $comments;
+
+  /**
+   * @var \Doctrine\Common\Collections\Collection
+   * @ORM\ManyToMany(targetEntity="Tag", inversedBy="posts")
+   */
+  private $tags;
 
   /**
    * @var \DateTime
@@ -234,6 +238,43 @@ class Post {
    */
   public function getImage() {
     return $this->image;
+  }
+
+  /**
+   * Constructor
+   */
+  public function __construct() {
+    $this->tags = new \Doctrine\Common\Collections\ArrayCollection();
+  }
+
+  /**
+   * Add tags
+   *
+   * @param \Main\EntityBundle\Entity\Tag $tags
+   * @return Post
+   */
+  public function addTag(\Main\EntityBundle\Entity\Tag $tags) {
+    $this->tags[] = $tags;
+
+    return $this;
+  }
+
+  /**
+   * Remove tags
+   *
+   * @param \Main\EntityBundle\Entity\Tag $tags
+   */
+  public function removeTag(\Main\EntityBundle\Entity\Tag $tags) {
+    $this->tags->removeElement($tags);
+  }
+
+  /**
+   * Get tags
+   *
+   * @return \Doctrine\Common\Collections\Collection 
+   */
+  public function getTags() {
+    return $this->tags;
   }
 
 }

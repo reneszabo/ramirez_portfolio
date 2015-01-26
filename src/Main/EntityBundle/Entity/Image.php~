@@ -9,7 +9,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * Image
  *
  * @ORM\Table(name="image")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Main\EntityBundle\Entity\ImageRepository")
  * @Gedmo\Uploadable(path="img/post/img", callback="myCallbackMethod", filenameGenerator="SHA1", allowOverwrite=true, appendNumber=true)
  * @ORM\HasLifecycleCallbacks()
  */
