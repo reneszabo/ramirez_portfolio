@@ -2,6 +2,7 @@
 {% block stylesheets %}
   {{ parent() }}
   <link href="/libs/prism/prism.css" rel="stylesheet" type="text/css"/>
+  <link href="/libs/summernote/summernote.css" rel="stylesheet" type="text/css"/>
 {% endblock stylesheets %}
 {% block body %}
   {{ include('MainPageBlogBundle:Default:header.html.twig') }}
@@ -21,6 +22,21 @@
 {% block javascripts %}
   {{ parent() }}
   <script src="/libs/prism/prism.js" type="text/javascript"></script>
+  <script src="/libs/summernote/summernote.js" type="text/javascript"></script>
   <script type="text/javascript">
+    $(document).ready(function () {
+      $('.summernote').summernote(
+              {
+                height: 150, //set editable area's height
+                tabsize: 2,
+                toolbar: [
+                  ['style', ['bold', 'italic', 'underline', 'clear']],
+                  ['para', ['ul', 'ol']],
+                  ['misc', ['codeview', 'fullscreen']],
+                  ['misc', ['help']],
+                ]
+              }
+      );
+    });
   </script>
 {% endblock javascripts %}

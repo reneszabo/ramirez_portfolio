@@ -277,6 +277,8 @@ article.post {
         white-space: nowrap; }
   article.post .entry-thumbnail {
     margin-bottom: 20px; }
+  article.post #comments-zone .media-left {
+    width: 100px; }
 
 #image-gallery .thumbnail {
   height: 358px; }

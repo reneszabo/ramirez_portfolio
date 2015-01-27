@@ -19,7 +19,7 @@ class Comment {
   private $id;
 
   /**
-   * @ORM\Column(name="name", type="string", length=30, nullable=false)
+   * @ORM\Column(name="comment", type="text", nullable=true)
    */
   private $comment;
 

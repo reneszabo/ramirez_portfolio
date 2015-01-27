@@ -38,35 +38,30 @@
     </footer>
   {% else %}
     <legend>Comments</legend>
-    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-      <div id="comments-zone">
-
+    <div id="comment-form-zone" class="clearfix">
+      {{ form_start(form) }}
+      {{ form_rest(form) }}
+      {{ form_end(form) }}
+    </div>
+    <div id="comments-zone">
+      {% for comment in post.comments %}
         <div class="media">
           <div class="media-left">
             <a href="#">
-              <img class="media-object img-responsive" src="{{ app.user.avatar }}" alt="comment avatar">
+              <img class="media-object img-responsive" src="{{ comment.user.avatar }}" alt="{{ comment.user.realname }}">
             </a>
           </div>
           <div class="media-body">
-            <h4 class="media-heading">Media heading</h4>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </p>
-            <div class="media">
-              <div class="media-left">
-                <a href="#">
-                  <img class="media-object" data-src="holder.js/64x64" alt="64x64" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA2NCA2NCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+PGRlZnMvPjxyZWN0IHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjEzLjQ2ODc1IiB5PSIzMiIgc3R5bGU9ImZpbGw6I0FBQUFBQTtmb250LXdlaWdodDpib2xkO2ZvbnQtZmFtaWx5OkFyaWFsLCBIZWx2ZXRpY2EsIE9wZW4gU2Fucywgc2Fucy1zZXJpZiwgbW9ub3NwYWNlO2ZvbnQtc2l6ZToxMHB0O2RvbWluYW50LWJhc2VsaW5lOmNlbnRyYWwiPjY0eDY0PC90ZXh0PjwvZz48L3N2Zz4=" data-holder-rendered="true" style="width: 64px; height: 64px;">
-                </a>
-              </div>
-              <div class="media-body">
-                <h4 class="media-heading">Nested media heading</h4>
-                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-              </div>
-            </div>
+            <h4 class="media-heading">{{ comment.user.realname }}</h4>
+            {{ comment.comment | raw }}
           </div>
         </div>
+      {% else %}
+        <span class="no-comments"> No comments made </span>
+      {% endfor %}
 
-      </div>
+    </div>
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
     {% else %}
       <a href="{{ path('hwi_oauth_service_redirect',{service: 'google'}) }}?redirect={{ path('blog_homepage_post',{slug: post.slug}) }}" >Google Login</a>
     {% endif %}
