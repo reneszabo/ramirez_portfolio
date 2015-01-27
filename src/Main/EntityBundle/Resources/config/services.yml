@@ -4,6 +4,6 @@ services:
     ib_user.oauth_user_provider:
         class: Main\EntityBundle\Auth\OAuthProvider
         arguments: [@session, @doctrine, @service_container]
-    security_handler:
-        class: Main\EntityBundle\Handler\SecurityHandler
-        arguments:  [@router]
+#    security_handler:
+#        class: Main\EntityBundle\Handler\SecurityHandler
+#        arguments:  [@router]

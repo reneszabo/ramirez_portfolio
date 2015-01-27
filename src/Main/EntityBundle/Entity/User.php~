@@ -97,10 +97,17 @@ class User extends OAuthUser implements EquatableInterface, \Serializable {
    */
   private $posts;
 
+  /**
+   * @ORM\OneToMany(targetEntity="Comment", mappedBy="user")
+   * @ORM\OrderBy({"createdAt" = "ASC"})
+   */
+  private $comments;
+
   public function __construct() {
     $this->isActive = true;
     $this->roles = new ArrayCollection();
     $this->posts = new ArrayCollection();
+    $this->comments = new ArrayCollection();
     $this->salt = md5(uniqid(null, true));
   }
 
@@ -404,4 +411,37 @@ class User extends OAuthUser implements EquatableInterface, \Serializable {
     return $this->posts;
   }
 
+
+    /**
+     * Add comments
+     *
+     * @param \Main\EntityBundle\Entity\Comment $comments
+     * @return User
+     */
+    public function addComment(\Main\EntityBundle\Entity\Comment $comments)
+    {
+        $this->comments[] = $comments;
+
+        return $this;
+    }
+
+    /**
+     * Remove comments
+     *
+     * @param \Main\EntityBundle\Entity\Comment $comments
+     */
+    public function removeComment(\Main\EntityBundle\Entity\Comment $comments)
+    {
+        $this->comments->removeElement($comments);
+    }
+
+    /**
+     * Get comments
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getComments()
+    {
+        return $this->comments;
+    }
 }

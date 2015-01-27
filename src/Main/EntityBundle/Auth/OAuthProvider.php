@@ -59,7 +59,7 @@ class OAuthProvider extends OAuthUserProvider {
     //add to database if doesn't exists
     if (!count($result)) {
       $user = new User();
-      $user->setUsername($google_id);
+      $user->setUsername($realname);
       $user->setRealname($realname);
       $user->setNickname($nickname);
       $user->setEmail($email);

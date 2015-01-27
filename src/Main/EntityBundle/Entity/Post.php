@@ -51,9 +51,15 @@ class Post {
 
   /**
    * @var \Doctrine\Common\Collections\Collection
-   * @ORM\ManyToMany(targetEntity="Tag", inversedBy="posts")
+   * @ORM\ManyToMany(targetEntity="Tag", mappedBy="posts")
    */
   private $tags;
+
+  /**
+   * @ORM\OneToMany(targetEntity="Comment", mappedBy="post")
+   * @ORM\OrderBy({"createdAt" = "ASC"})
+   */
+  private $comments;
 
   /**
    * @var \DateTime
@@ -277,4 +283,37 @@ class Post {
     return $this->tags;
   }
 
+
+    /**
+     * Add comments
+     *
+     * @param \Main\EntityBundle\Entity\Comment $comments
+     * @return Post
+     */
+    public function addComment(\Main\EntityBundle\Entity\Comment $comments)
+    {
+        $this->comments[] = $comments;
+
+        return $this;
+    }
+
+    /**
+     * Remove comments
+     *
+     * @param \Main\EntityBundle\Entity\Comment $comments
+     */
+    public function removeComment(\Main\EntityBundle\Entity\Comment $comments)
+    {
+        $this->comments->removeElement($comments);
+    }
+
+    /**
+     * Get comments
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getComments()
+    {
+        return $this->comments;
+    }
 }
