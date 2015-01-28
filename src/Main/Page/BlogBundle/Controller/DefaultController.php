@@ -25,6 +25,13 @@ class DefaultController extends Controller {
     $form = $this->createCommentForm($post);
     return $this->render('MainPageBlogBundle:Default:single_post.html.twig', array('post' => $post, 'form' => $form->createView()));
   }
+  /**
+   * @ParamConverter("post", options={"mapping": {"slug": "slug"}})
+   */
+  public function postSecureAction(Request $request, Post $post = null) {
+    $form = $this->createCommentForm($post);
+    return $this->render('MainPageBlogBundle:Default:single_post.html.twig', array('post' => $post, 'form' => $form->createView()));
+  }
 
   /**
    * @ParamConverter("post", options={"mapping": {"slug": "slug"}})

@@ -39,33 +39,38 @@
   {% else %}
     <legend>Comments</legend>
     <div id="comment-form-zone" class="clearfix">
-      {{ form_start(form) }}
-      {{ form_rest(form) }}
-      {{ form_end(form) }}
-    </div>
-    <div id="comments-zone">
-      {% for comment in post.comments %}
-        <div class="media">
-          <div class="media-left">
-            <a href="#">
-              <img class="media-object img-responsive" src="{{ comment.user.avatar }}" alt="{{ comment.user.realname }}">
-            </a>
-          </div>
-          <div class="media-body">
-            <h4 class="media-heading">{{ comment.user.realname }}</h4>
-            {{ comment.comment | raw }}
-          </div>
-        </div>
-      {% else %}
-        <span class="no-comments"> No comments made </span>
-      {% endfor %}
-
-    </div>
-    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+      {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        {{ form_start(form) }}
+        {{ form_rest(form) }}
+        {{ form_end(form) }}
+      </div>
     {% else %}
-      <a href="{{ path('hwi_oauth_service_redirect',{service: 'google'}) }}?redirect={{ path('blog_homepage_post',{slug: post.slug}) }}" >Google Login</a>
+      <div class="">
+        <div class="alert alert-info" role="alert">
+          What to make a comment? please login with google account to avoid spam. &nbsp;&nbsp;<a class="btn btn-default" href="{{ path('blog_homepage_post_secure',{slug: post.slug}) }}" ><i class="fa fa-google"></i> &nbsp;&nbsp;Google Login</a>
+        </div>
+      </div>
     {% endif %}
+  </div>
+  <div id="comments-zone">
+    {% for comment in post.comments %}
+      <div class="media">
+        <div class="media-left">
+          <a href="#">
+            <img class="media-object img-responsive" src="{{ comment.user.avatar }}" alt="{{ comment.user.realname }}">
+          </a>
+        </div>
+        <div class="media-body">
+          <h4 class="media-heading">{{ comment.user.realname }}</h4>
+          {{ comment.comment | raw }}
+        </div>
+      </div>
+    {% else %}
+      <span class="no-comments"> No comments made </span>
+    {% endfor %}
+
+  </div>
 
 
-  {% endif %}
+{% endif %}
 </article>

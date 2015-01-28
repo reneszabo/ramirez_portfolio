@@ -6,6 +6,10 @@ blog_homepage_post:
     path:     /{slug}
     defaults: { _controller: MainPageBlogBundle:Default:post }
     methods:  [GET]
+blog_homepage_post_secure:
+    path:     /s/check/{slug}
+    defaults: { _controller: MainPageBlogBundle:Default:comment }
+    methods:  [GET]
 blog_homepage_post_commet:
     path:     /s/{slug}
     defaults: { _controller: MainPageBlogBundle:Default:comment }
