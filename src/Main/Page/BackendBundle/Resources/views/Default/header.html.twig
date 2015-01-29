@@ -9,12 +9,13 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a id="logo" href="#hero" class="navbar-brand">
+        <a id="logo" href="{{ path('backend_homepage') }}" class="navbar-brand">
           Rene Ramirez
         </a>
       </div>
       <nav id="ramirez-menu" class="collapse navbar-collapse ramirez-navbar-collapse" role="navigation">
         <ul class="nav navbar-nav navbar-right">
+          <li><a href="{{ path('backend_tag_list') }}">Tags</a></li>
           <li><a href="{{ path('blog_homepage') }}">Frontend blog</a></li>
         </ul>
       </nav>

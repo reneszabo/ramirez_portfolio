@@ -5,6 +5,9 @@ backend_homepage:
 backend_post:
     resource: "@MainPageBackendBundle/Resources/config/routing_post.yml"
     prefix:   /post
+backend_tag:
+    resource: "@MainPageBackendBundle/Resources/config/routing_tag.yml"
+    prefix:   /tag
 backend_image:
     resource: "@MainPageBackendBundle/Resources/config/routing_image.yml"
     prefix:   /image

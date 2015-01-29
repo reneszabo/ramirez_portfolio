@@ -1,0 +1,53 @@
+{% extends 'MainPageBackendBundle:Default:base.html.twig' %}
+{% block stylesheets %}
+  {{ parent() }}
+{% endblock stylesheets %}
+{% block body %}
+  <section id="tag">
+    <div class="container">
+      <nav class="navbar navbar-default  " role="navigation">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="#">
+              {% if tag.id %} 
+                Edit  
+              {% else %} 
+                New 
+              {% endif %} Tag</a>
+          </div>
+          <div class="collapse navbar-collapse" >
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="{{ path('backend_tag_list') }}">Back</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      {% if form.vars['errors'] is not empty %}
+        <div class="row">
+          <div class="col-md-12">
+            <div class="alert alert-danger">{{ form_errors(form) }}</div>
+          </div>
+        </div>
+      {% endif %}
+      <div class="row">
+        <div class="col-md-12">
+          {{ form_start(form) }}
+          {#        {{ form_widget(form.date_at) }}#}
+          {#        {{ form_errors(form.date_at) }}#}
+          {{ form_rest(form) }}
+          {{ form_end(form) }}
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+{% endblock body %}
+{% block javascripts %}
+  {{ parent() }}
+  <script type="text/javascript">
+    $(document).ready(function () {
+    });
+  </script>
+
+{% endblock javascripts %}

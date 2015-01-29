@@ -9,16 +9,17 @@
 {% endblock stylesheets %}
 {% block body %}
   <section id="post">
-    <div class="container container-segurlabplus container-segurlabplus-separation">
+    <div class="container">
       <nav class="navbar navbar-default  " role="navigation">
         <div class="container-fluid">
           <div class="navbar-header">
             <a class="navbar-brand" href="#">
               {% if post.id %} 
-                Editar  
+                Edit  
               {% else %} 
-                Nuevo 
-              {% endif %} Post</a>
+                New 
+              {% endif %} Post
+            </a>
           </div>
           <div class="collapse navbar-collapse" >
             <ul class="nav navbar-nav navbar-right">

@@ -1,0 +1,9 @@
+backend_tag_list:
+    path:     /
+    defaults: { _controller: MainPageBackendBundle:Tag:list }
+backend_tag_form_create:
+    path:     /new
+    defaults: { _controller: MainPageBackendBundle:Tag:form }
+backend_tag_form_edit:
+    path:     /{slug}/edit
+    defaults: { _controller: MainPageBackendBundle:Tag:form }
