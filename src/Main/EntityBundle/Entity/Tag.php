@@ -35,15 +35,7 @@ class Tag {
   /**
    * @var \Doctrine\Common\Collections\Collection
    *
-   * @ORM\ManyToMany(targetEntity="Post", inversedBy="tags", cascade={"persist"})
-   * @ORM\JoinTable(name="post_has_tag",
-   *   joinColumns={
-   *     @ORM\JoinColumn(name="tag_id", referencedColumnName="id")
-   *   },
-   *   inverseJoinColumns={
-   *     @ORM\JoinColumn(name="post_id", referencedColumnName="id")
-   *   }
-   * )
+   * @ORM\ManyToMany(targetEntity="Post", mappedBy="tags", cascade={"persist"})
    */
   protected $posts;
 
@@ -61,11 +53,10 @@ class Tag {
    */
   protected $updatedAt;
 
-  
   public function __toString() {
     return $this->getName();
   }
-  
+
   /**
    * @ORM\PrePersist()
    * 

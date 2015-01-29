@@ -5,6 +5,9 @@
     .th_id{
       width: 55px;
     }
+    .th_posts{
+      width: 120px;
+    }
     .th_action{
       width: 100px;
     }
@@ -35,6 +38,7 @@
               <tr>
                 <th class="text-center th_id">ID</th>
                 <th>NAME</th>
+                <th class="th_posts text-center">POST RELATED</th>
                 <th class="th_action"></th>
               </tr>
             </thead>
@@ -43,6 +47,7 @@
                 <tr>
                   <td class="text-center">{{ tag.id }}</td>
                   <td>{{ tag.name }}</td>
+                  <td class="text-center">{{ tag.posts | length }}</td>
                   <td>
                     <a class="btn btn-default btn-xs" href="{{ path('backend_tag_form_edit',{ slug: tag.slug }) }}" >
                       <i class="glyphicon glyphicon-pencil"></i>
@@ -51,7 +56,7 @@
                 </tr>
               {% else %}
                 <tr>
-                  <td colspan="3">
+                  <td colspan="4">
                     No tags created yet.
                   </td>
                 </tr>

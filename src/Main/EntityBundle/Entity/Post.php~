@@ -51,7 +51,7 @@ class Post {
 
   /**
    * @var \Doctrine\Common\Collections\Collection
-   * @ORM\ManyToMany(targetEntity="Tag", mappedBy="posts")
+   * @ORM\ManyToMany(targetEntity="Tag", inversedBy="posts")
    */
   private $tags;
 
@@ -260,6 +260,7 @@ class Post {
    * @return Post
    */
   public function addTag(\Main\EntityBundle\Entity\Tag $tags) {
+    $tags->addPost($this);
     $this->tags[] = $tags;
 
     return $this;

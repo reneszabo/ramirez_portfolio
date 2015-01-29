@@ -106,83 +106,84 @@ class Comment {
     return $this->updatedAt;
   }
 
+  /**
+   * Get id
+   *
+   * @return integer 
+   */
+  public function getId() {
+    return $this->id;
+  }
 
-    /**
-     * Get id
-     *
-     * @return integer 
-     */
-    public function getId()
-    {
-        return $this->id;
+  /**
+   * Set comment
+   *
+   * @param string $comment
+   * @return Comment
+   */
+  public function setComment($comment, $admin = false) {
+    if ($admin == true) {
+      $this->comment = $comment;
+    } else {
+      $comment = str_replace('<javascrip', 'XXX', $comment);
+      $comment = str_replace('<iframe', 'XXX', $comment);
+      $comment = str_replace('href', 'XXX', $comment);
+      $comment = str_replace('src', 'XXX', $comment);
+      $this->comment = $comment;
     }
 
-    /**
-     * Set comment
-     *
-     * @param string $comment
-     * @return Comment
-     */
-    public function setComment($comment)
-    {
-        $this->comment = $comment;
+    return $this;
+  }
 
-        return $this;
-    }
+  /**
+   * Get comment
+   *
+   * @return string 
+   */
+  public function getComment() {
+    return $this->comment;
+  }
 
-    /**
-     * Get comment
-     *
-     * @return string 
-     */
-    public function getComment()
-    {
-        return $this->comment;
-    }
+  /**
+   * Set user
+   *
+   * @param \Main\EntityBundle\Entity\User $user
+   * @return Comment
+   */
+  public function setUser(\Main\EntityBundle\Entity\User $user) {
+    $this->user = $user;
 
-    /**
-     * Set user
-     *
-     * @param \Main\EntityBundle\Entity\User $user
-     * @return Comment
-     */
-    public function setUser(\Main\EntityBundle\Entity\User $user)
-    {
-        $this->user = $user;
+    return $this;
+  }
 
-        return $this;
-    }
+  /**
+   * Get user
+   *
+   * @return \Main\EntityBundle\Entity\User 
+   */
+  public function getUser() {
+    return $this->user;
+  }
 
-    /**
-     * Get user
-     *
-     * @return \Main\EntityBundle\Entity\User 
-     */
-    public function getUser()
-    {
-        return $this->user;
-    }
+  /**
+   * Set post
+   *
+   * @param \Main\EntityBundle\Entity\Post $post
+   * @return Comment
+   */
+  public function setPost(\Main\EntityBundle\Entity\Post $post) {
+    $this->post = $post;
 
-    /**
-     * Set post
-     *
-     * @param \Main\EntityBundle\Entity\Post $post
-     * @return Comment
-     */
-    public function setPost(\Main\EntityBundle\Entity\Post $post)
-    {
-        $this->post = $post;
+    return $this;
+  }
 
-        return $this;
-    }
+  /**
+   * Get post
+   *
+   * @return \Main\EntityBundle\Entity\Post 
+   */
+  public function getPost() {
+    return $this->post;
+  }
 
-    /**
-     * Get post
-     *
-     * @return \Main\EntityBundle\Entity\Post 
-     */
-    public function getPost()
-    {
-        return $this->post;
-    }
 }
