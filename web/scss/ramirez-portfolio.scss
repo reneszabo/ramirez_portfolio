@@ -321,10 +321,16 @@ body > section{
   padding: 0;
 }
 #samples{
+  img.img-thumbnail{
+    margin-bottom: 16px;
+  }
   .row{
     padding-top: 20px;
     padding-bottom: 20px;
   }
+  .sample{
+    margin-bottom: 48px;
+  }  
 }
 
 /*--- BLOG -------------------------------------------------------------------*/
@@ -369,7 +375,7 @@ article.post{
 
 #image-gallery{
   .thumbnail{
-  height: 358px;
+    height: 358px;
     .img-responsive{
       display:block;
       max-width:100%;

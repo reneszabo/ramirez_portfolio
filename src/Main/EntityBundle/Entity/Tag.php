@@ -175,7 +175,10 @@ class Tag {
    * @return Tag
    */
   public function addPost(\Main\EntityBundle\Entity\Post $posts) {
-    $this->posts[] = $posts;
+    if (!$this->posts->contains($posts)) {
+      $posts->addTag($this);
+      $this->posts[] = $posts;
+    }
     return $this;
   }
 

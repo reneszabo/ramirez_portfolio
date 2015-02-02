@@ -46,6 +46,24 @@
         </div>
         <div class="col-md-4">
           <legend class=""><i class="fa fa-comments"></i> Last Comments </legend>
+          <div>
+            <table class="table table-bordered table-condensed table-hover table-striped">
+              {% for comment in comments %}
+                <tr>
+                  <td>{{ comment.post.id }}</td>
+                  <td>{{ comment.user.id }}</td>
+                  <td>{{ comment.createdAt | date('d-m-Y h:i a') }}</td>
+                </tr>
+
+              {% else %}
+                <tr>
+                  <td>No comments made yet.</td>
+                </tr>
+              {% endfor %}
+            </table>
+          </div>
+
+
         </div>
       </div>
     </div>

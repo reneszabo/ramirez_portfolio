@@ -251,9 +251,13 @@ body > section {
   overflow: hidden;
   padding: 0; }
 
+#samples img.img-thumbnail {
+  margin-bottom: 16px; }
 #samples .row {
   padding-top: 20px;
   padding-bottom: 20px; }
+#samples .sample {
+  margin-bottom: 48px; }
 
 /*--- BLOG -------------------------------------------------------------------*/
 article.post {

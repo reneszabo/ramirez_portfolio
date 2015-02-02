@@ -243,110 +243,156 @@
     <div class="dot-overlay"></div>
   </div>
 </section>
+{% spaceless %}
+  <section id="samples">      
+    <div class="container">
+      <div class="row">
 
-<section id="samples">      
-  <div class="container">
+        {#--- ONE ONE ONE ----------------------------------------------------------- #}
 
-    <div class="row">
-      <div class="col-md-6 ">
-        <a href="{{ path('samples_fitrition') }}"  target="_blank">
-          <img src="/img/portfolio/lo/ramirez-portfolio-002-lo.jpg" alt="Fitrition" class="img-thumbnail"/>
-        </a>
-      </div>
-      <div class="col-md-6">
-        <h2 class="light">Landing Page for Fitrition App</h2>
-        <br>
-        <ul>
-          <li>Final muck up of web look and feel, it is <strong>not intended to lunch commercially</strong></li>
-          <br>
-          <li>Responsive design with <a href="http://getbootstrap.com/"  target="_blank">Bootstrap3</a></li>
-          <br>
-          <li><a href="https://www.youtube.com/watch?v=gF0rrpMH-Jo"  target="_blank">Video</a> - Inspirational Running Video HD</li>
-          <br>
-          <li>
-            Created fast muck up based on:
+        <div class="col-md-4 ">
+          <article class="sample">
+            <legend>Verlas Inc </legend>
+            <a href="http://verlasinc.com"  target="_blank">
+              <img src="/img/portfolio/lo/ramirez-portfolio-verlas-lo.jpg" alt="Fitrition" class="img-thumbnail"/>
+            </a>
             <ul>
-              <li><a href="http://fitstar.com/" target="_blank">fitstar.com</a></li>
-              <li><a href="https://www.codyapp.com/" target="_blank">codyapp.com</a></li>
-              <li><a href="http://www.gym-pact.com/" target="_blank">gym-pact.com</a></li>
+              <li>Website build on <a href="http://symfony.com/" target="_blank">Symfony2</a></li>
+              <li>Frontend and Backend Development</li>
+              <li>Design was provided from Verlas Inc</li>
+              <li>Responsive design with <a href="http://getbootstrap.com/" target="_blank">Bootstrap3</a></li>
+              <li><a href="http://fancybox.net/" >Fansy Box</a> for gallery</li>
+              <li><a href="http://kenwheeler.github.io/slick/">Slick</a> Slider for carousel </li>
+              <li>I18N translated in <b>Spanish</b> and <b>English</b></li>
             </ul>
-          </li>
-          <br>
-          <li>
-            Thanks to the team for pulling out the muck ups in such a short period:
+            <div class="text-center">
+              <a class="btn btn-info" href="http://verlasinc.com" target="_blank">View website</a>
+            </div>  
+          </article>
+          <article class="sample">
+            <legend>Landing Page for Fitrition App </legend>
+            <a href="{{ path('samples_fitrition') }}"  target="_blank">
+              <img src="/img/portfolio/lo/ramirez-portfolio-002-lo.jpg" alt="Fitrition" class="img-thumbnail"/>
+            </a>
+            <br>
             <ul>
-              <li>Aegean Diker</li>
-              <li>Ariel Villa-Veluz</li>
-              <li>Eric Tai</li>
+              <li>Final muck up of web look and feel, it is <strong>not intended to lunch commercially</strong></li>
+              <li>Responsive design with <a href="http://getbootstrap.com/"  target="_blank">Bootstrap3</a></li>
+              <li><a href="https://www.youtube.com/watch?v=gF0rrpMH-Jo"  target="_blank">Video</a> - Inspirational Running Video HD</li>
+              <li>
+                Created fast muck up based on:
+                <ul>
+                  <li><a href="http://fitstar.com/" target="_blank">fitstar.com</a></li>
+                  <li><a href="https://www.codyapp.com/" target="_blank">codyapp.com</a></li>
+                  <li><a href="http://www.gym-pact.com/" target="_blank">gym-pact.com</a></li>
+                </ul>
+              </li>
+              <li>
+                Thanks to the team for pulling out the muck ups in such a short period:
+                <ul>
+                  <li>Aegean Diker</li>
+                  <li>Ariel Villa-Veluz</li>
+                  <li>Eric Tai</li>
+                </ul>
+              </li>
             </ul>
-          </li>
-        </ul>
-        <div class="text-center">
-          <a class="btn btn-info" href="{{ path('samples_fitrition') }}" target="_blank">View Demo</a>
+            <div class="text-center">
+              <a class="btn btn-info" href="{{ path('samples_fitrition') }}" target="_blank">View Demo</a>
+            </div>  
+          </article>
         </div>
+
+        {#--- TWO TWO TWO ----------------------------------------------------------- #}
+
+        <div class="col-md-4">
+
+          <article class="sample">
+            <legend>Miranda Consulting Group </legend>
+            <a href="http://mirandacg.com/" target="_blank">
+              <img src="/img/portfolio/lo/ramirez-portfolio-mirandacg-lo.jpg" alt="Miranda Consulting Group" class="img-thumbnail"/>
+            </a>
+            <br>
+            <ul>
+              <li>Website build on <a href="http://symfony.com/" target="_blank">Symfony2</a></li>
+              <li>Frontend Development</li>
+              <li>Responsive design with <a href="http://getbootstrap.com/" target="_blank">Bootstrap3</a></li>
+            </ul>
+            <div class="text-center">
+              <a class="btn btn-info" href="http://mirandacg.com/" target="_blank">View website</a>
+            </div>
+          </article>
+          <article class="sample">
+            <legend>To-Do List - powered by Google API </legend>
+            <a href="{{ path('samples_to_do_list') }}" target="_blank">
+              <img src="/img/portfolio/lo/ramirez-portfolio-001-lo.jpg" alt="To-do List" class="img-thumbnail"/>
+            </a>
+            <br>
+            <ul>
+              <li>Integrated with <a href="https://developers.google.com/gdata/docs/client-libraries" target="_blank">Google API</a></li>
+              <li>Secure Sign in and out</li>
+              <li>Responsive design with <a href="http://getbootstrap.com/" target="_blank">Bootstrap3</a></li>
+              <li>Animated with <a href="http://daneden.github.io/animate.css/" target="_blank">Animate.css</a> created by <a href="http://daneden.me/" target="_blank">Daniel Eden</a></li>
+              <li>List Design by <a href="http://sarasoueidan.com/blog/creative-list-effects/" target="_blank">Sara Soucidan</a></li>
+              <li>Frontend development</li>
+            </ul>
+            <div class="text-center">
+              <a class="btn btn-info" href="{{ path('samples_to_do_list') }}" target="_blank">View Demo</a>
+            </div>
+          </article>  
+        </div>
+
+        {#--- THREE THREE THREE ----------------------------------------------------- #}
+
+        <div class="col-md-4">
+          <article class="sample">
+            <legend>CLAD</legend>
+            <a href="http://www.clad.org/"  target="_blank">
+              <img src="/img/portfolio/lo/ramirez-portfolio-clad-lo.jpg" alt="Fitrition" class="img-thumbnail"/>
+            </a>
+            <br>
+            <ul>
+              <li>Frontend develop in  <a href="http://www.joomla.org/" target="_blank">Joomla</a></li>
+              <li>Backend develop in <a href="http://symfony.com/" target="_blank">Symfony 1.4</a></li>
+              <li>Responsive design with <a href="http://getbootstrap.com/" target="_blank">Bootstrap3</a></li>
+              <li>Designed by <a href="https://maigonzal.wordpress.com/" target="_blank">Mairim Gonzalez</a></li>
+            </ul>
+            <div class="text-center">
+              <a class="btn btn-info" href="http://www.clad.org/" target="_blank">View website</a>
+            </div>  
+          </article>
+          <article class="sample">
+            <legend>Meaghan Ogilvie-Symbiosis</legend>
+            <a href="{{ path('samples_symbiosis') }}" target="_blank">
+              <img src="/img/portfolio/lo/ramirez-portfolio-003-lo.jpg" alt="Symbiosis" class="img-thumbnail"/>
+            </a>
+            <br>
+            <ul>
+              <li>Promotional page for <a href="http://meaghanogilvie.com/" target="_blank">Meaghan Ogilvie</a></li>
+              <li>All photos were provided by <a href="http://meaghanogilvie.com/" target="_blank">Meaghan Ogilvie</a></li>
+              <li>Website <strong>NOT</strong> responsive</li>
+              <li>Usage of <a href="http://www.ianlunn.co.uk/plugins/jquery-parallax" target="_blank">jQuery Parallax</a> for section separation </li>
+              <li>
+                This project was created with a awsome team, special thanks to: 
+                <ul>
+                  <li>Jemela Vergara</li>
+                  <li>Nicole Ornales</li>
+                </ul>
+              </li>
+              <br>
+            </ul>
+            <div class="text-center">
+              <a class="btn btn-info" href="{{ path('samples_symbiosis') }}" target="_blank">View Demo</a>
+            </div>
+          </article>
+        </div>
+
+
+
+
       </div>
     </div>
-    <div class="row">
-      <div class="col-md-6">
-        <a href="{{ path('samples_symbiosis') }}" target="_blank">
-          <img src="/img/portfolio/lo/ramirez-portfolio-003-lo.jpg" alt="Symbiosis" class="img-thumbnail"/>
-        </a>
-      </div>
-      <div class="col-md-6">
-        <h2 class="light">Meaghan Ogilvie - Symbiosis</h2>
-        <br>
-        <ul>
-          <li>Promotional page for <a href="http://meaghanogilvie.com/" target="_blank">Meaghan Ogilvie</a></li>
-          <br>
-          <li>All photos were provided by <a href="http://meaghanogilvie.com/" target="_blank">Meaghan Ogilvie</a></li>
-          <br>
-          <li>Website <strong>NOT</strong> responsive</li>
-          <br>
-          <li>Usage of <a href="http://www.ianlunn.co.uk/plugins/jquery-parallax" target="_blank">jQuery Parallax</a> for section separation </li>
-          <br>
-          <li>
-            This project was created with a awsome team, special thanks to: 
-            <ul>
-              <li>Jemela Vergara</li>
-              <li>Nicole Ornales</li>
-            </ul>
-          </li>
-          <br>
-        </ul>
-        <div class="text-center">
-          <a class="btn btn-info" href="{{ path('samples_symbiosis') }}" target="_blank">View Demo</a>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-6">
-        <a href="{{ path('samples_to_do_list') }}" target="_blank">
-          <img src="/img/portfolio/lo/ramirez-portfolio-001-lo.jpg" alt="To-do List" class="img-thumbnail"/>
-        </a>
-      </div>
-      <div class="col-md-6">
-        <h2 class="light">To-Do List - powered by Google API</h2>
-        <br>
-        <ul>
-          <li>Integrated with <a href="https://developers.google.com/gdata/docs/client-libraries" target="_blank">Google API</a></li>
-          <br>
-          <li>Secure Sign in and out</li>
-          <br>
-          <li>Responsive design with <a href="http://getbootstrap.com/" target="_blank">Bootstrap3</a></li>
-          <br>
-          <li>Animated with <a href="http://daneden.github.io/animate.css/" target="_blank">Animate.css</a> created by <a href="http://daneden.me/" target="_blank">Daniel Eden</a></li>
-          <br>
-          <li>List Design bt <a href="http://sarasoueidan.com/blog/creative-list-effects/" target="_blank">Sara Soucidan</a></li>
-          <br>
-          <li>100% frontend development</li>
-        </ul>
-        <div class="text-center">
-          <a class="btn btn-info" href="{{ path('samples_to_do_list') }}" target="_blank">View Demo</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+  </section>
+{% endspaceless %}
 <section id="direction">
   <div class="container">
     <div class="row">
@@ -354,7 +400,7 @@
         <h2 class=" bolder">
           Like what you see ? lets have a talk
         </h2>
-        <h4 class=" light">
+        <h4 class="">
           Toronto, Canada
           <br>
           <a href="mailto:rene.ramirez@fersz.com" >

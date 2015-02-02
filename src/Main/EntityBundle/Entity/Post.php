@@ -260,9 +260,10 @@ class Post {
    * @return Post
    */
   public function addTag(\Main\EntityBundle\Entity\Tag $tags) {
-    $tags->addPost($this);
-    $this->tags[] = $tags;
-
+    if (!$this->tags->contains($tags)) {
+      $tags->addPost($this);
+      $this->tags[] = $tags;
+    }
     return $this;
   }
 
@@ -284,37 +285,34 @@ class Post {
     return $this->tags;
   }
 
+  /**
+   * Add comments
+   *
+   * @param \Main\EntityBundle\Entity\Comment $comments
+   * @return Post
+   */
+  public function addComment(\Main\EntityBundle\Entity\Comment $comments) {
+    $this->comments[] = $comments;
 
-    /**
-     * Add comments
-     *
-     * @param \Main\EntityBundle\Entity\Comment $comments
-     * @return Post
-     */
-    public function addComment(\Main\EntityBundle\Entity\Comment $comments)
-    {
-        $this->comments[] = $comments;
+    return $this;
+  }
 
-        return $this;
-    }
+  /**
+   * Remove comments
+   *
+   * @param \Main\EntityBundle\Entity\Comment $comments
+   */
+  public function removeComment(\Main\EntityBundle\Entity\Comment $comments) {
+    $this->comments->removeElement($comments);
+  }
 
-    /**
-     * Remove comments
-     *
-     * @param \Main\EntityBundle\Entity\Comment $comments
-     */
-    public function removeComment(\Main\EntityBundle\Entity\Comment $comments)
-    {
-        $this->comments->removeElement($comments);
-    }
+  /**
+   * Get comments
+   *
+   * @return \Doctrine\Common\Collections\Collection 
+   */
+  public function getComments() {
+    return $this->comments;
+  }
 
-    /**
-     * Get comments
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getComments()
-    {
-        return $this->comments;
-    }
 }
