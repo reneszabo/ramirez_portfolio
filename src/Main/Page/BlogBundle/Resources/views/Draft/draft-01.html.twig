@@ -1,0 +1,56 @@
+{% extends 'MainPageFrontendBundle:Default:base.html.twig' %}
+{% block stylesheets %}
+  {{ parent() }}
+{% endblock stylesheets %}
+{% block body %}
+  {{ include('MainPageBlogBundle:Default:header.html.twig') }}
+  <section id="draft">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8">
+          {# --- THE PROBLEM ------------------------------------------------ #}
+          <div id="the-problem">
+            <legend>The Problem</legend>
+            <p><strong>Brief</strong></p>
+            <p>
+              Your challenge is to create a Products Page for an ecommerce site.  
+              Ecommerce has been continuing to grow with more emphasis being 
+              placed on individual brands having their own pages (rather then relying 
+              on major sites such as amazon).   This creates an opportunity for 
+              designers & developers to create custom sites that advance the 
+              individual brand being sold.   
+            </p>
+            <p>Feel free to use jquery within this assignment.</p>
+            <p><strong>Requirements:</strong></p>
+            <ul>
+              <li> Use Object Oriented structure for your products information</li>
+              <li>Have the products html generated via JS</li>
+              <li>Keep track of the number of the item in stock</li>
+            </ul>
+            <p><strong>Grading Scheme</strong></p>
+            <table class="table table-bordered table-condensed table-hover table-striped">
+              <thead>
+                <tr><th></th><th>Marks</th><th></th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Features </td><td> </td><td>/ 10 </td></tr>
+                <tr><td>Sophistication & reusability of Code </td><td></td><td>/ 10 </td></tr>
+                <tr><td>Polish </td><td></td><td>/ 10</td></tr>
+              </tbody>
+            </table>
+            <p class="text-right"><span class="label label-info">Due Feb 12th</span></p>
+          </div>
+          {# --- THE SOLUTION ------------------------------------------------ #}
+          <div id="the-solution">
+            <legend>The Solution</legend>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock body %}
+{% block javascripts %}
+  {{ parent() }}
+  <script type="text/javascript">
+  </script>
+{% endblock javascripts %}

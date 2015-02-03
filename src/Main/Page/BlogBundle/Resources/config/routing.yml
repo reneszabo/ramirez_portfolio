@@ -14,3 +14,8 @@ blog_homepage_post_commet:
     path:     /s/{slug}
     defaults: { _controller: MainPageBlogBundle:Default:comment }
     methods:  [POST]
+      
+blog_draft:
+    path:     /draft/{draftNumber}
+    defaults: { _controller: MainPageBlogBundle:Draft:index }
+    methods:  [GET]
