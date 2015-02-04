@@ -1,6 +1,8 @@
 {% extends 'MainPageFrontendBundle:Default:base.html.twig' %}
 {% block stylesheets %}
   {{ parent() }}
+  <link href="/libs/prism/prism.css" rel="stylesheet" type="text/css"/>
+  <link href="/libs/summernote/summernote.css" rel="stylesheet" type="text/css"/>
 {% endblock stylesheets %}
 {% block body %}
   {{ include('MainPageBlogBundle:Default:header.html.twig') }}
@@ -23,7 +25,7 @@
             <p>Feel free to use jquery within this assignment.</p>
             <p><strong>Requirements:</strong></p>
             <ul>
-              <li> Use Object Oriented structure for your products information</li>
+              <li>Use Object Oriented structure for your products information</li>
               <li>Have the products html generated via JS</li>
               <li>Keep track of the number of the item in stock</li>
             </ul>
@@ -43,6 +45,233 @@
           {# --- THE SOLUTION ------------------------------------------------ #}
           <div id="the-solution">
             <legend>The Solution</legend>
+            <p>
+              <strong>First</strong> a story to feel the blacks from the 
+              problem and narrow it down to a specific topic.
+            </p>
+            <p>
+              For this assignment it does not specify that we have to persist 
+              the store data that leads to no database storage , so we will keep
+              it simple and store them temporarily in arrays to control the the 
+              products, the stock and the sells.
+            </p>
+            <p>
+              The product brand its open for us to peek, so I 
+              chose  <u><i>Humber Sun Glasses</i></u>, and will will have only 
+            3 sun glasses: <u><i>MAN</i></u>, <u><i>GIRL</i></u>  
+            and <u><i>AVIATOR</i></u>. The initial stock will be a random number 
+            just to make it different for each time the page refreshes. 
+            </p>
+            <p>
+              The historical log of each purchase will be an array with the 
+              the product and the quantity. It relates to
+              user with in order, that has a timestamp and a date.
+            </p>
+            <p>
+              The User will have to provide a name to be able to purchase in
+              the online store. The should be other properties, like payment 
+              method, billing address, shipping address, but for this assignment
+              we will omit them because the due date and the KISS famous saying.
+              But we want to state that I am aware that there is more to it and 
+              can be done in a future version. 
+            </p>
+            <p>
+              <strong>Second</strong> check that we are covering the requirements from the problem:
+            </p>
+            <ul>
+              <li>
+              <u>Use Object Oriented structure for your products information</u>: 
+              <span class="label label-success">CHECK</span> it has 3 objects 
+              (PRODUCTS, LOG, ORDER, USER) each object will be broken down in the Planning stage.
+              </li>
+              <li>
+              <u>Have the products html generated via JS</u>: 
+              <span class="label label-success">CHECK</span> The content will be generated
+              dynamically, and we will take the advantage that we can use jQuery, 
+              and also will add the user of Bootstrap3 to enchant the layout a little.
+              </li>
+              <li>
+              <u>Keep track of the number of the item in stock</u>: 
+              <span class="label label-success">CHECK</span> with the 
+              Object Log, we will easily create a list of transactions.
+              </li>
+            </ul>
+            <p>
+              <strong>Finaly</strong>, the tools to use to solve the problem:
+            </p>
+            <ul>
+              <li>Netbeans IDE: for coding html, css and js.</li>
+              <li>javascript and jQuery: for client side logic.</li>
+              <li>Bootstrap3: to create a simple and clean layout.</li>
+            </ul>
+          </div>
+          {# --- THE SOLUTION ------------------------------------------------ #}
+          <div id="the-planning">
+            <legend>The Planning</legend>
+            <p>
+              <strong>The objects</strong>
+            </p>
+            <div class="row">
+              <div class="col-md-4">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    Product
+                  </div>
+                  <div class="panel-body">
+                    <ul class="list-unstyled">
+                      <li>Name <b class="pull-right">String</b></li>
+                      <li>Description <b class="pull-right">String</b></li>
+                      <li>Image <b class="pull-right">String</b></li>
+                      <li>Quantity <b class="pull-right">Number</b></li>
+                      <li>Logs <b class="pull-right">Array</b></li>
+                      <li>
+                        <strong>functions:</strong>
+                        <ul>
+                          <li>addSoldLog</li>
+                          <li>getSoldLogs</li>
+                          <li>getSoldQuatity</li>
+                          <li>getStockQuantity</li>
+                          <li>hasStock</li>
+                          <li>renderProduct</li>
+                          <li>checkAvailability</li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    Log
+                  </div>
+                  <div class="panel-body">
+                    <ul class="list-unstyled">
+                      <li>Product <b class="pull-right">Object</b></li>
+                      <li>Quantity <b class="pull-right">Number</b></li>
+                      <li>Order <b class="pull-right">Object</b></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    User
+                  </div>
+                  <div class="panel-body">
+                    <ul class="list-unstyled">
+                      <li>FullName <b class="pull-right">String</b></li>
+                      <li>Order <b class="pull-right">Object</b></li>
+                      <li>
+                        <strong>functions:</strong>
+                        <ul>
+                          <li>renderPurchace</li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    Order
+                  </div>
+                  <div class="panel-body">
+                    <ul class="list-unstyled">
+                      <li>Date <b class="pull-right">Date</b></li>
+                      <li>User <b class="pull-right">Object</b></li>
+                      <li>Logs <b class="pull-right">Array</b></li>
+                      <li>
+                        <strong>functions:</strong>
+                        <ul>
+                          <li>addSoldLog</li>
+                          <li>renderOrder</li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    Orders
+                  </div>
+                  <div class="panel-body">
+                    <ul class="list-unstyled">
+                      <li>Orders <b class="pull-right">Array</b></li>
+                      <li>
+                        <strong>functions:</strong>
+                        <ul>
+                          <li>addOrder</li>
+                          <li>renderOrders</li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <p>
+              <strong>The steps</strong>
+            </p>
+            <p><strong>Step 01:</strong></p>
+
+            <p>
+              User enters full name, this will unlock the add to cart buttons.
+            </p>
+
+            <p><strong>Step 02:</strong></p>
+
+            <p>
+              Select the items by clicking the add to cart as many times the user
+              whats, this will trigger the event, checkStock change will call 
+              hasStock, that will call getStockQuantity, that will loop for the 
+              array provided by getSoldLogs and rest it to the product quantity.
+              If its more than 0, the add to cart is allowed, else Alert the use
+              with a message: PRODUCT HAS SOLD OUT.
+            </p>
+
+            <p><strong>Step 03:</strong></p>
+
+            <p>
+              Confirm order: preset the user with a detailed list of all the items
+              in the order and ask if the order is correct. If its canceled, reset
+              layouts and go to step 01 else proceed to step 04.
+            </p>
+
+            <p><strong>Step 04:</strong></p>
+
+            <p>
+              If the order is accepted, we create an order place the user inside 
+              the order. Create one log for each product purchased, inside log 
+              we add the product, the quantity and the order; we add the log to 
+              the order in array Logs and to the product in array Logs. Finaly 
+              we add the order to Orders to have a historical record. And go to 
+              Step 05.
+            </p>
+
+            <p><strong>Step 05:</strong></p>
+
+            <p>
+              Refresh the transactions log layout, and refresh the products layouts,
+              and begin with step 01 again until everything is SOLD.
+            </p>
+
+
+          </div>
+          {# --- THE CODE ------------------------------------------------ #}
+          <div id="the-code">
+            <legend>The Coding</legend>
+            <p><strong>The Model</strong></p>
+            <pre class="language-javascript" data-src="/code/javascript-ecommers/model.js"></pre>
+            <p><strong>The Controller</strong></p>
+            <pre class="language-javascript" data-src="/code/javascript-ecommers/controller.js"></pre>
+          </div>
+          {# --- THE RESULT ------------------------------------------------ #}
+          <div id="the-result">
+            <legend>The Result</legend>
+            <div class="products-container row">
+
+            </div>
           </div>
         </div>
       </div>
@@ -51,6 +280,25 @@
 {% endblock body %}
 {% block javascripts %}
   {{ parent() }}
+  <script src="/libs/prism/prism.js" type="text/javascript"></script>
+  <script src="/libs/summernote/summernote.js" type="text/javascript"></script>
+  <script src="/code/javascript-ecommers/model.js" type="text/javascript"></script>
+  <script src="/code/javascript-ecommers/controller.js" type="text/javascript"></script>
   <script type="text/javascript">
+    $(document).ready(function () {
+      $('.summernote').summernote(
+              {
+                height: 150, //set editable area's height
+                tabsize: 2,
+                toolbar: [
+                  ['style', ['bold', 'italic', 'underline', 'clear']],
+                  ['para', ['ul', 'ol']],
+                  ['misc', ['codeview', 'fullscreen']],
+                  ['misc', ['help']],
+                ]
+              }
+      );
+    });
   </script>
 {% endblock javascripts %}
+{#<div class="panel panel-default"><div class="panel-heading title"></div><div class="panel-body"><img src="" class="img-responsive" /><div class="description"></div></div></div>#}

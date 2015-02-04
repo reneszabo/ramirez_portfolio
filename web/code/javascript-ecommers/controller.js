@@ -1,0 +1,3 @@
+var p1 = new Product('Man Sun Glasses', 'Best Sun glasses a man can have', 'http://www.esquire.com/cm/esquire/images/D6/esq-burberry-sunglasses-0312-mdn.jpg', 55);
+var p2 = new Product('Girl Sun Glasses', 'Best Sun glasses a girl can have', 'http://www.eyeglassworld.com/images/glasses/RAY-BAN-RB-4101-black-right.jpg', 55);
+var p3 = new Product('Aviator Sun Glasses', 'No mater the gender, this glasses alwas look good', 'http://step-en.com/wp-content/uploads/2014/05/Travel-With-Aviator-Sunglasses.jpg', 55);
