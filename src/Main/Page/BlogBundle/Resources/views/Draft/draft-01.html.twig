@@ -123,10 +123,12 @@
                       <li>Description <b class="pull-right">String</b></li>
                       <li>Image <b class="pull-right">String</b></li>
                       <li>Quantity <b class="pull-right">Number</b></li>
+                      <li>Price <b class="pull-right">Number</b></li>
                       <li>Logs <b class="pull-right">Array</b></li>
                       <li>
                         <strong>functions:</strong>
                         <ul>
+                          <li>getPrice</li>
                           <li>addSoldLog</li>
                           <li>getSoldLogs</li>
                           <li>getSoldQuatity</li>
@@ -269,14 +271,46 @@
           {# --- THE RESULT ------------------------------------------------ #}
           <div id="the-result">
             <legend>The Result</legend>
+            <div class="row" style="margin-bottom: 15px;">
+              <div class="col-md-12 ">
+                <form action="#nothing" class="form">
+                  <div class="user-container row">
+                  </div>
+                </form>
+              </div>
+            </div>
             <div class="products-container row">
 
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                My Shopping Cart
+              </div>
+              <div class=" panel-body">
+                <table class="table table-striped">
+                  <tbody class="cart-container">
+
+                  </tbody>
+                </table>
+                <div class="text-right">
+                  <button id="buy-now" class="btn btn-primary disabled">BUY NOW</button>
+                </div>
+              </div>
+            </div>
+            <hr>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                My Shop Summary
+              </div>
+              <div class=" panel-body summary-container">
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
   </section>
+  {#<div class="panel panel-default"><div class="panel-heading title">Demo Name</div><div class="panel-body"><img src="" class="img-responsive" /><div class="description">Demo Description</div><div class="clearfix"><ul class="list-inline pull-right"><li><span class="stock-number small">8 in stock demo</span></li><li><button class="add-to-cart btn btn-info disabled"><i class="fa fa-shopping-cart"></i></button></li></ul></div></div></div>#}
 {% endblock body %}
 {% block javascripts %}
   {{ parent() }}
@@ -294,11 +328,10 @@
                   ['style', ['bold', 'italic', 'underline', 'clear']],
                   ['para', ['ul', 'ol']],
                   ['misc', ['codeview', 'fullscreen']],
-                  ['misc', ['help']],
+                  ['misc', ['help']]
                 ]
               }
       );
     });
   </script>
 {% endblock javascripts %}
-{#<div class="panel panel-default"><div class="panel-heading title"></div><div class="panel-body"><img src="" class="img-responsive" /><div class="description"></div></div></div>#}
