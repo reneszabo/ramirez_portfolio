@@ -63,6 +63,13 @@
               </div>
             </div>
           </div>
+          <div id="files">
+            <ul class="files" data-prototype="{{ form_widget(form.files.vars.prototype)|e }}">
+              {% for file in form.files %}
+                <li>{{ form_row(file.path) }}</li>
+                {% endfor %}
+            </ul>
+          </div>
           {#        {{ form_widget(form.date_at) }}#}
           {#        {{ form_errors(form.date_at) }}#}
           {{ form_rest(form) }}
@@ -91,12 +98,37 @@
   <script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/2.36.0/formatting.min.js"></script>
   <script src="/libs/summernote/summernote.js" type="text/javascript"></script>
   <script type="text/javascript">
+                    // setup an "add a File" link
+                    var $addFileLink = $('<a href="#" class="add_file_link">Add a File</a>');
+                    var $newLinkLi = $('<li></li>').append($addFileLink);
+                    function addFileForm($collectionHolder, $newLinkLi) {
+                      var prototype = $collectionHolder.data('prototype');
+                      var index = $collectionHolder.data('index');
+                      var newForm = prototype.replace(/__name__/g, index);
+                      $collectionHolder.data('index', index + 1);
+                      var $newFormLi = $('<li></li>').append(newForm);
+                      $newFormLi.append('<a href="#" class="remove-file">x</a>');
+                      $newLinkLi.before($newFormLi);
+                      $('.remove-file').click(function (e) {
+                        e.preventDefault();
+                        $(this).parent().remove();
+                        return false;
+                      });
+                    }
+
+
                     $(document).ready(function () {
 
-                      $(document).on('click', '.use-image', function () {
-                        $('#post_image').val($(this).data('id'));
-                        $('.gallery-modal').modal('hide');
+                      var $collectionHolder = $('ul.files');
+                      $collectionHolder.append($newLinkLi);
+                      $collectionHolder.data('index', $collectionHolder.find(':input').length);
+
+                      $addFileLink.on('click', function (e) {
+                        e.preventDefault();
+                        addFileForm($collectionHolder, $newLinkLi);
                       });
+
+
 
                       $('.summernote').summernote(
                               {
@@ -110,24 +142,26 @@
                                 }
                               }
                       );
-                      function sendFile(file, editor, welEditable) {
-                        data = new FormData();
-                        data.append("file", file);
-                        $.ajax({
-                          data: data,
-                          type: "POST",
-                          url: "{{ path('backend_image_create') }}",
-                          cache: false,
-                          contentType: false,
-                          processData: false,
-                          success: function (url) {
-                            editor.insertImage(welEditable, url);
-                          }
-                        });
-                      }
-
-
                     });
+                    $(document).on('click', '.use-image', function () {
+                      $('#post_image').val($(this).data('id'));
+                      $('.gallery-modal').modal('hide');
+                    });
+                    function sendFile(file, editor, welEditable) {
+                      data = new FormData();
+                      data.append("file", file);
+                      $.ajax({
+                        data: data,
+                        type: "POST",
+                        url: "{{ path('backend_image_create') }}",
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        success: function (url) {
+                          editor.insertImage(welEditable, url);
+                        }
+                      });
+                    }
   </script>
 
 {% endblock javascripts %}

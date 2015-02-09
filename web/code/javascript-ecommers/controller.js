@@ -85,7 +85,6 @@ function Controller() {
   }
   ;
   function handleUserForm(e) {
-    console.log('BOOM');
     e.preventDefault();
     handleSubmitUser();
   }

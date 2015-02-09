@@ -28,8 +28,18 @@ class PostType extends AbstractType {
                 'multiple' => true,
                 'expanded' => true,
             ))
-            ->add('save', 'submit', array('attr' => array('class' => 'pull-right btn btn-primary'), 'label' => 'save'))
-
+            ->add('files', 'collection', array(
+                'type' => new FileType(),
+                'allow_add'    => true,
+                'by_reference' => false,
+                'allow_delete' => true,
+            ))
+            ->add('save', 'submit', array(
+                'attr' => array(
+                    'class' => 'pull-right btn btn-primary'
+                ),
+                'label' => 'save'
+            ))
     ;
   }
 

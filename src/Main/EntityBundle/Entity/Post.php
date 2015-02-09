@@ -62,6 +62,12 @@ class Post {
   private $comments;
 
   /**
+   * @ORM\OneToMany(targetEntity="File", mappedBy="post", cascade={"persist"})
+   * @ORM\OrderBy({"createdAt" = "ASC"})
+   */
+  private $files;
+
+  /**
    * @var \DateTime
    *
    * @ORM\Column(name="created_at", type="datetime", nullable=false)
@@ -74,6 +80,15 @@ class Post {
    * @ORM\Column(name="updated_at", type="datetime", nullable=true)
    */
   protected $updatedAt;
+
+  /**
+   * Constructor
+   */
+  public function __construct() {
+    $this->tags = new \Doctrine\Common\Collections\ArrayCollection();
+    $this->comments = new \Doctrine\Common\Collections\ArrayCollection();
+    $this->files = new \Doctrine\Common\Collections\ArrayCollection();
+  }
 
   /**
    * @ORM\PrePersist()
@@ -247,13 +262,6 @@ class Post {
   }
 
   /**
-   * Constructor
-   */
-  public function __construct() {
-    $this->tags = new \Doctrine\Common\Collections\ArrayCollection();
-  }
-
-  /**
    * Add tags
    *
    * @param \Main\EntityBundle\Entity\Tag $tags
@@ -292,6 +300,7 @@ class Post {
    * @return Post
    */
   public function addComment(\Main\EntityBundle\Entity\Comment $comments) {
+
     $this->comments[] = $comments;
 
     return $this;
@@ -313,6 +322,39 @@ class Post {
    */
   public function getComments() {
     return $this->comments;
+  }
+
+  /**
+   * Add files
+   *
+   * @param \Main\EntityBundle\Entity\File $files
+   * @return Post
+   */
+  public function addFile(\Main\EntityBundle\Entity\File $files) {
+    if (!$this->files->contains($files)) {
+      $this->files[] = $files;
+      $files->setPost($this);
+    }
+
+    return $this;
+  }
+
+  /**
+   * Remove files
+   *
+   * @param \Main\EntityBundle\Entity\File $files
+   */
+  public function removeFile(\Main\EntityBundle\Entity\File $files) {
+    $this->files->removeElement($files);
+  }
+
+  /**
+   * Get files
+   *
+   * @return \Doctrine\Common\Collections\Collection 
+   */
+  public function getFiles() {
+    return $this->files;
   }
 
 }

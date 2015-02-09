@@ -3,16 +3,15 @@
 namespace Main\EntityBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * Tag
+ * File
  *
- * @ORM\Table(name="tag")
+ * @ORM\Table(name="file")
  * @ORM\Entity
  * @ORM\HasLifecycleCallbacks()
  */
-class Tag {
+class File {
 
   /**
    * @ORM\Column(name="id", type="integer")
@@ -22,22 +21,15 @@ class Tag {
   private $id;
 
   /**
-   * @ORM\Column(name="name", type="string", length=32, nullable=false)
+   * @ORM\Column(name="path", type="string", length=255, nullable=false)
    */
-  protected $name;
+  private $path;
 
   /**
-   * @Gedmo\Slug(fields={"name"})
-   * @ORM\Column(name="slug" , type="string", length=64, unique=true)
+   * @ORM\ManyToOne(targetEntity="Post",  inversedBy="files", cascade={"persist"}) 
+   * @ORM\JoinColumn(name="post_id", referencedColumnName="id")
    */
-  private $slug;
-
-  /**
-   * @var \Doctrine\Common\Collections\Collection
-   *
-   * @ORM\ManyToMany(targetEntity="Post", mappedBy="tags", cascade={"persist"})
-   */
-  protected $posts;
+  protected $post;
 
   /**
    * @var \DateTime
@@ -53,8 +45,8 @@ class Tag {
    */
   protected $updatedAt;
 
-  public function __toString() {
-    return $this->getName();
+  public function __construct() {
+    
   }
 
   /**
@@ -63,7 +55,7 @@ class Tag {
    * Set createdAt
    *
    * @param \DateTime $createdAt
-   * @return Tag
+   * @return File
    */
   public function setCreatedAt($createdAt = null) {
     if (!($createdAt instanceof \DateTime) && !(is_string($createdAt)) && !(is_int($createdAt) || is_integer($createdAt))) {
@@ -90,7 +82,7 @@ class Tag {
    * Set updatedAt
    *
    * @param \DateTime $updatedAt
-   * @return Tag
+   * @return File
    */
   public function setUpdatedAt($updatedAt = null) {
     if (!($updatedAt instanceof \DateTime) && !(is_string($updatedAt)) && !(is_int($updatedAt) || is_integer($updatedAt))) {
@@ -120,84 +112,50 @@ class Tag {
   }
 
   /**
-   * Constructor
-   */
-  public function __construct() {
-    $this->posts = new \Doctrine\Common\Collections\ArrayCollection();
-  }
-
-  /**
-   * Set name
+   * Set path
    *
-   * @param string $name
-   * @return Tag
+   * @param string $path
+   * @return File
    */
-  public function setName($name) {
-    $this->name = $name;
+  public function setPath($path) {
+    $this->path = $path;
 
     return $this;
   }
 
   /**
-   * Get name
+   * Get path
    *
    * @return string 
    */
-  public function getName() {
-    return $this->name;
-  }
-
-  /**
-   * Set slug
-   *
-   * @param string $slug
-   * @return Tag
-   */
-  public function setSlug($slug) {
-    $this->slug = $slug;
-
-    return $this;
-  }
-
-  /**
-   * Get slug
-   *
-   * @return string 
-   */
-  public function getSlug() {
-    return $this->slug;
-  }
-
-  /**
-   * Add posts
-   *
-   * @param \Main\EntityBundle\Entity\Post $posts
-   * @return Tag
-   */
-  public function addPost(\Main\EntityBundle\Entity\Post $posts) {
-    if (!$this->posts->contains($posts)) {
-      $posts->addTag($this);
-      $this->posts[] = $posts;
+  public function getPath() {
+    if ($this->path[0] != "/") {
+      return "/" . $this->path;
     }
-    return $this;
+    return $this->path;
   }
 
-  /**
-   * Remove posts
-   *
-   * @param \Main\EntityBundle\Entity\Post $posts
-   */
-  public function removePost(\Main\EntityBundle\Entity\Post $posts) {
-    $this->posts->removeElement($posts);
-  }
 
-  /**
-   * Get posts
-   *
-   * @return \Doctrine\Common\Collections\Collection 
-   */
-  public function getPosts() {
-    return $this->posts;
-  }
+    /**
+     * Set post
+     *
+     * @param \Main\EntityBundle\Entity\Post $post
+     * @return File
+     */
+    public function setPost(\Main\EntityBundle\Entity\Post $post = null)
+    {
+        $this->post = $post;
 
+        return $this;
+    }
+
+    /**
+     * Get post
+     *
+     * @return \Main\EntityBundle\Entity\Post 
+     */
+    public function getPost()
+    {
+        return $this->post;
+    }
 }
