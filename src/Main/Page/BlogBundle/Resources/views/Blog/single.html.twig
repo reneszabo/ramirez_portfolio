@@ -4,7 +4,7 @@
 <article class="post">
   <header>
     <h2 class="bolder">
-      <a href="#" rel="bookmark">
+      <a href="{{ path("blog_homepage_post",{slug: post.slug}) }}" rel="bookmark">
         {{ post.title }}
       </a>
     </h2>
@@ -25,7 +25,7 @@
   <div class="entry-thumbnail">
     <a href="#" class="more-link">
       {% if post.image %}
-        <img src="{{ post.image.path }}" class="img-responsive img-rounded" alt="{{ post.image.alt }}">				
+        <img src="{{ post.image.path }}" class="img-responsive img-rounded" alt="{{ post.image.alt }}" />				
       {% endif %}
     </a>
   </div>
@@ -51,26 +51,25 @@
         </div>
       </div>
     {% endif %}
-  </div>
-  <div id="comments-zone">
-    {% for comment in post.comments %}
-      <div class="media">
-        <div class="media-left">
-          <a href="#">
-            <img class="media-object img-responsive" src="{{ comment.user.avatar }}" alt="{{ comment.user.realname }}">
-          </a>
+    <div id="comments-zone">
+      {% for comment in post.comments %}
+        <div class="media">
+          <div class="media-left">
+            <a href="#">
+              <img class="media-object img-responsive" src="{{ comment.user.avatar }}" alt="{{ comment.user.realname }}">
+            </a>
+          </div>
+          <div class="media-body">
+            <h4 class="media-heading">{{ comment.user.realname }}</h4>
+            {{ comment.comment | raw }}
+          </div>
         </div>
-        <div class="media-body">
-          <h4 class="media-heading">{{ comment.user.realname }}</h4>
-          {{ comment.comment | raw }}
-        </div>
-      </div>
-    {% else %}
-      <span class="no-comments"> No comments made </span>
-    {% endfor %}
+      {% else %}
+        <span class="no-comments"> No comments made </span>
+      {% endfor %}
 
-  </div>
+    </div>
 
 
-{% endif %}
+  {% endif %}
 </article>
