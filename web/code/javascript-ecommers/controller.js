@@ -5,11 +5,12 @@ function Controller() {
   var order = null;
   var orders = null;
   var products = null;
+  var totalShoppingCart = 0;
   this.init = function () {
     orders = new Orders();
     products = [
-      new Product('Man Sun Glasses', 'Best Sun glasses a man can have', 'http://www.esquire.com/cm/esquire/images/D6/esq-burberry-sunglasses-0312-mdn.jpg', Math.ceil(Math.random() * 10), 20, this),
-      new Product('Girl Sun Glasses', 'Best Sun glasses a girl can have', 'http://www.eyeglassworld.com/images/glasses/RAY-BAN-RB-4101-black-right.jpg', Math.ceil(Math.random() * 10), 21, this),
+      new Product('Man Sun Glasses', 'Best Sun glasses a man can have', '/code/javascript-ecommers/g01.jpg', Math.ceil(Math.random() * 10), 20, this),
+      new Product('Girl Sun Glasses', 'Best Sun glasses a girl can have', '/code/javascript-ecommers/g02.jpg', Math.ceil(Math.random() * 10), 21, this),
       new Product('Aviator Sun Glasses', 'No mater the gender, this glasses alwas look good', 'http://step-en.com/wp-content/uploads/2014/05/Travel-With-Aviator-Sunglasses.jpg', Math.ceil(Math.random() * 10), 25, this)
     ];
     newLayout();
@@ -27,6 +28,7 @@ function Controller() {
         }
       }
     }
+    $('.cart-container').closest('table').find('tfoot').html('');
     $('.cart-container').html('');
     renderOrders();
     newLayout();
@@ -67,6 +69,7 @@ function Controller() {
       $productContainer.data('quantity', 0);
       $productContainer.find('.add-to-cart').addClass('disabled');
       product.setLogTemporal(null);
+      totalShoppingCart = 0;
     }
     if (product.hasStock()) {
       $productContainer.find('.stock-number').html(product.getStockQuantity() + ' in stock ');
@@ -120,11 +123,37 @@ function Controller() {
   function renderShoppingCart(product) {
     var $myContainer = $('.cart-container').find('.' + product.getId());
     if ($myContainer.length === 0) {
-      $myContainer = $('<tr class="' + product.getId() + '"><td class="name"></td><td class="quantity"></td></tr>');
+      $myContainer = $('<tr class="' + product.getId() + '"><td class="name"></td><td class="quantity"></td><td class="price"></td><td class="iq">=</td><td class="total"></td></tr>');
       $myContainer.appendTo($('.cart-container'));
       $myContainer.find('.name').html(product.getName());
     }
-    $myContainer.find('.quantity').html(product.getLogTemporal().getQuantity());
+    var quantity = product.getLogTemporal().getQuantity() * 1;
+    var price = product.getPrice() * 1;
+    $myContainer.find('.quantity').html(quantity);
+    var totalPrice = quantity * price;
+    $myContainer.find('.price').html("$ " + price);
+    $myContainer.find('.total').html("$ " + totalPrice);
+    renderShoppingCartTotal();
+  }
+  function renderShoppingCartTotal() {
+    totalShoppingCart = 0;
+    for (var i in products) {
+      if (products.hasOwnProperty(i)) {
+        var product = products[i];
+        var log = product.getLogTemporal();
+        if (log.getQuantity() > 0) {
+          var quantity = product.getLogTemporal().getQuantity() * 1;
+          var price = product.getPrice() * 1;
+          totalShoppingCart += quantity * price;
+        }
+      }
+    }
+    var $foot = $('.cart-container').closest('table').find('tfoot');
+    if ($foot.length === 0) {
+      $foot = $('<tfoot></tfoot>');
+      $foot.appendTo($('.cart-container').closest('table'));
+    }
+    $foot.html('<tr><td colspan="4" style="text-align: right;">Total</td><th> $ ' + totalShoppingCart + "</th></tr>");
   }
 }
 var controller = new Controller();
