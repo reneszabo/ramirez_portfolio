@@ -192,10 +192,10 @@ class Post {
    */
   public function getContent($read_more = false) {
     if ($read_more === true) {
-      $split_text = explode("[split]", $this->content, 2);
+      $split_text = explode("<break>", $this->content, 2);
       return $split_text[0];
     }
-    return str_replace('[split]', '', $this->content);
+    return  $this->content;
   }
 
   /**
