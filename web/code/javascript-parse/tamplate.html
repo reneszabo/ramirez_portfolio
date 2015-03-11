@@ -1,0 +1,77 @@
+<section id="create-products">
+  <legend>Create Products</legend>
+  <form id="form-create-product" action="#create-product" method="post" >
+    <fieldset id="form-fields">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" class="form-control" placeholder="Product Name" required />
+      </div>
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea id="description" style="resize: vertical;" rows="4" name="description" class="form-control" placeholder="Product Description" required ></textarea>
+      </div>
+      <div class="form-group">
+        <label for="image">Image</label>
+        <input type="file" id="image" class="form-control" required />
+        <div class="image-error" style="display: none;">
+          <span class="label label-danger">File type not valid, please select and Image.</span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="quantity">Quantity</label>
+        <input id="quantity" name="quantity" class="form-control" type="number" min="1" step="1"  placeholder="Product Quantity" required />
+      </div>
+      <div class="form-group">
+        <label for="price">Price</label>
+        <div class="input-group">
+          <div class="input-group-addon">$</div>
+          <input id="price" name="price" class="form-control" type="number" min="1" step="1"  placeholder="Product Price" required />
+        </div>
+      </div>
+      <div class="text-right">
+        <span class="label label-warning product-processing" style="display:none;">processing</span>
+        <span class="label label-danger product-error" style="display: none;">Ups, something went wrong, please try again later.</span>
+        <span class="label label-success product-success" style="display: none;">Product created successfuly.</span>
+        <button id="btn-create-product" type="submit" class="btn btn-primary">Create Product</button>
+      </div>
+    </fieldset>
+  </form>
+</section>
+<section id="display-products">
+  <legend>The Shop</legend>
+  <div id="products-container" class="row">
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      My Shopping Cart
+    </div>
+    <div class=" panel-body">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th style="width: 75px;">Quantity</th>
+            <th style="width: 55px;">Price</th>
+            <th style="width: 10px;"></th>
+            <th style="width: 55px;">Total</th>
+          </tr>
+        </thead>
+        <tbody class="cart-container">
+        </tbody>
+      </table>
+      <div class="text-right">
+        <button id="buy-now" class="btn btn-primary disabled">BUY NOW</button>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="display-orders">
+  <legend>Backend Simulation - Display Sold Orders</legend>
+  <div class="panel panel-warning">
+    <div class="panel-heading">
+      My Shop Summary ( This is a small representation on what could be the backend info )
+    </div>
+    <div class=" panel-body summary-container">
+    </div>
+  </div>
+</section>
