@@ -1,7 +1,7 @@
 
 
 <section id="ads-section" class="row" ng-controller="AdsController">
-  <div class="col-md-8"  ng-repeat="ad in ads" ng-init="initAdRender(ad, this)">
+  <div class="col-md-12"  ng-repeat="ad in ads" ng-init="initAdRender(ad, this)">
     <article id="{{ad.id}}" class="panel">
       <div class="decoration">{{ad.count}} / {{ad.limitClicks}}</div>
       <div class="panel-body">
