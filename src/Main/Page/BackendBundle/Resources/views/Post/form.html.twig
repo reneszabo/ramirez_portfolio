@@ -66,7 +66,7 @@
           <div id="files">
             <ul class="files" data-prototype="{{ form_widget(form.files.vars.prototype)|e }}">
               {% for file in form.files %}
-                <li>{{ form_row(file.path) }}</li>
+                <li>{{ form_row(file.path) }}{{ form_row(file.orderLike) }}</li>
                 {% endfor %}
             </ul>
           </div>

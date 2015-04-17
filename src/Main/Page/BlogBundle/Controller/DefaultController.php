@@ -14,7 +14,7 @@ class DefaultController extends Controller {
 
   public function indexAction() {
     $postRepository = $this->getDoctrine()->getRepository('MainEntityBundle:Post');
-    $posts = $postRepository->findBy(array(), array('createdAt'=>'DESC'));
+    $posts = $postRepository->findBy(array(), array('createdAt' => 'DESC'));
     return $this->render('MainPageBlogBundle:Default:index.html.twig', array('posts' => $posts));
   }
 
@@ -22,9 +22,14 @@ class DefaultController extends Controller {
    * @ParamConverter("post", options={"mapping": {"slug": "slug"}})
    */
   public function postAction(Request $request, Post $post = null) {
+//    foreach ($post->getFiles() as $value) {
+//      var_dump($value->getId(), $value->getPath(), $value->getOrderLike());
+//    }
+//    die();
     $form = $this->createCommentForm($post);
     return $this->render('MainPageBlogBundle:Default:single_post.html.twig', array('post' => $post, 'form' => $form->createView()));
   }
+
   /**
    * @ParamConverter("post", options={"mapping": {"slug": "slug"}})
    */

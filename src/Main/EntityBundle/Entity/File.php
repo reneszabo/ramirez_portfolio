@@ -26,6 +26,11 @@ class File {
   private $path;
 
   /**
+   * @ORM\Column(name="order_like", type="integer", nullable=true)
+   */
+  private $orderLike;
+
+  /**
    * @ORM\ManyToOne(targetEntity="Post",  inversedBy="files") 
    * @ORM\JoinColumn(name="post_id", referencedColumnName="id")
    */
@@ -161,6 +166,27 @@ class File {
    */
   public function getPost() {
     return $this->post;
+  }
+
+  /**
+   * Set orderLike
+   *
+   * @param integer $orderLike
+   * @return File
+   */
+  public function setOrderLike($orderLike) {
+    $this->orderLike = $orderLike;
+
+    return $this;
+  }
+
+  /**
+   * Get orderLike
+   *
+   * @return integer 
+   */
+  public function getOrderLike() {
+    return $this->orderLike;
   }
 
 }

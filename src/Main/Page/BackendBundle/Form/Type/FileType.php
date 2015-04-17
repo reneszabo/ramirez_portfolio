@@ -12,7 +12,11 @@ class FileType extends AbstractType {
     $builder
             ->add('path', 'text', array(
                 'required' => true,
-    ));
+    ))
+            ->add('orderLike', 'text', array(
+                'required' => true,
+    ))
+          ;
   }
 
   public function setDefaultOptions(OptionsResolverInterface $resolver) {

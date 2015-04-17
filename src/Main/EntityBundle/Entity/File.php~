@@ -26,7 +26,12 @@ class File {
   private $path;
 
   /**
-   * @ORM\ManyToOne(targetEntity="Post",  inversedBy="files", cascade={"persist"}) 
+   * @ORM\Column(name="order_like", type="integer", nullable=true)
+   */
+  private $orderLike;
+
+  /**
+   * @ORM\ManyToOne(targetEntity="Post",  inversedBy="files") 
    * @ORM\JoinColumn(name="post_id", referencedColumnName="id")
    */
   protected $post;
@@ -47,6 +52,10 @@ class File {
 
   public function __construct() {
     
+  }
+
+  public function __toString() {
+    return $this->path;
   }
 
   /**
@@ -135,27 +144,49 @@ class File {
     return $this->path;
   }
 
-
-    /**
-     * Set post
-     *
-     * @param \Main\EntityBundle\Entity\Post $post
-     * @return File
-     */
-    public function setPost(\Main\EntityBundle\Entity\Post $post = null)
-    {
-        $this->post = $post;
-
-        return $this;
+  /**
+   * Set post
+   *
+   * @param \Main\EntityBundle\Entity\Post $post
+   * @return File
+   */
+  public function setPost(\Main\EntityBundle\Entity\Post $post = null) {
+    if (!$this->post) {
+      $this->post = $post;
+      $post->addFile($this);
     }
 
-    /**
-     * Get post
-     *
-     * @return \Main\EntityBundle\Entity\Post 
-     */
-    public function getPost()
-    {
-        return $this->post;
-    }
+    return $this;
+  }
+
+  /**
+   * Get post
+   *
+   * @return \Main\EntityBundle\Entity\Post 
+   */
+  public function getPost() {
+    return $this->post;
+  }
+
+  /**
+   * Set or
+   *
+   * @param integer $or
+   * @return File
+   */
+  public function setOr($or) {
+    $this->or = $or;
+
+    return $this;
+  }
+
+  /**
+   * Get or
+   *
+   * @return integer 
+   */
+  public function getOr() {
+    return $this->or;
+  }
+
 }

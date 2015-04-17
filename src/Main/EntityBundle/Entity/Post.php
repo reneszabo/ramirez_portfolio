@@ -63,7 +63,7 @@ class Post {
 
   /**
    * @ORM\OneToMany(targetEntity="File", mappedBy="post", cascade={"persist"})
-   * @ORM\OrderBy({"createdAt" = "ASC"})
+   * @ORM\OrderBy({"orderLike" = "ASC"}) 
    */
   private $files;
 
