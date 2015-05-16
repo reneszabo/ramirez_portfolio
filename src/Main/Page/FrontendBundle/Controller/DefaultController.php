@@ -73,5 +73,12 @@ class DefaultController extends Controller {
     $response = new Response('Ramirez Portfolio ', Response::HTTP_OK);
     return $response;
   }
+  public function webhooksAction() {
+    $text = shell_exec("whoami");
+//    $text = shell_exec("mkdir /home/asus/Desktop/hola");
+    var_dump($text);
+    $response = new Response($text, Response::HTTP_OK);
+    return $response;
+  }
 
 }

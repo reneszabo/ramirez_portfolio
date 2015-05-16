@@ -13,6 +13,9 @@ samples_fitrition:
 samples_symbiosis:
     path:     /samples/symbiosis
     defaults: { _controller: MainPageFrontendBundle:Default:symbiosis }
+webhooks:
+    path:     /webhooks
+    defaults: { _controller: MainPageFrontendBundle:Default:webhooks }
 
 blog:
     path:     /blog
