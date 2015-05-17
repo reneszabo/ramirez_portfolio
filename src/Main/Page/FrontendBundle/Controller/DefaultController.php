@@ -104,7 +104,7 @@ class DefaultController extends Controller {
     ;
     $this->get('mailer')->send($message);
 
-    $LOCAL_ROOT = "/www";
+    $LOCAL_ROOT = "/srv/www";
     switch ($params->repository->full_name) {
       case "reneszabo/INGRAMCaribbeanSummit" :
         // Init vars
