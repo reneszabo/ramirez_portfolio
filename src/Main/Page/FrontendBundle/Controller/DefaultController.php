@@ -112,7 +112,9 @@ class DefaultController extends Controller {
         break;
     }
     $LOCAL_REPO = "{$LOCAL_ROOT}/{$LOCAL_REPO_NAME}";
-    shell_exec("cd {$LOCAL_REPO} && sudo -u www-data git reset --hard && sudo -u www-data git pull");
+    $commando = "cd {$LOCAL_REPO} && sudo -u www-data git reset --hard && sudo -u www-data git pull";
+    $logger->info($commando);
+    shell_exec($commando);
 
     return $response;
   }
