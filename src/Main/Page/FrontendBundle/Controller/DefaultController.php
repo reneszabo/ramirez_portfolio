@@ -46,11 +46,12 @@ class DefaultController extends Controller {
     }
     if ($weHaveService == true) {
       if ($storedAnalytics->getSessions() != $a->getTotalsForAllResults()['ga:sessions']) {
+        
       }
     }
-        $storedAnalytics->setSessions($a->getTotalsForAllResults()['ga:sessions']);
-        $em->persist($storedAnalytics);
-        $em->flush();
+    $storedAnalytics->setSessions($a->getTotalsForAllResults()['ga:sessions']);
+    $em->persist($storedAnalytics);
+    $em->flush();
 
     return $this->render('MainPageFrontendBundle:Default:index.html.twig', array('cityVisits' => $a->getRows(), 'storedAnalytics' => $storedAnalytics));
   }
@@ -73,11 +74,46 @@ class DefaultController extends Controller {
     $response = new Response('Ramirez Portfolio ', Response::HTTP_OK);
     return $response;
   }
+
   public function webhooksAction() {
-    $text = shell_exec("whoami");
-//    $text = shell_exec("mkdir /home/asus/Desktop/hola");
-    var_dump($text);
-    $response = new Response($text, Response::HTTP_OK);
+    /* @var $request \Symfony\Component\HttpFoundation\Request */
+    /* @var $logger \Symfony\Bridge\Monolog\Logger */
+    $request = $this->get('request');
+    $logger = $this->get('logger');
+    $content = $request->getContent();
+    $params = json_decode($content); // 2nd param to get as array
+    $data = new \StdClass();
+    $logger->info("-----------------------------------------------------------");
+    $logger->info("MESSAGE -> " . $params->head_commit->message);
+    $logger->info("PUSHER NAME -> " . $params->pusher->name);
+    $logger->info("PUSHER EMAIL -> " . $params->pusher->email);
+    $logger->info("REPOSITORY FULL NAME -> " . $params->repository->full_name);
+    $logger->info("REPOSITORY ULR -> " . $params->repository->html_url);
+    $logger->info("REPOSITORY OWNER EMAIL -> " . $params->repository->owner->email);
+    $response = new Response('thx github <3', Response::HTTP_OK);
+    $message = \Swift_Message::newInstance()
+            ->setSubject('GITHUB Push - ' . $params->pusher->name)
+            ->setFrom('rene.ramirez@fersz.com')
+            ->setTo($params->pusher->email)
+            ->setContentType("text/html")
+            ->setBody(
+            $this->renderView(
+                    'MainPageFrontendBundle:Email:email.html.twig', array('data' => $params)
+            )
+            )
+    ;
+    $this->get('mailer')->send($message);
+
+        $LOCAL_ROOT = "/www";
+    switch ($params->repository->full_name) {
+      case "" :
+        // Init vars
+        $LOCAL_REPO_NAME = "ingram";
+        break;
+    }
+        $LOCAL_REPO = "{$LOCAL_ROOT}/{$LOCAL_REPO_NAME}";
+        shell_exec("cd {$LOCAL_REPO} && git git reset --hard &&  git pull");
+
     return $response;
   }
 
