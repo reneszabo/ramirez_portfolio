@@ -104,15 +104,15 @@ class DefaultController extends Controller {
     ;
     $this->get('mailer')->send($message);
 
-        $LOCAL_ROOT = "/www";
+    $LOCAL_ROOT = "/www";
     switch ($params->repository->full_name) {
-      case "" :
+      case "reneszabo/INGRAMCaribbeanSummit" :
         // Init vars
         $LOCAL_REPO_NAME = "ingram";
         break;
     }
-        $LOCAL_REPO = "{$LOCAL_ROOT}/{$LOCAL_REPO_NAME}";
-        shell_exec("cd {$LOCAL_REPO} && git git reset --hard &&  git pull");
+    $LOCAL_REPO = "{$LOCAL_ROOT}/{$LOCAL_REPO_NAME}";
+    shell_exec("cd {$LOCAL_REPO} && git git reset --hard &&  git pull");
 
     return $response;
   }
