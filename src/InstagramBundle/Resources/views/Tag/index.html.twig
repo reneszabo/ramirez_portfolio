@@ -132,7 +132,7 @@
       setTimeout(pushLive, 2000);
     }
     function connectLiveFeed() {
-      conn = new ab.Session('ws://szabovasquez.dlinkddns.com:8080',
+      conn = new ab.Session('ws://ramirez-portfolio.com:8080',
               function () {
                 conn.subscribe('tag_{{tagName}}', function (topic, data) {
                   // This is where you would add the new article to the DOM (beyond the scope of this tutorial)
