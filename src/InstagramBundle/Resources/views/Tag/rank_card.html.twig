@@ -1,0 +1,24 @@
+<div {% if userRace is not defined %}id="rank-template"{% endif %} class="panel panel-default profile-rank" data-id="0">
+  <div class="row">
+    <div  class="col-xs-3 text-center">
+      <div class="img-profile-ranking">
+        <img class="img-responsive img-circle rank-profile-image"  src="{% if userRace is defined %}{{userRace.user.profile_picture}}{% endif %}" />
+      </div>
+    </div>
+    <div class="col-xs-9">
+      <div class="panel-body text-center">
+        <h4>
+          {% if userRace is defined %}{{userRace.user.full_name}} ({{userRace.user.username}}) {% endif %}
+        </h4>
+        <div class="h3" style="margin: 0;">
+          <span  class="label label-primary rank-count">
+            {% if userRace is defined %}{{userRace.count}}{% endif %}
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="hidden ids-counted">
+
+  </div>        
+</div>

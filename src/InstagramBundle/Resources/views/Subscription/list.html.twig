@@ -1,0 +1,60 @@
+{% extends 'InstagramBundle:Default:base.html.twig' %}
+{% block stylesheets %}
+  <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.5.0/slick.css"/>
+  {{ parent() }}
+  <style>
+    .row{
+      margin-top: 2%;
+    }
+  </style>
+{% endblock stylesheets %}
+{% block body %}
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-4 col-xs-offset-4">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <div class="text-center">
+              <legend>
+                SUBSCRIPTION LIST
+              </legend>
+              {% if data is empty %}
+                NO SUBSCRIPTIONS FOUND
+              {% else %}
+                <table class="table text-left table-responsive" >
+                  <thead>
+                    <tr>
+                      <th>TYPE</th>
+                      <th>SEARCH</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for subscription in data %}
+                      <tr>
+                        <td>
+                          {{subscription.object}}
+                        </td>
+                        <td>
+                          {{subscription.object_id}}
+                        </td>
+                        <td class="text-right"><a href="{{ path('instagram_subscription_delete' , {'query': subscription.id , 'type': subscription.object }) }}" class=""><i class="fa fa-close"></i></a></td>
+                      </tr>
+                    {% endfor %}  
+                  {% endif %}  
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock body %}
+{% block javascripts %}
+  {{ parent() }}
+{% endblock javascripts %}
+
+
+
+

@@ -1,3 +1,7 @@
+main_instagram:
+    resource: "@InstagramBundle/Resources/config/routing.yml"
+    prefix:   /instagram
+
 main_page_backend:
     resource: "@MainPageBackendBundle/Resources/config/routing.yml"
     prefix:   /s/a
@@ -25,6 +29,9 @@ hwi_oauth_login:
     
 google_login:
     pattern: /login/check-google
+    
+instagram_login:
+    pattern: /login/check-instagram/
     
 logout:
     path:   /logout

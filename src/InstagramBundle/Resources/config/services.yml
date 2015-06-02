@@ -1,0 +1,29 @@
+parameters:
+  instagram.subscription.token: RamirezPortfolio1984
+  instagram.class:	     InstagramBundle\Adapter\InstagramAdapter
+  instagram.token_class: InstagramBundle\TokenHandler\CookieToken
+  instagram.redirect_route_login: instagram_check
+  instagram.redirect_route_logout: instagram_thanks
+
+  instaphp.config:
+    version: v1
+    log_path: %kernel.logs_dir%/instaphp-%kernel.environment%.log
+    endpoint: https://api.instagram.com
+    client_id: %instagram_api_client_id%
+    client_secret: %instagram_api_client_secret%
+    scope: comments+likes+relationships
+    oauth_path: /oauth/authorize/?client_id={client_id}&amp;response_type=code&amp;redirect_uri={redirect_uri}
+    oauth_token_path: /oauth/access_token/
+    redirect_route: instagram_callback
+    no_verify_peer: true
+
+services:
+    instagram_token_handler:
+        class:            InstagramBundle\TokenHandler\UserToken
+        arguments:        [@security.context, @doctrine.orm.default_entity_manager]
+    instagram:
+        class:            %instagram.class%
+        arguments:        [@instagram_token_handler, %instaphp.config%, @router]
+#    jms_serializer.object_constructor:
+#        alias: jms_serializer.doctrine_object_constructor
+#        public: false

@@ -19,9 +19,12 @@ class AppKernel extends Kernel {
         new Main\EntityBundle\MainEntityBundle(),
         new Main\Page\BlogBundle\MainPageBlogBundle(),
         new HWI\Bundle\OAuthBundle\HWIOAuthBundle(),
+        new JMS\SerializerBundle\JMSSerializerBundle(),
         new Main\Page\BackendBundle\MainPageBackendBundle(),
         new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
         new WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle(),
+        new InstagramBundle\InstagramBundle(),
+        new SocketBundle\SocketBundle(),
     );
 
     if (in_array($this->getEnvironment(), array('dev', 'test'))) {

@@ -1,0 +1,52 @@
+{% extends 'InstagramBundle:Default:base.html.twig' %}
+{% block stylesheets %}
+  {{ parent() }}
+  <style>
+
+    .text-center img{
+      display: inline-block;
+    }
+    .row{
+      margin-top: 10%;
+    }
+  </style>
+</style>
+{% endblock stylesheets %}
+{% block body %}
+  
+  
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-4 col-xs-offset-4">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <div class="text-center">
+              <img class="img-responsive img-circle" src="{{ userResponse.data.profile_picture }}"
+            </div>
+            <div class="text-center">
+              <h4>
+                WELCOME
+              </h4>
+              <h3 style="margin-top: 0;">
+                {{userResponse.data.full_name}} <br>({{userResponse.data.username}})
+              </h3>
+              <i class="fa fa-instagram fa-4x"></i>
+              <div class="list-group">
+                <div class="list-group-item active">
+                  Instagram Menu
+                </div>
+                <a href="{{ url('instagram_tag') }}" class="list-group-item">Tags</a>
+                <a href="{{ url('instagram_subscription_list') }}" class="list-group-item">Subscriptions</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock body %}
+{% block javascripts %}
+  {{ parent() }}
+</script>
+{% endblock javascripts %}
+

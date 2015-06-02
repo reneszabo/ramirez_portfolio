@@ -1,0 +1,39 @@
+instagram_homepage:
+    path:     /
+    defaults: { _controller: InstagramBundle:Instagram:index }
+    
+
+
+instagram_callback:
+    pattern: /callback
+    defaults: { _controller: InstagramBundle:Instagram:callback }
+    
+instagram_tag:
+    path:     /tag/{query}
+    defaults: { _controller: InstagramBundle:Instagram:tag , query: verlasinc }
+    
+instagram_subscription:
+    path:     /subscriptions/{type}/{query}
+    defaults: { _controller: InstagramBundle:Instagram:subscriptions }
+    
+instagram_subscription_delete:
+    path:     /subscription/detete/{type}/{query}
+    defaults: { _controller: InstagramBundle:Instagram:subscription_delete, type: all, query:0 }
+    
+instagram_subscription_list:
+    path:     /subscription/list
+    defaults: { _controller: InstagramBundle:Instagram:subscription_list }
+    
+instagram_subscription_update:
+    path:     /subscription/update
+    defaults: { _controller: InstagramBundle:Instagram:subscription_update }
+#LOGIN AND OUT URLs
+instagram_thanks:
+    path:     /thanks
+    defaults: { _controller: InstagramBundle:Instagram:thanks }
+instagram_logout:
+    path:     /logout
+    defaults: { _controller: InstagramBundle:Instagram:logout }
+instagram_check:
+    pattern: /checkInstagram
+    defaults: { _controller: InstagramBundle:Instagram:check }

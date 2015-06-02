@@ -16,8 +16,10 @@ samples_symbiosis:
 webhooks:
     path:     /webhooks
     defaults: { _controller: MainPageFrontendBundle:Default:webhooks }
+api:
+    path:     /api-callback
+    defaults: { _controller: MainPageFrontendBundle:Default:apiCallback }
 
 blog:
     path:     /blog
-    defaults: { _controller: MainPageFrontendBundle:Blog:index }
-    
+    defaults: { _controller: MainPageFrontendBundle:Blog:index }  

@@ -169,24 +169,24 @@ class File {
   }
 
   /**
-   * Set or
+   * Set orderLike
    *
-   * @param integer $or
+   * @param integer $orderLike
    * @return File
    */
-  public function setOr($or) {
-    $this->or = $or;
+  public function setOrderLike($orderLike) {
+    $this->orderLike = $orderLike;
 
     return $this;
   }
 
   /**
-   * Get or
+   * Get orderLike
    *
    * @return integer 
    */
-  public function getOr() {
-    return $this->or;
+  public function getOrderLike() {
+    return $this->orderLike;
   }
 
 }

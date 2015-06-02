@@ -87,6 +87,20 @@ class User extends OAuthUser implements EquatableInterface, \Serializable {
   /**
    * @var string
    *
+   * @ORM\Column(name="instagram_id", type="string", length=255, unique=true, nullable=true)
+   */
+  protected $instagramId;
+
+  /**
+   * @var string
+   *
+   * @ORM\Column(name="instagram_auth_code", type="string", length=255, nullable=true)
+   */
+  protected $instagramAuthCode;
+
+  /**
+   * @var string
+   *
    * @ORM\Column(name="avatar", type="string", nullable=true)
    */
   protected $avatar;
@@ -411,37 +425,80 @@ class User extends OAuthUser implements EquatableInterface, \Serializable {
     return $this->posts;
   }
 
+  /**
+   * Add comments
+   *
+   * @param \Main\EntityBundle\Entity\Comment $comments
+   * @return User
+   */
+  public function addComment(\Main\EntityBundle\Entity\Comment $comments) {
+    $this->comments[] = $comments;
+
+    return $this;
+  }
+
+  /**
+   * Remove comments
+   *
+   * @param \Main\EntityBundle\Entity\Comment $comments
+   */
+  public function removeComment(\Main\EntityBundle\Entity\Comment $comments) {
+    $this->comments->removeElement($comments);
+  }
+
+  /**
+   * Get comments
+   *
+   * @return \Doctrine\Common\Collections\Collection 
+   */
+  public function getComments() {
+    return $this->comments;
+  }
+
+  /**
+   * Set instagramId
+   *
+   * @param string $instagramId
+   *
+   * @return User
+   */
+  public function setInstagramId($instagramId) {
+    $this->instagramId = $instagramId;
+
+    return $this;
+  }
+
+  /**
+   * Get instagramId
+   *
+   * @return string
+   */
+  public function getInstagramId() {
+    return $this->instagramId;
+  }
+
 
     /**
-     * Add comments
+     * Set instagramAuthCode
      *
-     * @param \Main\EntityBundle\Entity\Comment $comments
+     * @param string $instagramAuthCode
+     *
      * @return User
      */
-    public function addComment(\Main\EntityBundle\Entity\Comment $comments)
+    public function setInstagramAuthCode($instagramAuthCode)
     {
-        $this->comments[] = $comments;
+        $this->instagramAuthCode = $instagramAuthCode;
 
         return $this;
     }
 
     /**
-     * Remove comments
+     * Get instagramAuthCode
      *
-     * @param \Main\EntityBundle\Entity\Comment $comments
+     * @return string
      */
-    public function removeComment(\Main\EntityBundle\Entity\Comment $comments)
+    public function getInstagramAuthCode()
     {
-        $this->comments->removeElement($comments);
-    }
-
-    /**
-     * Get comments
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getComments()
-    {
-        return $this->comments;
+        return $this->instagramAuthCode;
     }
 }

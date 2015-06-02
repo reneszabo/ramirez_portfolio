@@ -79,43 +79,21 @@ class DefaultController extends Controller {
     /* @var $request \Symfony\Component\HttpFoundation\Request */
     /* @var $logger \Symfony\Bridge\Monolog\Logger */
     $request = $this->get('request');
-    $logger = $this->get('logger');
-    $content = $request->getContent();
-    $params = json_decode($content); // 2nd param to get as array
-    $data = new \StdClass();
-    $logger->info("-----------------------------------------------------------");
-    $logger->info("MESSAGE -> " . $params->head_commit->message);
-    $logger->info("PUSHER NAME -> " . $params->pusher->name);
-    $logger->info("PUSHER EMAIL -> " . $params->pusher->email);
-    $logger->info("REPOSITORY FULL NAME -> " . $params->repository->full_name);
-    $logger->info("REPOSITORY ULR -> " . $params->repository->html_url);
-    $logger->info("REPOSITORY OWNER EMAIL -> " . $params->repository->owner->email);
+    $dispatcher = $this->container->get('event_dispatcher');
+    $dispatcher->dispatch('git.mail.event', new \Main\Page\FrontendBundle\Event\GitMailEvent($request));
+
+//    $browser = new \Buzz\Browser();
+//    $response = $browser->get('https://avatars.githubusercontent.com/u/434504?v=3');
+//    $img = base64_encode($response->getContent());
+//    return $this->render('MainPageFrontendBundle::test.html.twig', array('img' => $img));
     $response = new Response('thx github <3', Response::HTTP_OK);
-    $message = \Swift_Message::newInstance()
-            ->setSubject('GITHUB Push - ' . $params->pusher->name)
-            ->setFrom('rene.ramirez@fersz.com')
-            ->setTo($params->pusher->email)
-            ->setContentType("text/html")
-            ->setBody(
-            $this->renderView(
-                    'MainPageFrontendBundle:Email:email.html.twig', array('data' => $params)
-            )
-            )
-    ;
-    $this->get('mailer')->send($message);
+    return $response;
+  }
 
-    $LOCAL_ROOT = "/srv/www";
-    switch ($params->repository->full_name) {
-      case "reneszabo/INGRAMCaribbeanSummit" :
-        // Init vars
-        $LOCAL_REPO_NAME = "ingram";
-        break;
-    }
-    $LOCAL_REPO = "{$LOCAL_ROOT}/{$LOCAL_REPO_NAME}";
-    $commando = "cd {$LOCAL_REPO} && sudo -u www-data git reset --hard && sudo -u www-data git pull";
-    $logger->info($commando);
-    shell_exec($commando);
-
+  public function apiCallbackAction() {
+    /* @var $request \Symfony\Component\HttpFoundation\Request */
+    $request = $this->get('request');
+    $response = new Response('thx api <3', Response::HTTP_OK);
     return $response;
   }
 

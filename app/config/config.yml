@@ -21,6 +21,7 @@ framework:
     session:
         # handler_id set to null will use default session handler from php.ini
         handler_id:  ~
+        gc_probability: 0
     fragments:       ~
     http_method_override: true
 
@@ -77,6 +78,11 @@ swiftmailer:
 hwi_oauth:
     firewall_name: main
     resource_owners:
+        instagram:
+           type:                instagram
+           client_id:           %instagram_api_client_id%
+           client_secret:       %instagram_api_client_secret%
+           scope:               "comments likes relationships"
         google:
             type:                google
             client_id:           %google_client_id%

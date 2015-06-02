@@ -21,7 +21,11 @@
         "hwi/oauth-bundle": "dev-master",
         "google/apiclient": "dev-master",
         "stof/doctrine-extensions-bundle": "~1.1@dev",
-        "white-october/pagerfanta-bundle": "~1.0"
+        "white-october/pagerfanta-bundle": "~1.0",
+        "instaphp/instaphp": "dev-master",
+        "jms/serializer-bundle": "^0.13.0",
+        "cboden/ratchet": "dev-master",
+        "react/zmq": "^0.3.0"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"

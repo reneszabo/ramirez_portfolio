@@ -1,0 +1,32 @@
+
+<div {% if tag is not defined  %}id="item-for-template"{% endif %} class="item-for {% if tag is defined  %}item-for-{{tag.id}}{% endif %}">
+  <div class="thumbnail">
+    <div class="row">
+      <div class="col-md-6">
+        <img class="img-responsive item-for-image" src="{% if tag is defined  %}{{tag.images.standard_resolution.url}}{% endif %}" />
+      </div>
+      <div class="col-md-6">
+        <div class="caption"> 
+          <div class="text-center">
+            <img src="{% if tag is defined  %}{{tag.user.profile_picture}}{% endif %}" class="img-circle img-responsive item-for-image-profile" />
+          </div>
+          <h3 class="text-center item-for-username">
+            {% if tag is defined  %}{{tag.user.full_name}} ({{tag.user.username}}){% endif %}
+          </h3>
+          <div class="text-center text-info item-for-date" data-time='{% if tag is defined  %}{{tag.createdTime}}{% endif %}'>
+            {% if tag is defined  %}{{tag.createdTime | date('d/m/Y h:i:s A')}}{% endif %}
+          </div>
+          <div style="margin-top: 8px;" class="item-for-caption">
+            {% if tag is defined  %}
+              {% if tag.caption is not null and tag.caption is not empty %}
+                <span class="caption_text">
+                  {{tag.caption.text}}
+                </span>
+              {% endif %}
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -21,3 +21,26 @@
     </li>
   </ul>
 </div>
+<div>
+  <table>
+    <tbody>
+
+      {% for gitprofile in githubers %}
+        <tr>
+          <td>
+            <img src="{{ gitprofile.img }}" alt="HOLA" />
+          </td>
+          <td>
+            {{gitprofile.img |e}}
+          </td>
+          <td>
+            {{gitprofile.name}}
+          </td>
+          <td>
+            {{gitprofile.login}}
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>

@@ -21,8 +21,9 @@ class OAuthProvider extends OAuthUserProvider {
     $qb = $this->doctrine->getManager()->createQueryBuilder();
     $qb->select('u')
             ->from('MainEntityBundle:User', 'u')
-            ->where('u.googleId = :gid')
+            ->where('u.googleId = :gid OR u.instagramId = :iid')
             ->setParameter('gid', $username)
+            ->setParameter('iid', $username)
             ->setMaxResults(1);
     $result = $qb->getQuery()->getResult();
 
@@ -34,9 +35,24 @@ class OAuthProvider extends OAuthUserProvider {
   }
 
   public function loadUserByOAuthUserResponse(UserResponseInterface $response) {
-    //Data from Google response
-    $google_id = $response->getUsername();
-    $email = $response->getEmail();
+    $google_id = 0;
+    $instagram_id = 0;
+    $instagram_auth_code = 0;
+    switch ($response->getResourceOwner()->getName()) {
+      case 'google':
+        $email = $response->getEmail();
+        $google_id = $response->getUsername();
+
+        break;
+      case 'instagram':
+        $instagram_id = $response->getUsername();
+        if (is_null($response->getEmail())) {
+          $email = $response->getNickname() . '@instagram.com';
+        }
+        $instagram_auth_code = $response->getAccessToken();
+        break;
+    }
+
     $nickname = $response->getNickname();
     $realname = $response->getRealName();
     $avatar = $response->getProfilePicture();
@@ -46,28 +62,38 @@ class OAuthProvider extends OAuthUserProvider {
     $this->session->set('nickname', $nickname);
     $this->session->set('realname', $realname);
     $this->session->set('avatar', $avatar);
+    $this->session->set('provider-name', $response->getResourceOwner()->getName());
 
     //Check if this Google user already exists in our app DB
     $qb = $this->doctrine->getManager()->createQueryBuilder();
     $qb->select('u')
             ->from('MainEntityBundle:User', 'u')
-            ->where('u.googleId = :gid')
+            ->where('u.googleId = :gid OR u.instagramId = :iid ')
             ->setParameter('gid', $google_id)
+            ->setParameter('iid', $instagram_id)
             ->setMaxResults(1);
     $result = $qb->getQuery()->getResult();
 
     //add to database if doesn't exists
+    $em = $this->doctrine->getManager();
     if (!count($result)) {
       $user = new User();
       $user->setUsername($realname);
       $user->setRealname($realname);
       $user->setNickname($nickname);
       $user->setEmail($email);
-      $user->setGoogleId($google_id);
+      switch ($response->getResourceOwner()->getName()) {
+        case 'google':
+          $user->setGoogleId($google_id);
+          break;
+        case 'instagram':
+          $user->setInstagramId($instagram_id);
+          break;
+      }
       $user->setAvatar($avatar);
 
       $role = $this->doctrine->getRepository('MainEntityBundle:Role')->findOneByRole("ROLE_USER");
-      $em = $this->doctrine->getManager();
+
       if (!$role) {
         $role = new \Main\EntityBundle\Entity\Role();
         $role->setName("User");
@@ -81,10 +107,12 @@ class OAuthProvider extends OAuthUserProvider {
       $user->setPassword($password);
       $user->addRole($role);
       $em->persist($user);
-      $em->flush();
     } else {
       $user = $result[0]; /* return User */
+      $user->setInstagramAuthCode($instagram_auth_code);
+      $em->persist($user);
     }
+    $em->flush();
 
     //set id
     $this->session->set('id', $user->getId());
