@@ -1,0 +1,15 @@
+{% extends 'HWIOAuthBundle::layout.html.twig' %}
+
+{% block hwi_oauth_content %}
+  <div id="security-error">
+    {% if error is defined and error %}
+      <span>{{ error }}</span>
+    {% endif %}
+  </div>
+  {% for owner in hwi_oauth_resource_owners() %}
+    <a class="btn btn-block btn-social btn-{{owner}}"  href="{{ hwi_oauth_login_url(owner) }}">
+      <i class="fa fa-{{owner}}"></i>
+      Sign in with {{owner}}
+    </a>
+  {% endfor %}
+{% endblock hwi_oauth_content %}

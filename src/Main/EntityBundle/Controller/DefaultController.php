@@ -6,8 +6,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class DefaultController extends Controller
 {
-    public function indexAction($name)
+    public function loginAction()
     {
-        return $this->render('MainEntityBundle:Default:index.html.twig', array('name' => $name));
+        return $this->render('MainEntityBundle:Default:login.html.twig');
     }
 }
