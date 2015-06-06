@@ -25,6 +25,7 @@ class AppKernel extends Kernel {
         new WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle(),
         new InstagramBundle\InstagramBundle(),
         new SocketBundle\SocketBundle(),
+            new LayoutBundle\LayoutBundle(),
     );
 
     if (in_array($this->getEnvironment(), array('dev', 'test'))) {
