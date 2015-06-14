@@ -1,6 +1,12 @@
 {% extends 'MainPageFrontendBundle:Default:base.html.twig' %}
 {% block stylesheets %}
   {{ parent() }}
+  <style type="text/css">
+    #know .progress{
+      margin-top: 5px;
+      margin-bottom: 5px;
+    }
+  </style>
 {% endblock stylesheets %}
 {% block body %}
   {{ include('MainPageFrontendBundle:Default:header.html.twig') }}
@@ -33,109 +39,245 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-lg-2 col-md-3 col-xs-4">
+        <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
           <div class="thumbnail">
             <a href="http://www.w3.org/html/" target="_blank">
               <img class="img-responsive" src="/img/portfolio/logo/html5.jpg" alt="HTML5"/>
             </a>
+            <div class="progress">
+              <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">
+                {{ '2000-01-16' | timeKnow }}
+              </div>
+            </div>
           </div>
         </div>
-        <div class="col-lg-2 col-md-3 col-xs-4">
+        <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
           <div class="thumbnail">
             <a href="http://www.w3.org/Style/CSS/" target="_blank">
               <img class="img-responsive-ramirez" src="/img/portfolio/logo/css3.jpg" alt="CSS3"/>
             </a>
+            <div class="progress">
+              <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">
+                {{ '2000-01-16' | timeKnow }}
+              </div>
+            </div>
           </div>
         </div>
-        <div class="col-lg-2 col-md-3 col-xs-4">
-          <div class="thumbnail">
-            <a href="http://lesscss.org/" target="_blank">
-              <img class="img-responsive-ramirez" src="/img/portfolio/logo/less.jpg" alt="less CSS pre-processor"/>
-            </a>
-          </div>
-        </div>
-        <div class="col-lg-2 col-md-3 col-xs-4">
-          <div class="thumbnail">
-            <a href="http://sass-lang.com/" target="_blank">
-              <img class="img-responsive-ramirez" src="/img/portfolio/logo/sass.jpg" alt="SASS grade CSS extension"/>
-            </a>
-          </div>
-        </div>
-        <div class="col-lg-2 col-md-3 col-xs-4">
-          <div class="thumbnail">
-            <a href="http://jquery.com/" target="_blank">
-              <img class="img-responsive-ramirez" src="/img/portfolio/logo/jQuery.jpg" alt="jQuery"/>
-            </a>
-          </div>
-        </div>
-        <div class="col-lg-2 col-md-3 col-xs-4">
-          <div class="thumbnail">
-            <a href="http://cordova.apache.org/" target="_blank">
-              <img class="img-responsive-ramirez" src="/img/portfolio/logo/cordova.jpg" alt="Apache Cordova"/>
-            </a>
-          </div>
-        </div>
-        <div class="col-lg-2 col-md-3 col-xs-4">
-          <div class="thumbnail">
-            <a href="http://getbootstrap.com/" target="_blank">
-              <img class="img-responsive-ramirez" src="/img/portfolio/logo/bootstrap.jpg" alt="Bootstrap 3"/>
-            </a>
-          </div>
-        </div>
-        <div class="col-lg-2 col-md-3 col-xs-4">
-          <div class="thumbnail">
-            <a href="http://php.net/" target="_blank">
-              <img class="img-responsive-ramirez" src="/img/portfolio/logo/php.jpg" alt="PHP"/>
-            </a>
-          </div>
-        </div>
-        <div class="col-lg-2 col-md-3 col-xs-4">
-          <div class="thumbnail">
-            <a href="http://twig.sensiolabs.org/" target="_blank">
-              <img class="img-responsive-ramirez" src="/img/portfolio/logo/twig.jpg" alt="TWIG template engine for PHP"/>
-            </a>
-          </div>
-        </div>
-        <div class="col-lg-2 col-md-3 col-xs-4">
-          <div class="thumbnail">
-            <a href="http://symfony.com/" target="_blank">
-              <img class="img-responsive-ramirez" src="/img/portfolio/logo/symfony.jpg" alt="Symfony"/>
-            </a>
-          </div>
-        </div>
-        <div class="col-lg-2 col-md-3 col-xs-4">
-          <div class="thumbnail">
-            <a href="https://developers.google.com/" target="_blank">
-              <img class="img-responsive-ramirez" src="/img/portfolio/logo/developers_logo.jpg" alt="Google Developers"/>
-            </a>
-          </div>
-        </div>
-        <div class="col-lg-2 col-md-3 col-xs-4">
-          <div class="thumbnail">
-            <a href="http://nodejs.org/" target="_blank">
-              <img class="img-responsive-ramirez" src="/img/portfolio/logo/nodejs-light.jpg" alt="Node.js"/>
-            </a>
-          </div>
-        </div>
-        <div class="col-lg-2 col-md-3 col-xs-4">
+        <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
           <div class="thumbnail">
             <a href="http://git.rrrproducciones.com" target="_blank">
               <img class="img-responsive-ramirez" src="/img/portfolio/logo/gitlab.jpg" alt="GitLab"/>
             </a>
+            <div class="progress">
+              <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">
+                {{ '2013-01-16 ' | timeKnow }}
+              </div>
+            </div>
           </div>
         </div>
-        <div class="col-lg-2 col-md-3 col-xs-4">
+        <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
           <div class="thumbnail">
             <a href="https://github.com/" target="_blank">
               <img class="img-responsive-ramirez" src="/img/portfolio/logo/github.jpg" alt="GitHub"/>
             </a>
+            <div class="progress">
+              <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">
+                {{ '2008-11-16 ' | timeKnow }}
+              </div>
+            </div>
           </div>
         </div>
-        <div class="col-lg-2 col-md-3 col-xs-4">
+        <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
           <div class="thumbnail">
             <a href="https://getcomposer.org/" target="_blank">
               <img class="img-responsive-ramirez" src="/img/portfolio/logo/composer.jpg" alt="Composer"/>
             </a>
+            <div class="progress">
+              <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">
+                {{ '2014-12-16 ' | timeKnow }}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+          <div class="thumbnail">
+            <a href="http://getbootstrap.com/" target="_blank">
+              <img class="img-responsive-ramirez" src="/img/portfolio/logo/bootstrap.jpg" alt="Bootstrap 3"/>
+            </a>
+            <div class="progress">
+              <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">
+                {{ '2012-09-16 ' | timeKnow }}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+          <div class="thumbnail">
+            <a href="http://php.net/" target="_blank">
+              <img class="img-responsive-ramirez" src="/img/portfolio/logo/php.jpg" alt="PHP"/>
+            </a>
+            <div class="progress">
+              <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100" style="width: 95%;">
+                {{ '2005-09-16 ' | timeKnow }}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+          <div class="thumbnail">
+            <a href="http://symfony.com/" target="_blank">
+              <img class="img-responsive-ramirez" src="/img/portfolio/logo/symfony.jpg" alt="Symfony"/>
+            </a>
+            <div class="progress">
+              <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100" style="width: 95%;">
+                {{ '2008-09-16 ' | timeKnow }}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+          <div class="thumbnail">
+            <a href="http://jquery.com/" target="_blank">
+              <img class="img-responsive-ramirez" src="/img/portfolio/logo/jQuery.jpg" alt="jQuery"/>
+            </a>
+            <div class="progress">
+              <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: 90%;">
+                {{ '2009-01-16' | timeKnow }}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+          <div class="thumbnail">
+            <a href="https://www.mysql.com/" target="_blank">
+              <img class="img-responsive-ramirez" src="/img/portfolio/logo/mysql.jpg" alt="MySql"/>
+            </a>
+            <div class="progress">
+              <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: 90%;">
+                {{ '2008-06-02 ' | timeKnow }}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+          <div class="thumbnail">
+            <a href="http://www.postgresql.org/" target="_blank">
+              <img class="img-responsive-ramirez" src="/img/portfolio/logo/postgre_sql.jpg" alt="PostgreSQL"/>
+            </a>
+            <div class="progress">
+              <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: 90%;">
+                {{ '2008-06-02 ' | timeKnow }}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+          <div class="thumbnail">
+            <a href="http://www.doctrine-project.org/" target="_blank">
+              <img class="img-responsive-ramirez" src="/img/portfolio/logo/doctrine_orm.jpg" alt="Doctrine ORM"/>
+            </a>
+            <div class="progress">
+              <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: 90%;">
+                {{ '2014-06-02 ' | timeKnow }}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+          <div class="thumbnail">
+            <a href="http://twig.sensiolabs.org/" target="_blank">
+              <img class="img-responsive-ramirez" src="/img/portfolio/logo/twig.jpg" alt="TWIG template engine for PHP"/>
+            </a>
+            <div class="progress">
+              <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width: 85%;">
+                {{ '2011-09-16 ' | timeKnow }}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+          <div class="thumbnail">
+            <a href="http://sass-lang.com/" target="_blank">
+              <img class="img-responsive-ramirez" src="/img/portfolio/logo/sass.jpg" alt="SASS grade CSS extension"/>
+            </a>
+            <div class="progress">
+              <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width: 85%;">
+                {{ '2014-11-16' | timeKnow }}
+              </div>
+            </div>
+          </div>
+        </div> 
+        <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+          <div class="thumbnail">
+            <a href="http://cordova.apache.org/" target="_blank">
+              <img class="img-responsive-ramirez" src="/img/portfolio/logo/cordova.jpg" alt="Apache Cordova"/>
+            </a>
+            <div class="progress">
+              <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+                {{ '2010-01-16' | timeKnow('2010-04-06') }}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+          <div class="thumbnail">
+            <a href="https://developers.google.com/" target="_blank">
+              <img class="img-responsive-ramirez" src="/img/portfolio/logo/developers_logo.jpg" alt="Google Developers"/>
+            </a>
+            <div class="progress">
+              <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100" style="width: 50%;">
+                {{ '2012-09-16 ' | timeKnow('2012-11-16') }}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+          <div class="thumbnail">
+            <a href="http://lesscss.org/" target="_blank">
+              <img class="img-responsive-ramirez" src="/img/portfolio/logo/less.jpg" alt="less CSS pre-processor"/>
+            </a>
+            <div class="progress">
+              <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="width: 30%;">
+                {{ '2012-01-16' | timeKnow('2012-06-06') }}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+          <div class="thumbnail">
+            <a href="http://www.microsoft.com/net" target="_blank">
+              <img class="img-responsive-ramirez" src="/img/portfolio/logo/logo_net.jpg" alt=".Net"/>
+            </a>
+            <div class="progress">
+              <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="width: 30%;">
+                {{ '2015-06-02 ' | timeKnow }}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+          <div class="thumbnail">
+            <a href="http://www.microsoft.com/en-ca/server-cloud/products/sql-server/" target="_blank">
+              <img class="img-responsive-ramirez" src="/img/portfolio/logo/sql_server.jpg" alt="SQL Server"/>
+            </a>
+            <div class="progress">
+              <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="width: 30%;">
+                {{ '2015-06-02 ' | timeKnow }}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+          <div class="thumbnail">
+            <a href="http://nodejs.org/" target="_blank">
+              <img class="img-responsive-ramirez" src="/img/portfolio/logo/nodejs-light.jpg" alt="Node.js"/>
+            </a>
+            <div class="progress">
+              <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%;">
+                {{ '2015-01-16 ' | timeKnow('2015-01-30') }}
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -196,8 +338,8 @@
           <p><strong>Fist Place Winner of the EdAppHack </strong><br>Toronto, Canada. Octuber 2014</p>
           <p><strong>About the EdAppHack</strong></p>
           <p>
-            Supported by the
-            <a href="http://www.marsdd.com/" target="_blank">MaRS Discovery District (MaRS DD)</a>,
+            Supported by the 
+            <a href="http://www.marsdd.com/" target="_blank"> MaRS Discovery District (MaRS DD)</a>,
             <a href="https://twitter.com/search?q=%23edapphack" target="_blank">#EdAppHack</a>
             is a 2-day Education-focused Hackathon that aims to unite Students, Teachers and Community App Developers through the theme of
             <a href="http://www.tdsb.on.ca/AboutUs/DirectorofEducation/YearsofAction/StudentAchievement.aspx" target="_blank">STEM</a>.

@@ -1,7 +1,3 @@
-layout:
-    resource: "@LayoutBundle/Resources/config/routing.yml"
-    prefix:   /
-
 main_instagram:
     resource: "@InstagramBundle/Resources/config/routing.yml"
     prefix:   /instagram

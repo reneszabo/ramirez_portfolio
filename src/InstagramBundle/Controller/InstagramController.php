@@ -20,7 +20,7 @@ class InstagramController extends Controller {
     $user = $this->getUser();
     $api = $this->get('instagram');
     $userResponse = $api->Users->Info($user->getInstagramId());
-
+//    die(var_dump($userResponse));
     return $this->render('InstagramBundle:Default:index.html.twig', array('user' => $user, 'userResponse' => $userResponse));
   }
 
@@ -109,9 +109,6 @@ class InstagramController extends Controller {
       foreach ($instagramResponse as $type => $querys) {
         foreach ($querys as $query => $responses) {
           foreach ($responses as $response) {
-
-            $logger->info('TYPE -> ' . $type);
-            $logger->info('QUERY -> ' . $query);
             $em = $this->getDoctrine()->getManager();
             $instagramRepository = $em->getRepository('Main\EntityBundle\Entity\InstagramImage');
             $this->storeInstagramResponse($response, $em, $this->get('jms_serializer'), $instagramRepository, $type, $query);
@@ -201,9 +198,11 @@ class InstagramController extends Controller {
         $this->get('logger')->info("VIOLATION");
       }
     }
+    $propagate = $type . '_' . $query;
+    $this->get('logger')->info($propagate);
     if (!is_null($type) && !is_null($query)) {
       $entryData = array(
-          'category' => $type . '_' . $query
+          'category' => $propagate
           , 'title' => $tagsRecent
           , 'when' => time()
       );

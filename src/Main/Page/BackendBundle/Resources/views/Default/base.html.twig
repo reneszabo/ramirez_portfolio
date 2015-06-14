@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
   <head>
-    {{ include('LayoutBundle:Common:meta.html.twig') }}
+    {{ include('meta.html.twig') }}
     <title>{% block title %}Rene Ramirez - Portfolio{% endblock %}</title>
     {% block fonts %}
       <link href='http://fonts.googleapis.com/css?family=Raleway:400,100,200,300,500,600,700,800,900' rel='stylesheet' type='text/css'>
     {% endblock %}
     {% block stylesheets %}
-      {{ include('LayoutBundle:Common:css.html.twig') }}
+      {{ include('css.html.twig') }}
       <link href="/css/ramirez-portfolio.css" rel="stylesheet" type="text/css"/>
     {% endblock %}
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
@@ -18,8 +18,8 @@
     {% include 'MainPageBackendBundle:Default:flash.html.twig' %}
   {% block body %}{% endblock %}
   {% block javascripts %}
-    {{ include('LayoutBundle:Common:javascripts.html.twig') }}
-    {{ include('LayoutBundle:Common:analytics.html.twig') }}
+    {{ include('javascripts.html.twig') }}
+    {{ include('analytics.html.twig') }}
 
   {% endblock %}
 </body>

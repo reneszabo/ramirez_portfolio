@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    {{ include('LayoutBundle:Common:meta.html.twig') }}
+    {{ include('meta.html.twig') }}
     <title>{% block title %}Rene Ramirez - Portfolio{% endblock %}</title>
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -15,7 +15,7 @@
   <body>
   {% block body %}{% endblock %}
   {% block javascripts %}
-    {{ include('LayoutBundle:Common:analytics.html.twig') }}
+    {{ include('analytics.html.twig') }}
   {% endblock %}
 </body>
 </html> 

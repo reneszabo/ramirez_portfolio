@@ -152,7 +152,7 @@ class User extends OAuthUser implements EquatableInterface, \Serializable {
    * @inheritDoc
    */
   public function eraseCredentials() {
-    
+    parent::eraseCredentials();
   }
 
   /**

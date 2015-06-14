@@ -35,6 +35,25 @@ class OAuthProvider extends OAuthUserProvider {
   }
 
   public function loadUserByOAuthUserResponse(UserResponseInterface $response) {
+    /* @var $r \HWI\Bundle\OAuthBundle\OAuth\ResponseInterface */
+    /* @var $ro \HWI\Bundle\OAuthBundle\OAuth\ResourceOwnerInterface */
+    $r = $response->getResponse();
+    $ro = $response->getResourceOwner();
+    if ($ro instanceof \HWI\Bundle\OAuthBundle\OAuth\ResourceOwner\InstagramResourceOwner && !empty($r)) {
+      $code = 200;
+      if (isset($r['code'])) {
+        $code = $r['code'];
+      } else {
+        $code = $r['meta']['code'];
+      }
+
+      switch ($code) {
+        case 403: //INSTAGRAM ERROR TYPE 'OAuthForbiddenException'
+          throw new \Exception($r['error_message'], $r['code']);
+          break;
+      }
+    }
+
     $google_id = 0;
     $instagram_id = 0;
     $instagram_auth_code = 0;

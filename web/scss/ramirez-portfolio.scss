@@ -6,9 +6,9 @@
 @import "mixins/opacity";
 @import "mixins/vendor-prefixes";
 
-$color-blue-light: #7abecc;
-$color-blue-light-rgba: rgba(122,190,204,0.5);
-
+$color-blue-light: #37808f;//#7abecc BEFORE
+$color-blue-light-rgba: rgba($color-blue-light,0.2);
+$shadow-color-blue:  darken($color-blue-light,5%); //lighten($color-blue-light,  10%);
 body,html{
   height: 100%;
 }
@@ -40,7 +40,7 @@ body > header{
   .navbar-default{
     background: $color-blue-light;
     border-bottom: none;
-    text-shadow: 2px 2px 0 #64b1c6;
+    text-shadow: 2px 2px 0 $shadow-color-blue;
     a#logo {
       font-weight: 600;
       color: white;
@@ -109,7 +109,7 @@ body > section{
     background-color: $color-blue-light;
     overflow: hidden;
     h2{
-      text-shadow: 2px 2px 0 #64b1c6;
+      text-shadow: 2px 2px 0 $shadow-color-blue;
     }
     .box-text{
       position: relative;

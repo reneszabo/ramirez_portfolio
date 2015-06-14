@@ -7,3 +7,9 @@ services:
     arguments: ["@mailer", "@logger","@templating"]
     tags:
       - { name: kernel.event_listener, event: git.mail.event, method: onGitMailEvent }
+
+  frontend.twig_extension:
+    class: Main\Page\FrontendBundle\Twig\RamirezPortfolioTwigExtention
+    public: false
+    tags:
+      - { name: twig.extension }

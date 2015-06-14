@@ -9,7 +9,7 @@ body {
   font-family: 'Raleway', "Helvetica Neue", Helvetica, Arial, sans-serif; }
 
 a {
-  color: #7abecc; }
+  color: #37808f; }
 
 .light {
   font-weight: 100; }
@@ -29,9 +29,9 @@ pre[class*="language-"] {
 body > header {
   min-height: 50px; }
   body > header .navbar-default {
-    background: #7abecc;
+    background: #37808f;
     border-bottom: none;
-    text-shadow: 2px 2px 0 #64b1c6; }
+    text-shadow: 2px 2px 0 #30707d; }
     body > header .navbar-default a#logo {
       font-weight: 600;
       color: white;
@@ -79,10 +79,10 @@ body > section {
     padding-top: 100px;
     height: 100%;
     color: white;
-    background-color: #7abecc;
+    background-color: #37808f;
     overflow: hidden; }
     body > section#hero:nth-of-type(1) h2 {
-      text-shadow: 2px 2px 0 #64b1c6; }
+      text-shadow: 2px 2px 0 #30707d; }
     body > section#hero:nth-of-type(1) .box-text {
       position: relative;
       z-index: 100; }
@@ -162,7 +162,7 @@ body > section {
 
 #analytics-api {
   color: white;
-  background-color: #7abecc;
+  background-color: #37808f;
   position: relative;
   overflow: hidden; }
   #analytics-api #heart {
@@ -201,7 +201,7 @@ body > section {
   padding-top: 0; }
 
 #git {
-  background: #7abecc url(/img/portfolio/separator/git-diagram.jpg) 50% 0 no-repeat fixed;
+  background: #37808f url(/img/portfolio/separator/git-diagram.jpg) 50% 0 no-repeat fixed;
   background-size: 1980px auto;
   -moz-box-shadow: inset 0px -4px 20px -2px rgba(0, 0, 0, 0.74);
   -webkit-box-shadow: inset 0px -4px 20px -2px rgba(0, 0, 0, 0.74);
@@ -217,7 +217,7 @@ body > section {
     top: 42%; }
 
 #direction {
-  background-color: #7abecc;
+  background-color: #37808f;
   padding-top: 120px;
   padding-bottom: 120px;
   color: white; }
