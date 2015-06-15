@@ -46,14 +46,14 @@ class InstagramController extends Controller {
     $tags = $instagramRepository->findByTag($query);
 
     $form = $this->getFormRankDate($query);
-    $usersRace = $this->managePostTagDate($request, $form);
+    $usersRace = $this->managePostTagDate($request, $query, $form);
 //    var_dump(\DateTime::createFromFormat("d/m/Y h:i:s A", "27/05/2015 08:00:10 AM")->format("U"));
     return $this->render('InstagramBundle:Tag:index.html.twig', array('tagName' => $query, 'tags' => $tags, 'userInfo' => $userInfo, 'form' => $form->createView(), 'usersRace' => $usersRace));
   }
 
   public function tagRankDateAction(Request $request, $query) {
     $form = $this->getFormRankDate($query);
-    $usersRace = $this->managePostTagDate($request, $form);
+    $usersRace = $this->managePostTagDate($request, $query, $form);
     $renderCards = $this->getUsersRankRender($usersRace);
     if ($request->isXmlHttpRequest()) {
       return new Response($renderCards);
@@ -77,7 +77,7 @@ class InstagramController extends Controller {
     return $form;
   }
 
-  private function managePostTagDate($request, \Symfony\Component\Form\Form $form) {
+  private function managePostTagDate($request, $query, \Symfony\Component\Form\Form $form) {
     /* @var $fileds \InstagramBundle\Form\Object\InstagramDateFilter */
     $form->handleRequest($request);
     if ($form->isSubmitted()) {
@@ -85,7 +85,7 @@ class InstagramController extends Controller {
         $fileds = $form->getData();
         $em = $this->getDoctrine()->getManager();
         $instagramRepository = $em->getRepository('Main\EntityBundle\Entity\InstagramImage');
-        $tags = $instagramRepository->findByTagDateRange($fileds->getCreatedTimeStart(), $fileds->getCreatedTimeEnd());
+        $tags = $instagramRepository->findByTagDateRange($query, $fileds->getCreatedTimeStart(), $fileds->getCreatedTimeEnd());
         $usersRace = $this->countUserImages($tags);
         return $usersRace;
       } else {
@@ -107,13 +107,16 @@ class InstagramController extends Controller {
     foreach ($tags as $tag) {
       $user = $tag->getUser();
       if (!is_null($user)) {
-        $aux[$user['username']][] = $tag;
-        $auxResult[$user['username']] = array('count' => count($aux[$user['username']]), 'user' => $user);
+        $aux[$user['username']][] = $tag->getId();
+        $auxResult[$user['username']] = array('count' => count($aux[$user['username']]), 'user' => $user, 'imagesIds' => $aux[$user['username']]);
         $auxResultConunt[$user['username']] = count($aux[$user['username']]);
       }
     }
     array_multisort($auxResultConunt, SORT_DESC, $auxResult);
-    return $auxResult;
+
+    $output = array_slice($auxResult, 0, 10);
+
+    return $output;
   }
 
   public function callbackAction(Request $request) {
@@ -252,8 +255,8 @@ class InstagramController extends Controller {
     $propagate = $type . '_' . $query;
     $this->get('logger')->info($propagate);
     if (!is_null($type) && !is_null($query)) {
-    $this->get('logger')->info("BOOOOM");
-    $this->get('logger')->info(count($tagsRecent));
+      $this->get('logger')->info("BOOOOM");
+      $this->get('logger')->info(count($tagsRecent));
       $entryData = array(
           'category' => $propagate
           , 'title' => $tagsRecent

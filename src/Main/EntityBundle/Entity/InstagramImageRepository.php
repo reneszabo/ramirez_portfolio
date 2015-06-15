@@ -21,14 +21,17 @@ class InstagramImageRepository extends EntityRepository {
     return $result;
   }
 
-  public function findByTagDateRange($start, $end, $orderBy = "DESC") {
+  public function findByTagDateRange($tag, $start, $end, $orderBy = "DESC") {
 
+    $st = '%"' . $tag . '"%';
     $qb = $this->getEntityManager()->createQueryBuilder();
     $qb->select('i')
             ->from('MainEntityBundle:InstagramImage', 'i')
             ->where('i.createdTime >= :start')
             ->andWhere('i.createdTime <= :end')
+            ->andWhere($qb->expr()->like('i.tags', ':t'))
             ->setParameter('start', $start)
+            ->setParameter('t', $st)
             ->setParameter('end', $end)
             ->orderBy('i.createdTime', $orderBy)
     ;

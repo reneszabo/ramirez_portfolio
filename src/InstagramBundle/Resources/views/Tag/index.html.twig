@@ -71,7 +71,7 @@
       <div class="col-md-3">
         <div id="instagram-ranking" class="hidden">
           <legend>
-            Ranking
+            Ranking - Top 10
             <div class="pull-right">
               <button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#rank-search">
                 <i class="fa fa-search"></i>
@@ -152,147 +152,118 @@
         } else {
           $('#instagram-waiting-to-show').addClass('hidden');
         }
+        if (ranking) {
+          getRankUsers();
+        }
       }
       setTimeout(pushLive, 2000);
     }
     function connectLiveFeed() {
-    {#      conn = new ab.Session('ws://localhost:8080',#}
-        conn = new ab.Session('ws://ramirez-portfolio.com:8080',
-                function () {
-                  conn.subscribe('tag_{{tagName}}', function (topic, data) {
-                    // This is where you would add the new article to the DOM (beyond the scope of this tutorial)
-                    data.title.data.forEach(function (element, index, array) {
-                      console.log(element);
-                      var $obj = $('.item-for-' + element.id);
-                      if ($obj.length == 0) {
-                        var $objClone = $('#item-for-template').clone();
-                        $objClone.attr('id', '');
-                        $objClone.addClass('item-for-' + element.id);
-                        $('#hide-list').append($objClone);
-                        $objClone.find('.item-for-image').attr('src', element.images.thumbnail.url);
-                        $objClone.find('.item-for-image-profile').attr('src', element.user.profile_picture);
-                        var user = element.user.full_name + " (" + element.user.username + ")";
-                        $objClone.find('.item-for-username').html(user);
-                        $objClone.find('.item-for-date').attr('data-time', element.created_time);
-                        var myObj = $.parseJSON('{"date_created":"' + element.created_time + '"}'),
-                                myDate = new Date(1000 * myObj.date_created);
-                        $objClone.find('.item-for-date').html(myDate.toLocaleString());
-                        if (element.caption) {
-                          $objClone.find('.item-for-caption').html('<span class="caption_text">' + element.caption.text + '</span>');
-                        }
-                        if (ranking) {
-                          addRanking(element);
-                        }
+      conn = new ab.Session('ws://localhost:8080',{#        conn = new ab.Session('ws://ramirez-portfolio.com:8080',#}
+              function () {
+                conn.subscribe('tag_{{tagName}}', function (topic, data) {
+                  // This is where you would add the new article to the DOM (beyond the scope of this tutorial)
+                  data.title.data.forEach(function (element, index, array) {
+                    var $obj = $('.item-for-' + element.id);
+                    if ($obj.length == 0) {
+                      var $objClone = $('#item-for-template').clone();
+                      $objClone.attr('id', '');
+                      $objClone.addClass('item-for-' + element.id);
+                      $('#hide-list').append($objClone);
+                      $objClone.find('.item-for-image').attr('src', element.images.thumbnail.url);
+                      $objClone.find('.item-for-image-profile').attr('src', element.user.profile_picture);
+                      var user = element.user.full_name + " (" + element.user.username + ")";
+                      $objClone.find('.item-for-username').html(user);
+                      $objClone.find('.item-for-date').attr('data-time', element.created_time);
+                      var myObj = $.parseJSON('{"date_created":"' + element.created_time + '"}'),
+                              myDate = new Date(1000 * myObj.date_created);
+                      $objClone.find('.item-for-date').html(myDate.toLocaleString());
+                      if (element.caption) {
+                        $objClone.find('.item-for-caption').html('<span class="caption_text">' + element.caption.text + '</span>');
                       }
-                    });
+
+                    }
                   });
-                },
-                function () {
-                  console.warn('WebSocket connection closed');
-                },
-                {'skipSubprotocolCheck': true}
-        );
+                });
+              },
+              function () {
+                console.warn('WebSocket connection closed');
+              },
+              {'skipSubprotocolCheck': true}
+      );
 
-      }
-      function addRanking(element) {
-        var $rank = $('.profile-rank[data-id="' + element.user.id + '"]');
-        if ($rank.length == 0) {
-          var $objClone = $('#rank-template').clone();
-          $objClone.attr('id', '');
-          $objClone.attr('data-id', element.user.id);
-          $('#instagram-ranking-countainer').append($objClone);
-          $objClone.find('.rank-profile-image').attr('src', element.user.profile_picture);
-          var name = element.user.full_name + ' (' + element.user.username + ')';
-          $objClone.find('h4').html(name);
-          $objClone.find('.rank-count').html(1);
-          $objClone.attr('data-count', 1);
-        } else {
-          var $has = $rank.find('span[data-id="' + element.id + '"]');
-          if ($has.length == 0) {
-            var i = $rank.find('.rank-count').html() * 1;
-            i++;
-            $rank.find('.rank-count').html(i);
-            $rank.attr('data-count', i);
-          }
-        }
-        sortRank();
-
-      }
-      function sortRank() {
-        if (ranking) {
-
-          var $wrapper = $('#instagram-ranking-countainer');
-
-          $wrapper.find('.profile-rank').sort(function (a, b) {
-            return  +b.dataset.count - +a.dataset.count;
-          })
-                  .appendTo($wrapper);
-        }
-      }
-
-      function closeLiveFeed() {
-        conn.close();
-        conn = null;
-      }
-      $(document).on('click', '.ajax', function (e) {
-        e.preventDefault();
-        if (conn === null) {
-          $(this).html('Turn off Live <scpan class="label label-success">LIVE</span>');
-          connectLiveFeed();
-          var url = $(this).attr('href');
-          $.ajax({
-            url: url
-          });
-
-        } else {
-          $(this).html('Turn on Live');
-          closeLiveFeed();
-        }
-      });
-      $(document).on('click', '.ajaxRanking', function (e) {
-        e.preventDefault();
-        if ($('#instagram-ranking').hasClass('hidden')) {
-          $('#instagram-ranking').removeClass('hidden');
-          ranking = true;
-          $(this).html('Turn off Rankings <scpan class="label label-success">ON</span>');
-        } else {
-          $('#instagram-ranking').addClass('hidden');
-          ranking = false;
-          $(this).html('Turn on Rankings');
-        }
-      });
-
-
-      $(function () {
-        setTimeout(pushLive, 2000);
-        $(".date.from").datepicker({
-          defaultDate: "+1w",
-          dateFormat: 'dd-mm-yy 00:00:00',
-          onClose: function (selectedDate) {
-            $(".date.to").datepicker("option", "minDate", selectedDate);
-          }
+    }
+    function closeLiveFeed() {
+      conn.close();
+      conn = null;
+    }
+    $(document).on('click', '.ajax', function (e) {
+      e.preventDefault();
+      if (conn === null) {
+        $(this).html('Turn off Live <scpan class="label label-success">LIVE</span>');
+        connectLiveFeed();
+        var url = $(this).attr('href');
+        $.ajax({
+          url: url
         });
-        $(".date.to").datepicker({
-          defaultDate: "+1w",
-          dateFormat: 'dd-mm-yy 23:59:59',
-          onClose: function (selectedDate) {
-            $("#from").datepicker("option", "maxDate", selectedDate);
-          }
-        });
-      });
 
-      $(document).on('submit', 'form[name=instagram_date_filter]', function (e) {
-        e.preventDefault();
+      } else {
+        $(this).html('Turn on Live');
+        closeLiveFeed();
+      }
+    });
+    $(document).on('click', '.ajaxRanking', function (e) {
+      e.preventDefault();
+      if ($('#instagram-ranking').hasClass('hidden')) {
+        $('#instagram-ranking').removeClass('hidden');
+        ranking = true;
+        $(this).html('Turn off Rankings <scpan class="label label-success">ON</span>');
+      } else {
+        $('#instagram-ranking').addClass('hidden');
+        ranking = false;
+        $(this).html('Turn on Rankings');
+      }
+    });
+
+
+    $(function () {
+      setTimeout(pushLive, 2000);
+      $(".date.from").datepicker({
+        defaultDate: "+1w",
+        dateFormat: 'dd-mm-yy 00:00:00',
+        onClose: function (selectedDate) {
+          $(".date.to").datepicker("option", "minDate", selectedDate);
+        }
+      });
+      $(".date.to").datepicker({
+        defaultDate: "+1w",
+        dateFormat: 'dd-mm-yy 23:59:59',
+        onClose: function (selectedDate) {
+          $("#from").datepicker("option", "maxDate", selectedDate);
+        }
+      });
+    });
+
+    $(document).on('submit', 'form[name=instagram_date_filter]', function (e) {
+      e.preventDefault();
+      getRankUsers();
+      $('#rank-search').modal('hide');
+    });
+    function getRankUsers() {
+      var d = $('form[name=instagram_date_filter]').serialize();
+      if (($('#instagram_date_filter_created_time_start').val() == "") || ($('#instagram_date_filter_created_time_end').val() == "")) {
+        $('#instagram-ranking-countainer').html('<span class="label label-warning">Please search for a date range</span>');
+      } else {
+
         $.post(
-                $(this).attr('action'),
-                $(this).serialize(),
+                $('form[name=instagram_date_filter]').attr('action'),
+                d,
                 function (data, textStatus, jqXHR) {
                   $('#instagram-ranking-countainer').html(data);
-                  $('#rank-search').modal('hide');
                 }
         );
-      });
-
+      }
+    }
 
   </script>
 {% endblock javascripts %}
