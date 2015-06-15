@@ -20,6 +20,7 @@ class InstagramController extends Controller {
     $user = $this->getUser();
     $api = $this->get('instagram');
     $userResponse = $api->Users->Info($user->getInstagramId());
+
 //    die(var_dump($userResponse));
     return $this->render('InstagramBundle:Default:index.html.twig', array('user' => $user, 'userResponse' => $userResponse));
   }
@@ -43,10 +44,60 @@ class InstagramController extends Controller {
     $instagramRepository = $em->getRepository('Main\EntityBundle\Entity\InstagramImage');
     $this->storeInstagramResponse($tagsRecent, $em, $this->get('jms_serializer'), $instagramRepository, 'tag', $query);
     $tags = $instagramRepository->findByTag($query);
-//    $usersRace = $this->countUserImages($tags);
-//    var_dump(\DateTime::createFromFormat("d/m/Y h:i:s A", "27/05/2015 08:00:10 AM")->format("U"));
 
-    return $this->render('InstagramBundle:Tag:index.html.twig', array('tagName' => $query, 'tags' => $tags, 'userInfo' => $userInfo));
+    $form = $this->getFormRankDate($query);
+    $usersRace = $this->managePostTagDate($request, $form);
+//    var_dump(\DateTime::createFromFormat("d/m/Y h:i:s A", "27/05/2015 08:00:10 AM")->format("U"));
+    return $this->render('InstagramBundle:Tag:index.html.twig', array('tagName' => $query, 'tags' => $tags, 'userInfo' => $userInfo, 'form' => $form->createView(), 'usersRace' => $usersRace));
+  }
+
+  public function tagRankDateAction(Request $request, $query) {
+    $form = $this->getFormRankDate($query);
+    $usersRace = $this->managePostTagDate($request, $form);
+    $renderCards = $this->getUsersRankRender($usersRace);
+    if ($request->isXmlHttpRequest()) {
+      return new Response($renderCards);
+    } else {
+      return $this->redirect($request->headers->get('referer')); //{query}
+    }
+  }
+
+  private function getFormRankDate($query) {
+    $instagramDateFilter = new \InstagramBundle\Form\Object\InstagramDateFilter();
+    $form = $this->createForm(
+            new \InstagramBundle\Form\Type\InstagramDateFormFilter(), $instagramDateFilter, array(
+        'action' => $this->generateUrl('instagram_tag_filter', array('query' => $query)),
+        'method' => 'POST',
+        'attr' => array(
+            'rol' => 'form',
+            'enctype' => 'multipart/form-data',
+        ),
+            )
+    );
+    return $form;
+  }
+
+  private function managePostTagDate($request, \Symfony\Component\Form\Form $form) {
+    /* @var $fileds \InstagramBundle\Form\Object\InstagramDateFilter */
+    $form->handleRequest($request);
+    if ($form->isSubmitted()) {
+      if ($form->isValid()) {
+        $fileds = $form->getData();
+        $em = $this->getDoctrine()->getManager();
+        $instagramRepository = $em->getRepository('Main\EntityBundle\Entity\InstagramImage');
+        $tags = $instagramRepository->findByTagDateRange($fileds->getCreatedTimeStart(), $fileds->getCreatedTimeEnd());
+        $usersRace = $this->countUserImages($tags);
+        return $usersRace;
+      } else {
+        return array();
+      }
+    } else {
+      return array();
+    }
+  }
+
+  private function getUsersRankRender($usersRace) {
+    return $this->renderView('InstagramBundle:Tag:rank_list_carts.html.twig', array('usersRace' => $usersRace));
   }
 
   private function countUserImages($tags) {
@@ -201,6 +252,8 @@ class InstagramController extends Controller {
     $propagate = $type . '_' . $query;
     $this->get('logger')->info($propagate);
     if (!is_null($type) && !is_null($query)) {
+    $this->get('logger')->info("BOOOOM");
+    $this->get('logger')->info(count($tagsRecent));
       $entryData = array(
           'category' => $propagate
           , 'title' => $tagsRecent
