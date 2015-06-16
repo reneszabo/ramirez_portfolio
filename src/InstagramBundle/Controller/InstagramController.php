@@ -19,8 +19,7 @@ class InstagramController extends Controller {
     /* @var $userResponse \Instaphp\Instagram\Response */
     $user = $this->getUser();
     $api = $this->get('instagram');
-    $userResponse = $api->Users->Info($user->getInstagramId());
-
+    $userResponse = $this->getUser();
 //    die(var_dump($userResponse));
     return $this->render('InstagramBundle:Default:index.html.twig', array('user' => $user, 'userResponse' => $userResponse));
   }
@@ -33,7 +32,7 @@ class InstagramController extends Controller {
     /* @var $instagramRepository \Main\EntityBundle\Entity\InstagramImageRepository */
     $user = $this->getUser();
     $api = $this->get('instagram');
-    $userInfo = $api->Users->Info($user->getInstagramId());
+    $userInfo = $this->getUser();
     $tags = $api->Tags;
     try {
       $tagsRecent = $tags->Recent($query);
