@@ -85,8 +85,7 @@ class InstagramController extends Controller {
         $fileds = $form->getData();
         $em = $this->getDoctrine()->getManager();
         $instagramRepository = $em->getRepository('Main\EntityBundle\Entity\InstagramImage');
-        $tags = $instagramRepository->findByTagDateRange($query, $fileds->getCreatedTimeStart(), $fileds->getCreatedTimeEnd());
-        $usersRace = $this->countUserImages($tags);
+        $usersRace = $instagramRepository->findTop10UsersDateRange($query, $fileds->getCreatedTimeStart(), $fileds->getCreatedTimeEnd());
         return $usersRace;
       } else {
         return array();
@@ -99,25 +98,7 @@ class InstagramController extends Controller {
   private function getUsersRankRender($usersRace) {
     return $this->renderView('InstagramBundle:Tag:rank_list_carts.html.twig', array('usersRace' => $usersRace));
   }
-
-  private function countUserImages($tags) {
-    $aux = array();
-    $auxResult = array();
-    $auxResultConunt = array();
-    foreach ($tags as $tag) {
-      $user = $tag->getUser();
-      if (!is_null($user)) {
-        $aux[$user['username']][] = $tag->getId();
-        $auxResult[$user['username']] = array('count' => count($aux[$user['username']]), 'user' => $user, 'imagesIds' => $aux[$user['username']]);
-        $auxResultConunt[$user['username']] = count($aux[$user['username']]);
-      }
-    }
-    array_multisort($auxResultConunt, SORT_DESC, $auxResult);
-
-    $output = array_slice($auxResult, 0, 10);
-
-    return $output;
-  }
+ 
 
   public function callbackAction(Request $request) {
     /* @var $api InstagramAdapter */

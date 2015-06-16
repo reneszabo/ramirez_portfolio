@@ -1,4 +1,4 @@
-<div {% if userRace is not defined %}id="rank-template"{% endif %} class="panel panel-default profile-rank" data-id="0" data-count="{% if userRace is defined %}{{userRace.count}}{%else%}0{% endif %}">
+<div {% if userRace is not defined %}id="rank-template"{% endif %} class="panel panel-default profile-rank" data-id="0" data-count="{% if userRace is defined %}{{userRace.cnt}}{%else%}0{% endif %}">
   <div class="row">
     <div  class="col-xs-3 text-center">
       <div class="img-profile-ranking">
@@ -12,18 +12,10 @@
         </h4>
         <div class="h3" style="margin: 0;">
           <span  class="label label-primary rank-count">
-            {% if userRace is defined %}{{userRace.count}}{% endif %}
+            {% if userRace is defined %}{{userRace.cnt}}{% endif %}
           </span>
         </div>
       </div>
     </div>
   </div>
-      
-  <div class="hidden ids-counted">
-    {% if userRace is defined %}
-       {% for imageId in userRace.imagesIds %}
-         <span data-id="{{imageId}}"></span>
-       {% endfor %}
-      {% endif %} 
-  </div>        
 </div>
