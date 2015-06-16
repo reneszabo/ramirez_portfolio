@@ -3,7 +3,12 @@
   <div class="thumbnail">
     <div class="row">
       <div class="col-md-6">
-        <img class="img-responsive item-for-image" src="{% if tag is defined  %}{{tag.images.standard_resolution.url}}{% endif %}" />
+        <img class="img-responsive item-for-image" 
+             {% if tag is defined  %} 
+               image-low="{{tag.images.thumbnail.url}}" 
+               image-hd="{{tag.images.standard_resolution.url}}"
+             {% endif %} 
+             src="{% if tag is defined  %}{{tag.images.thumbnail.url}}{% endif %}" />
       </div>
       <div class="col-md-6">
         <div class="caption"> 

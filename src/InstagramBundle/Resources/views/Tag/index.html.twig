@@ -138,6 +138,7 @@
   <script type="text/javascript">
     var conn = null;
     var ranking = false;
+    var hd = false;
     function pushLive() {
       if ($('#hide-list .item-for').length > 0) {
         $obj = $('#hide-list .item-for:first-child');
@@ -172,7 +173,13 @@
                         $objClone.attr('id', '');
                         $objClone.addClass('item-for-' + element.id);
                         $('#hide-list').append($objClone);
-                        $objClone.find('.item-for-image').attr('src', element.images.thumbnail.url);
+                        $objClone.find('.item-for-image').attr('image-low', element.images.thumbnail.url);
+                        $objClone.find('.item-for-image').attr('image-hd', element.images.standard_resolution.url);
+                        if (hd === true) {
+                          $objClone.find('.item-for-image').attr('src', element.images.standard_resolution.url);
+                        } else {
+                          $objClone.find('.item-for-image').attr('src', element.images.thumbnail.url);
+                        }
                         $objClone.find('.item-for-image-profile').attr('src', element.user.profile_picture);
                         var user = element.user.full_name + " (" + element.user.username + ")";
                         $objClone.find('.item-for-username').html(user);
@@ -213,6 +220,24 @@
           $(this).html('Turn on Live');
           closeLiveFeed();
         }
+      });
+      $(document).on('click', '.switchHD', function (e) {
+        e.preventDefault();
+        console.log(hd);
+        if (hd === true) {
+          hd = false;
+          $(this).html('Turn on HD Images');
+          $('.item-for-image').each(function (index, element) {
+            $(this).attr('src', $(this).attr('image-low'));
+          });
+        } else {
+          hd = true;
+          $('.item-for-image').each(function (index, element) {
+            $(this).attr('src', $(this).attr('image-hd'));
+          });
+          $(this).html('Turn off HD Images <scpan class="label label-success">ON</span>');
+        }
+        console.log(hd);
       });
       $(document).on('click', '.ajaxRanking', function (e) {
         e.preventDefault();

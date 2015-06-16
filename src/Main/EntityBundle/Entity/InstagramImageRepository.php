@@ -39,7 +39,7 @@ class InstagramImageRepository extends EntityRepository {
     return $result;
   }
 
-  public function findTop10UsersDateRange($tag, $start, $end, $orderBy = "DESC", $limit = 20) {
+  public function findTop10UsersDateRange($tag, $start, $end, $orderBy = "DESC", $limit = 10) {
     $st = '%"' . $tag . '"%';
     $qb = $this->getEntityManager()->createQueryBuilder();
     $qb->add('select', 'i.user, count(i.user) as cnt')
@@ -53,7 +53,7 @@ class InstagramImageRepository extends EntityRepository {
             ->groupBy('i.user')
             ->orderBy('cnt', $orderBy)
             ->having('cnt>1')
-            ->setMaxResults($limit) 
+            ->setMaxResults($limit)
     ;
     $result = $qb->getQuery()->getResult();
     return $result;
