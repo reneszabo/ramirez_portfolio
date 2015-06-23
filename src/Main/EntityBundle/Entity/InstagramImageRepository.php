@@ -88,7 +88,6 @@ class InstagramImageRepository extends EntityRepository {
             ->setParameter('start', $start)
             ->setParameter('t', $st)
             ->setParameter('end', $end)
-            ->groupBy('i.createdTime')
             ->setFirstResult($start)
             ->setMaxResults($limit)
             ->orderBy('i.createdTime', $orderBy)
