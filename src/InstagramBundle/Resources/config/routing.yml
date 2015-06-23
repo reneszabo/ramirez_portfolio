@@ -11,6 +11,11 @@ instagram_callback:
 instagram_tag:
     path:     /tag/{query}
     defaults: { _controller: InstagramBundle:Instagram:tag , query: verlasinc }
+
+instagram_tag_images:
+    path:     /tag/{query}/images/search/{page}
+    defaults: { _controller: InstagramBundle:Instagram:tagImages , page: 1 }    
+    
 instagram_tag_filter:
     path:     /filter/{query}
     defaults: { _controller: InstagramBundle:Instagram:tagRankDate , query: verlasinc }

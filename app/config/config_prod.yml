@@ -23,3 +23,7 @@ monolog:
             level: debug
         console:
             type:  console
+
+twig:
+  globals:
+    ws_url: ws://ramirez-portfolio.com:8080

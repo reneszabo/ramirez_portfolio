@@ -31,8 +31,11 @@ class InstagramDateFilter {
   }
 
   function setCreatedTimeEnd($createdTimeEnd) {
-    $this->createdTimeEnd = $createdTimeEnd;
-  }
+    $date = new \DateTime();
+    $date->setTimestamp($createdTimeEnd);
+    $date->modify("+1 day");
 
+    $this->createdTimeEnd = $date->getTimestamp();
+  }
 
 }

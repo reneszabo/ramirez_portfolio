@@ -61,6 +61,7 @@ class InstagramAdapter extends Instaphp {
     // Get the token
     if ($tokenClass instanceof TokenHandlerInterface) {
       $token = $tokenClass->getToken();
+        
     } else {
       $token = null;
     }

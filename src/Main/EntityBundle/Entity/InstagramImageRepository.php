@@ -59,4 +59,42 @@ class InstagramImageRepository extends EntityRepository {
     return $result;
   }
 
+  public function countImagesInDateRange($tag, $start, $end, $orderBy = "ASC") {
+    $st = '%"' . $tag . '"%';
+    $qb = $this->getEntityManager()->createQueryBuilder();
+    $qb->add('select', 'count(i.user)')
+            ->from('MainEntityBundle:InstagramImage', 'i')
+            ->where('i.createdTime >= :start')
+            ->andWhere('i.createdTime <= :end')
+            ->andWhere($qb->expr()->like('i.tags', ':t'))
+            ->setParameter('start', $start)
+            ->setParameter('t', $st)
+            ->setParameter('end', $end)
+            ->orderBy('i.createdTime', $orderBy)
+    ;
+    $result = $qb->getQuery()->getSingleScalarResult();
+    return $result;
+  }
+
+  public function findImagesWithDateRange($tag, $start, $end, $page, $orderBy = "DESC", $limit = 20) {
+    $start = ($page*1) * ($limit*1)*1;
+    $st = '%"' . $tag . '"%';
+    $qb = $this->getEntityManager()->createQueryBuilder();
+    $qb->add('select', 'i.createdTime, i.user, i.images')
+            ->from('MainEntityBundle:InstagramImage', 'i')
+            ->where('i.createdTime >= :start')
+            ->andWhere('i.createdTime <= :end')
+            ->andWhere($qb->expr()->like('i.tags', ':t'))
+            ->setParameter('start', $start)
+            ->setParameter('t', $st)
+            ->setParameter('end', $end)
+            ->groupBy('i.createdTime')
+            ->setFirstResult($start)
+            ->setMaxResults($limit)
+            ->orderBy('i.createdTime', $orderBy)
+    ;
+    $result = $qb->getQuery()->getResult();
+    return $result;
+  }
+
 }

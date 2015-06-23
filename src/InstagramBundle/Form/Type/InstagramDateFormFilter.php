@@ -28,7 +28,7 @@ class InstagramDateFormFilter extends AbstractType {
 //                'view_timezone'     =>'GMT',
                 'attr' => array('class' => 'date to')
             ))
-            ->add('save', 'submit', array('attr' => array('class' => 'pull-right btn btn-default'), 'label' => 'search'))
+            ->add('save', 'submit', array('attr' => array('class' => 'pull-right btn btn-info'), 'label' => 'search'))
     ;
   }
 

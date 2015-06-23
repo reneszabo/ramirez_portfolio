@@ -4,6 +4,7 @@ namespace InstagramBundle\TokenHandler;
 
 use InstagramBundle\TokenHandler\TokenHandlerInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
+use Main\EntityBundle\Entity\User;
 
 class UserToken implements TokenHandlerInterface {
 
@@ -52,7 +53,7 @@ class UserToken implements TokenHandlerInterface {
    * @return null
    */
   public function getToken() {
-    if ($this->user instanceof Main\EntityBundle\Entity\User) {
+    if ($this->user instanceof User) {
       if ($this->user && $token = $this->user->getInstagramAuthCode()) {
         return $token;
       }

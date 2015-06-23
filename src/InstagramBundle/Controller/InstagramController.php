@@ -13,14 +13,10 @@ use GuzzleHttp\Exception\RequestException;
 
 class InstagramController extends Controller {
 
-  public function indexAction(Request $request) {
-    /* @var $api InstagramAdapter */
+  public function indexAction() {
     /* @var $user \Main\EntityBundle\Entity\User */
-    /* @var $userResponse \Instaphp\Instagram\Response */
     $user = $this->getUser();
-    $api = $this->get('instagram');
-    $userResponse = $this->getUser();
-//    die(var_dump($userResponse));
+    $userResponse = $user;
     return $this->render('InstagramBundle:Default:index.html.twig', array('user' => $user, 'userResponse' => $userResponse));
   }
 
@@ -46,8 +42,66 @@ class InstagramController extends Controller {
 
     $form = $this->getFormRankDate($query);
     $usersRace = $this->managePostTagDate($request, $query, $form);
-//    var_dump(\DateTime::createFromFormat("d/m/Y h:i:s A", "27/05/2015 08:00:10 AM")->format("U"));
     return $this->render('InstagramBundle:Tag:index.html.twig', array('tagName' => $query, 'tags' => $tags, 'userInfo' => $userInfo, 'form' => $form->createView(), 'usersRace' => $usersRace));
+  }
+
+  public function tagImagesAction(Request $request, $query, $page) {
+    $result = array();
+    /* @var $instagramRepository \Main\EntityBundle\Entity\InstagramImageRepository */
+    $form = $this->getFormRankDate($query);
+    $countImages = $this->managePostTagDateCountImage($request, $query, $form);
+    $form = $this->getFormRankDate($query);
+    $feed = $this->managePostImagesFeed($request, $query, $form, $page);
+    $result['data'] = $feed;
+    $result['total'] = $countImages * 1;
+    $result['pages'] = ceil($countImages / 20) * 1; // number results / limit results in datababase
+    $result['page'] = $page;
+    if ($page >= $result['pages']) {
+      $result['next_page'] = null;
+    } else {
+      $result['next_page'] = $page * 1 + 1;
+    }
+    $serializer = $this->get('jms_serializer');
+    $tagSerialized = $serializer->serialize($result, 'json');
+    return new \Symfony\Component\HttpFoundation\JsonResponse($tagSerialized, 200);
+  }
+
+  private function managePostImagesFeed($request, $query, \Symfony\Component\Form\Form $form, $page) {
+    /* @var $fileds \InstagramBundle\Form\Object\InstagramDateFilter */
+    /* @var $instagramRepository \Main\EntityBundle\Entity\InstagramImageRepository */
+    $form->handleRequest($request);
+    if ($form->isSubmitted()) {
+      if ($form->isValid()) {
+        $fileds = $form->getData();
+        $em = $this->getDoctrine()->getManager();
+        $instagramRepository = $em->getRepository('Main\EntityBundle\Entity\InstagramImage');
+        $images = $instagramRepository->findImagesWithDateRange($query, $fileds->getCreatedTimeStart(), $fileds->getCreatedTimeEnd(), $page);
+        return $images;
+      } else {
+        return array();
+      }
+    } else {
+      return array();
+    }
+  }
+
+  private function managePostTagDateCountImage($request, $query, \Symfony\Component\Form\Form $form) {
+    /* @var $fileds \InstagramBundle\Form\Object\InstagramDateFilter */
+    /* @var $instagramRepository \Main\EntityBundle\Entity\InstagramImageRepository */
+    $form->handleRequest($request);
+    if ($form->isSubmitted()) {
+      if ($form->isValid()) {
+        $fileds = $form->getData();
+        $em = $this->getDoctrine()->getManager();
+        $instagramRepository = $em->getRepository('Main\EntityBundle\Entity\InstagramImage');
+        $imagesCount = $instagramRepository->countImagesInDateRange($query, $fileds->getCreatedTimeStart(), $fileds->getCreatedTimeEnd());
+        return $imagesCount;
+      } else {
+        return 0;
+      }
+    } else {
+      return 0;
+    }
   }
 
   public function tagRankDateAction(Request $request, $query) {
@@ -78,6 +132,7 @@ class InstagramController extends Controller {
 
   private function managePostTagDate($request, $query, \Symfony\Component\Form\Form $form) {
     /* @var $fileds \InstagramBundle\Form\Object\InstagramDateFilter */
+    /* @var $instagramRepository \Main\EntityBundle\Entity\InstagramImageRepository */
     $form->handleRequest($request);
     if ($form->isSubmitted()) {
       if ($form->isValid()) {
@@ -97,7 +152,6 @@ class InstagramController extends Controller {
   private function getUsersRankRender($usersRace) {
     return $this->renderView('InstagramBundle:Tag:rank_list_carts.html.twig', array('usersRace' => $usersRace));
   }
- 
 
   public function callbackAction(Request $request) {
     /* @var $api InstagramAdapter */
@@ -151,6 +205,7 @@ class InstagramController extends Controller {
       }
     }
     $token = $request->get('hub_challenge', "Rene <3 API");
+    $logger->info($token);
     $responseBack = new Response($token, Response::HTTP_OK);
     $responseBack->headers->set('Content-Type', 'application/json');
     return $responseBack;
@@ -214,15 +269,17 @@ class InstagramController extends Controller {
   private function storeInstagramResponse($tagsRecent, $em, $serializer, $instagramRepository, $type = null, $query = null) {
     $store = false;
     foreach ($tagsRecent->data as $tag) {
-      $ii = $instagramRepository->find($tag['id']);
-      $tagSerialized = $serializer->serialize($tag, 'json');
-      $iin = $serializer->deserialize($tagSerialized, "Main\EntityBundle\Entity\InstagramImage", 'json');
-      if (is_null($ii)) {
-        $ii = $iin;
-        $store = true;
-        $em->persist($ii);
-      } else {
+      if ($tag['type'] != 'video') {
+        $ii = $instagramRepository->find($tag['id']);
+        $tagSerialized = $serializer->serialize($tag, 'json');
+        $iin = $serializer->deserialize($tagSerialized, "Main\EntityBundle\Entity\InstagramImage", 'json');
+        if (is_null($ii)) {
+          $ii = $iin;
+          $store = true;
+          $em->persist($ii);
+        } else {
 //        $ii->updateAll($iin); // IF UPDATE INFO
+        }
       }
     }
     if ($store) {
@@ -233,9 +290,8 @@ class InstagramController extends Controller {
       }
     }
     $propagate = $type . '_' . $query;
-    $this->get('logger')->info($propagate);
     if (!is_null($type) && !is_null($query)) {
-      $this->get('logger')->info("BOOOOM");
+      $this->get('logger')->info("BOOOOM -> " . $propagate);
       $this->get('logger')->info(count($tagsRecent));
       $entryData = array(
           'category' => $propagate
