@@ -250,18 +250,15 @@
         imagesData = null;
         pageIn = page;
         var url = "{{path('instagram_tag_images',{'query':tagName })}}" + "/" + page;
-        console.log(url);
         $.ajax({
           url: url,
           data: formData,
           method: 'POST',
           dataType: 'json',
           error: function (jqXHR, textStatus, errorThrown) {
-            console.log('ERROR', jqXHR, textStatus, errorThrown)
             manageImageDownload(pageIn);
           },
           success: function (data, textStatus, jqXHR) {
-            console.log(data);
             data = jQuery.parseJSON(data);
             imagesRecived = data.data.length;
             imagesData = data;
@@ -278,13 +275,11 @@
     }
 
     function getImageData(element, index, array) {
-      console.log(element.images.standard_resolution.url);
       convertImgToBase64(element.images.standard_resolution.url, addToZip, 'image/jpeg', element.user.username + '_' + element.createdTime + '.jpg');
     }
 
     function addToZip(data, name, pass) {
       if (pass) {
-        console.log(name);
         imgFolder.file(name, data.substring(data.indexOf(",") + 1).trim(), {base64: true});
       }
       numberImagesZiped++;
@@ -296,7 +291,6 @@
          $('#download-progressbar').css('width', (numberImagesZiped * 100 / imagesData.total) + '%');
          $('#imagesZiped').html(numberImagesZiped);
          if (imagesDone === imagesRecived) {
-           console.log("NEXT", imagesData.next_page, imagesData.pages, imagesData.total);
            if (imagesData.next_page !== undefined || imagesData.next_page != null) {
              if ((imagesData.next_page + 2) >= imagesData.pages) {
                $('#wait-message').removeClass('hide');
