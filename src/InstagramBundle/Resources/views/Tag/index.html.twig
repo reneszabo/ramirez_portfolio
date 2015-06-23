@@ -250,6 +250,7 @@
         imagesData = null;
         pageIn = page;
         var url = "{{path('instagram_tag_images',{'query':tagName })}}" + "/" + page;
+        console.log(url);
         $.ajax({
           url: url,
           data: formData,
@@ -260,6 +261,7 @@
             manageImageDownload(pageIn);
           },
           success: function (data, textStatus, jqXHR) {
+            console.log(data);
             data = jQuery.parseJSON(data);
             imagesRecived = data.data.length;
             imagesData = data;
@@ -281,8 +283,8 @@
       if (pass) {
         console.log(name);
         imgFolder.file(name, data.substring(data.indexOf(",") + 1).trim(), {base64: true});
-        numberImagesZiped++;
       }
+      numberImagesZiped++;
     {# if (numberImagesZiped > imagesData.total) {
        numberImagesZiped = imagesData.total * 1;
      }#}
