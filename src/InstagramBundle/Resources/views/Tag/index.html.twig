@@ -269,6 +269,9 @@
             $('#download-progressbar').attr('aria-valuemin', 0);
             $('#download-progressbar').attr('aria-valuemax', imagesData.total);
             $('#imagesToZip').html(imagesData.total);
+            if (imagesRecived === 0) {
+              endZip();
+            }
           }
         });
       }
