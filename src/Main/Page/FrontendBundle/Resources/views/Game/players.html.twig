@@ -1,0 +1,20 @@
+{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+  <div>
+    {{ form_start(form) }}
+    {{ form_rest(form) }}
+    {{ form_end(form) }}
+  </div>
+{% endif %}
+<div class="players-table">
+  <h3>Top 100</h3>
+  <table class="table table-condensed table-striped table-hover">
+    <tbody>
+      {% for player in players %}
+        <tr>
+          <th>{{ player.user.username }}</th>
+          <td>{{ player.score }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>

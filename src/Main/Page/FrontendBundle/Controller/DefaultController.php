@@ -6,6 +6,8 @@ namespace Main\Page\FrontendBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Symfony\Component\HttpFoundation\Request;
 
 class DefaultController extends Controller {
 
@@ -54,6 +56,75 @@ class DefaultController extends Controller {
     $em->flush();
 
     return $this->render('MainPageFrontendBundle:Default:index.html.twig', array('cityVisits' => $a->getRows(), 'storedAnalytics' => $storedAnalytics));
+  }
+
+  /**
+   * @Method({"POST"})
+   */
+  public function gameSaveAction(Request $request) {
+    /* @var $game \Main\EntityBundle\Entity\Game */
+    /* @var $gameObj \Main\EntityBundle\Entity\Game */
+    if (!is_null($this->getUser())) {
+      $gameRepository = $this->getDoctrine()->getRepository('MainEntityBundle:Game');
+      $game = $gameRepository->findOneBy(array('user' => $this->getUser()));
+      $scoreBefore = -1;
+      if (!is_null($game)) {
+        $scoreBefore = $game->getScore();
+      }
+      $form = $this->createGameForm($game);
+      $form->handleRequest($request);
+      if ($form->isValid()) {
+        $gameObj = $form->getData();
+        $em = $this->getDoctrine()->getManager();
+        if (!is_nan(($gameObj->getScore() * 1))) {
+          if (is_null($game)) {
+            $em->persist($gameObj);
+            $em->flush();
+          } else {
+            if (($gameObj->getScore()) > ($scoreBefore)) {
+              $em->persist($gameObj);
+              $em->flush();
+            }
+          }
+        }
+      }
+    }
+
+    $gameRepository->clear();
+    $players = $gameRepository->findBy(array(), array('score' => 'DESC'), 100);
+    return $this->render('MainPageFrontendBundle:Game:players.html.twig', array('players' => $players, 'form' => $form->createView()));
+  }
+
+  private function createGameForm($game = null) {
+    $user = $this->getUser();
+    if (is_null($game)) {
+      $game = new \Main\EntityBundle\Entity\Game();
+    }
+    $game->setUser($user);
+    $url = $this->generateUrl('game_secure_save');
+    $form = $this->createForm(
+            new \Main\Page\FrontendBundle\Form\Type\GameType(), $game, array(
+        'action' => $url,
+        'method' => 'POST',
+        'attr' => array(
+            'rol' => 'form',
+            'id' => 'scoreForm',
+        ),
+            )
+    );
+    return $form;
+  }
+
+  public function gameAction() {
+    $gameRepository = $this->getDoctrine()->getRepository('MainEntityBundle:Game');
+    $players = $gameRepository->findBy(array(), array('score' => 'DESC'), 100);
+    if (!is_null($this->getUser())) {
+      $gameRepository = $this->getDoctrine()->getRepository('MainEntityBundle:Game');
+      $game = $gameRepository->findOneBy(array('user' => $this->getUser()));
+      $form = $this->createGameForm($game);
+      return $this->render('MainPageFrontendBundle:Game:index.html.twig', array('players' => $players, 'form' => $form->createView()));
+    }
+    return $this->render('MainPageFrontendBundle:Game:index.html.twig', array('players' => $players));
   }
 
   public function toDoListAction() {

@@ -1,6 +1,16 @@
 homepage:
     path:     /
     defaults: { _controller: MainPageFrontendBundle:Default:index }
+game_secure_save:
+    path:     /game/s/saveScore
+    defaults: { _controller: MainPageFrontendBundle:Default:gameSave }
+    methods:  [POST]
+game_secure:
+    path:     /game/s
+    defaults: { _controller: MainPageFrontendBundle:Default:game }
+game:
+    path:     /game
+    defaults: { _controller: MainPageFrontendBundle:Default:game }
 google_call_back:
     path:     /oauth2callback
     defaults: { _controller: MainPageFrontendBundle:Default:oauth2callback }

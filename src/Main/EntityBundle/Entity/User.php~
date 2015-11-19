@@ -152,7 +152,7 @@ class User extends OAuthUser implements EquatableInterface, \Serializable {
    * @inheritDoc
    */
   public function eraseCredentials() {
-    
+    parent::eraseCredentials();
   }
 
   /**
@@ -477,4 +477,28 @@ class User extends OAuthUser implements EquatableInterface, \Serializable {
     return $this->instagramId;
   }
 
+
+    /**
+     * Set instagramAuthCode
+     *
+     * @param string $instagramAuthCode
+     *
+     * @return User
+     */
+    public function setInstagramAuthCode($instagramAuthCode)
+    {
+        $this->instagramAuthCode = $instagramAuthCode;
+
+        return $this;
+    }
+
+    /**
+     * Get instagramAuthCode
+     *
+     * @return string
+     */
+    public function getInstagramAuthCode()
+    {
+        return $this->instagramAuthCode;
+    }
 }

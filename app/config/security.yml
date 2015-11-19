@@ -39,6 +39,7 @@ security:
         - { path: ^/s/,      roles: ROLE_ADMIN }
         - { path: ^/instagram/subscription/update,    roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/instagram/, roles: ROLE_USER }
+        - { path: ^/game/s, roles: ROLE_USER }
         - { path: ^/blog/s/, roles: ROLE_USER }
         - { path: ^/,    roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/,    roles: ROLE_USER }

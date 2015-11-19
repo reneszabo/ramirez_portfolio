@@ -15,7 +15,7 @@
   <body>
     <a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
     {{ include('MainPageBackendBundle:Default:header.html.twig') }}
-    {% include 'MainPageBackendBundle:Default:flash.html.twig' %}
+    {{ include ('MainPageBackendBundle:Default:flash.html.twig') }}
   {% block body %}{% endblock %}
   {% block javascripts %}
     {{ include('javascripts.html.twig') }}
