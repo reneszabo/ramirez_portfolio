@@ -26,6 +26,9 @@
     .players-table{
       margin-top: 10px;
     }
+    canvas:focus{
+      background: red;
+    }
   </style>
 {% endblock stylesheets %}
 {% block body %}
@@ -305,6 +308,13 @@
         h = $("#canvas").height();
         init();
       });
+      /* --- Prevent Scroll with keyboard keys ------------------------------ */
+      window.addEventListener("keydown", function (e) {
+        // space and arrow keys
+        if ([32, 37, 38, 39, 40].indexOf(e.keyCode) > -1) {
+          e.preventDefault();
+        }
+      }, false);
 
   </script>
 
