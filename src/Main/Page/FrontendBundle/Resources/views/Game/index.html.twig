@@ -101,7 +101,8 @@
     var h = null;
     var game_loop = null;
     var cw = 10;
-    var d;
+    var d = null;
+    var currentMove = null;
     var food;
     var score = 0;
     var snake_array;
@@ -228,14 +229,21 @@
         //these were the position of the head cell
         //we will increment it to get the new head position
         //Let's add proper direction based movement now
-        if (d == "right")
+        if (currentMove === null) {
+          currentMove = d;
+        }
+        if (currentMove !== d) {
+          currentMove = d;
+        }
+        if (currentMove === "right") {
           nx++;
-        else if (d == "left")
+        } else if (currentMove === "left") {
           nx--;
-        else if (d == "up")
+        } else if (currentMove === "up") {
           ny--;
-        else if (d == "down")
+        } else if (currentMove === "down") {
           ny++;
+        }
         //Let's add the game over clause now
         //this will restart the game if the snake hits the wall
         //Let's add the code for body collision
@@ -292,13 +300,13 @@
       $(document).keydown(function (event) {
         var key = event.which;
         //we will add another clause to prevent reverse gear
-        if (key == "37" && d != "right")
+        if (key == "37" && currentMove != "right")
           d = "left";
-        else if (key == "38" && d != "down")
+        else if (key == "38" && currentMove != "down")
           d = "up";
-        else if (key == "39" && d != "left")
+        else if (key == "39" && currentMove != "left")
           d = "right";
-        else if (key == "40" && d != "up")
+        else if (key == "40" && currentMove != "up")
           d = "down";
       });
       $(document).ready(function () {
