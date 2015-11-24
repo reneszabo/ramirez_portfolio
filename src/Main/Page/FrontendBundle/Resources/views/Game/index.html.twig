@@ -48,6 +48,17 @@
             Welcome {{  app.user.username }}
           </h3>
         {% endif %}
+        <div>
+          <button class="btn btn-">mute</button>
+          <audio controls id="musicBackground" > 
+            <source src="/audio/rick_rolled_8_bit.mp3" type="audio/mpeg" >
+            Your browser does not support the <code>audio</code> tag.
+          </audio>
+          <audio controls id="soundCrash">
+            <source src="/audio/peter_g_at_a_disco.mp3" type="audio/mpeg">
+            Your browser does not support the <code>audio</code> tag.
+          </audio>
+        </div>
         <table class="table  table-condensed table-responsive">
           <tbody>
             <tr>
@@ -86,7 +97,22 @@
       </div>
     </div>
   </section>
-
+  <div class="modal fade" id="gameover" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Game Over</h4>
+        </div>
+        <div class="modal-body">
+          Loser 
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
 {% endblock body %}
 {% block javascripts %}
   {{ parent() }}
@@ -106,6 +132,7 @@
     var food;
     var score = 0;
     var snake_array;
+    var mute = false;
     {% if is_granted('IS_AUTHENTICATED_FULLY') %}
       $(document).on('submit', '#scoreForm', function (e) {
         e.preventDefault();
@@ -125,7 +152,10 @@
       });
     {% endif %}
 
-
+      function gameover() {
+        stopGame();
+        $('#gameover').modal('show');
+      }
 
       $(document).on('change', '#initialSpeed', function () {
         if ($(this).val() * 1 > 200) {
@@ -184,12 +214,36 @@
       function resumeGame() {
         game_loop = setInterval(paint, speed);
       }
+
+      function soundManager(status) {
+        if (mute === true) {
+          document.getElementById('musicBackground').volume = 0;
+          document.getElementById('soundCrash').volume = 0;
+        } else {
+          document.getElementById('musicBackground').volume = 0.1;
+          document.getElementById('soundCrash').volume = 1;
+        }
+        document.getElementById('soundCrash').pause();
+        document.getElementById('soundCrash').currentTime = 0;
+        switch (status) {
+          case 1:
+            document.getElementById('musicBackground').play();
+            break;
+          case 2:
+            document.getElementById('musicBackground').pause();
+            document.getElementById('soundCrash').play();
+            break;
+
+        }
+
+      }
+
       function init() {
         d = "right"; //default direction
         create_snake();
         create_food(); //now we can see the food particle
         //let's display the score
-
+        soundManager(1);
         score = 0;
         level = 0;
         speed = speedInitial;
@@ -254,7 +308,9 @@
           $('#game_score').val(score);
           $('#scoreForm').submit();
     {% endif %}
-          init();
+          soundManager(2);
+          gameover();
+
           //Let's organize the code a bit now
           return;
         }
