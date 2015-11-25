@@ -86,7 +86,7 @@
           <tbody>
             <tr>
               <th>Level:</th>
-              <td> <span id="level" class="wow level bounceIn level">1</span></td>
+              <td> <span id="level" class="wow level bounceIn">1</span></td>
             </tr>
             <tr>
               <th>Score:</th>
@@ -94,7 +94,7 @@
             </tr>
             <tr>
               <th>Speed:</th>
-              <td><span id="speed" class="wow level bounceIn">0</span></td>
+              <td><span id="speed" class="wow bounceIn">0</span></td>
             </tr>
             <tr>
               <th>Initial Speed:</th>
@@ -171,7 +171,7 @@
       } else {
         $(this).html('Mute Sound');
       }
-      soundManager(100);//ANYNUMBER
+      soundManager(100);//ANY NUMBER will stop the music and the global boolean will mute
     });
 
     {% if is_granted('IS_AUTHENTICATED_FULLY') %}
