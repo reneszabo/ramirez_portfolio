@@ -3,13 +3,18 @@
   {{ parent() }}
   <link href="/libs/animate.css/animate.css" rel="stylesheet" type="text/css"/>
   <style type="text/css">
+    .the-game-header{
+      background: #50B6A0;
+      color:white;
+      text-shadow: 2px 2px 0 #30707d;
+    }
     table td{
       font-size: 2em;
       text-align: center;
     }
     table{
       border-bottom: 1px solid #ddd;
-    }
+    } 
     #initialSpeed{
       width: 80px;
       text-align: center;
@@ -28,6 +33,17 @@
     }
     canvas:focus{
       background: red;
+    } 
+    .modal h1{
+      font-size: 6em;
+      line-height: 0.5;
+    }
+    .modal .modal-header{
+      background-color: #d9534f;
+      color: white;
+    }
+    .modal .modal-header h4{
+      font-size: 4em;
     }
   </style>
 {% endblock stylesheets %}
@@ -35,7 +51,11 @@
   {{ include('MainPageFrontendBundle:Default:header.html.twig') }}
 
   <section class="container">
-    <legend class="text-center h2">The Game</legend>
+    <header class="the-game-header">
+      <h1 class="text-center h2">
+        The Game
+      </h1>
+    </header>
     <div class="row">
       <div class= "col-md-6">
         <div class="text-center">
@@ -48,9 +68,8 @@
             Welcome {{  app.user.username }}
           </h3>
         {% endif %}
-        <div>
-          <button class="btn btn-">mute</button>
-          <audio controls id="musicBackground" > 
+        <div class="hidden">
+          <audio controls loop id="musicBackground" > 
             <source src="/audio/rick_rolled_8_bit.mp3" type="audio/mpeg" >
             Your browser does not support the <code>audio</code> tag.
           </audio>
@@ -58,16 +77,20 @@
             <source src="/audio/peter_g_at_a_disco.mp3" type="audio/mpeg">
             Your browser does not support the <code>audio</code> tag.
           </audio>
+          <audio controls id="eat">
+            <source src="/audio/eat.mp3" type="audio/mpeg">
+            Your browser does not support the <code>audio</code> tag.
+          </audio>
         </div>
         <table class="table  table-condensed table-responsive">
           <tbody>
             <tr>
               <th>Level:</th>
-              <td> <span id="level" class="wow level bounceIn">1</span></td>
+              <td> <span id="level" class="wow level bounceIn level">1</span></td>
             </tr>
             <tr>
               <th>Score:</th>
-              <td> <span id="score" class="wow score bounceIn">0</span></td>
+              <td> <span id="score" class="wow score bounceIn score">0</span></td>
             </tr>
             <tr>
               <th>Speed:</th>
@@ -80,12 +103,13 @@
           </tbody>
         </table>
         <div class="text-center">
-
+          <a id="mute" class="btn btn-default" href="#mute">Mute Sound</a>
           {% if is_granted('IS_AUTHENTICATED_FULLY') %}
             <a class="btn btn-default" href="{{ path('logout') }}">Logout</a>
           {% else %}
-            <a class="btn btn-info" href="{{ path('game_secure') }}"><i class="fa  fa-gamepad"></i> <strong>LogIn</strong> - and Share your Score </a>
+            <a class="btn btn-info" href="{{ path('game_secure') }}"><i class="fa  fa-gamepad"></i> <strong>LogIn</strong> to log next game score </a>
           {% endif %}
+          <button type="button" class="btn btn-default play-again">Play again</button>
           <div id="dataInfo" class="">
             {% if is_granted('IS_AUTHENTICATED_FULLY') %}
               {{ include('MainPageFrontendBundle:Game:players.html.twig', {form:form, players:players}) }}
@@ -97,18 +121,25 @@
       </div>
     </div>
   </section>
-  <div class="modal fade" id="gameover" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal fade" id="gameover" data-backdrop="static">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="myModalLabel">Game Over</h4>
+          <h4 class="modal-title text-center" id="myModalLabel">Game Over</h4>
         </div>
-        <div class="modal-body">
-          Loser 
+        <div class="modal-body text-center">
+          <h1 class="level">8</h1>
+          <h2>Level</h2>
+          <h4>Score <span class="score">800</span></h4>
+          {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+
+          {% else %}
+            <a class="btn btn-info" href="{{ path('game_secure') }}"><i class="fa  fa-gamepad"></i> <strong>LogIn</strong> to log next game score </a>
+          {% endif %}
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-default play-again" data-dismiss="modal">Play again</button>
         </div>
       </div>
     </div>
@@ -133,6 +164,16 @@
     var score = 0;
     var snake_array;
     var mute = false;
+    $(document).on('click', '#mute', function () {
+      mute = !mute;
+      if (mute) {
+        $(this).html('Play Sound');
+      } else {
+        $(this).html('Mute Sound');
+      }
+      soundManager(100);//ANYNUMBER
+    });
+
     {% if is_granted('IS_AUTHENTICATED_FULLY') %}
       $(document).on('submit', '#scoreForm', function (e) {
         e.preventDefault();
@@ -167,7 +208,10 @@
         init();
       })
       function refleshScore() {
-        $('#score').html(score);
+        if (score != 0) {
+          soundManager(3);
+        }
+        $('.score').html(score);
         animateScore();
         checkLevel();
       }
@@ -193,7 +237,7 @@
           speedReflesh();
         }
         $('#speed').html((200 - speed) * 1);
-        $('#level').html(level);
+        $('.level').html(level);
       }
       function animateLevel() {
         var wowLevel = new WOW(
@@ -216,13 +260,18 @@
       }
 
       function soundManager(status) {
+        console.log(status);
         if (mute === true) {
           document.getElementById('musicBackground').volume = 0;
           document.getElementById('soundCrash').volume = 0;
+          document.getElementById('eat').volume = 0;
         } else {
           document.getElementById('musicBackground').volume = 0.1;
           document.getElementById('soundCrash').volume = 1;
+          document.getElementById('eat').volume = 1;
         }
+        document.getElementById('eat').pause();
+        document.getElementById('eat').currentTime = 0;
         document.getElementById('soundCrash').pause();
         document.getElementById('soundCrash').currentTime = 0;
         switch (status) {
@@ -232,6 +281,9 @@
           case 2:
             document.getElementById('musicBackground').pause();
             document.getElementById('soundCrash').play();
+            break;
+          case 3:
+            document.getElementById('eat').play();
             break;
 
         }
@@ -250,9 +302,8 @@
         stopGame();
         paint();
         refleshScore();
-
-
       }
+      $(document).on('click', '.play-again', init);
       function create_snake() {
         var length = 2; //length of the snake
         snake_array = []; //empty array to start with
