@@ -164,6 +164,10 @@
     var score = 0;
     var snake_array;
     var mute = false;
+    /**
+     * Event Listener On Click Button - Mute or Play Sound
+     * @returns void
+     */
     $(document).on('click', '#mute', function () {
       mute = !mute;
       if (mute) {
@@ -173,14 +177,82 @@
       }
       soundManager(100);//ANY NUMBER will stop the music and the global boolean will mute
     });
+    /**
+     * Event Listener On Change - Speed Picker  
+     * @returns void
+     */
+    $(document).on('change', '#initialSpeed', function () {
+      if ($(this).val() * 1 > 200) {
+        $(this).val(200);
+      } else if ($(this).val() * 1 < 0) {
+        $(this).val(0);
+      }
+      speedInitial = (200 - $(this).val() * 1);
+      init();
+    });
+    /**
+     * Event Listener On Key Down - Saves the future move of the snake
+     * @param {event} event KeyDown
+     * @returns void
+     */
+    $(document).keydown(function (event) {
+      var key = event.which * 1;
+      console.log(key);
+      //we will add another clause to prevent reverse gear
+      if (key === 37 && currentMove !== "right")
+        d = "left";
+      else if (key === 38 && currentMove !== "down")
+        d = "up";
+      else if (key === 39 && currentMove !== "left")
+        d = "right";
+      else if (key === 40 && currentMove !== "up")
+        d = "down";
+      //PAUSE OR RESUMEGAME
+      if (key === 80) {
+        resumeOrPauseGame();
+      }
+    });
+    /**
+     * Event Listener On Ready - Get the Initial Canvas State
+     * @returns void
+     */
+    $(document).ready(function () {
+      canvas = $("#canvas")[0];
+      ctx = canvas.getContext("2d");
+      w = $("#canvas").width();
+      h = $("#canvas").height();
+      init();
+    });
+    /**
+     * @param {event} e Event Object containing keybord on key down info
+     * @returns void
+     */
+    window.addEventListener("keydown", function (e) {
+      if ([32, 37, 38, 39, 40].indexOf(e.keyCode) > -1) {
+        e.preventDefault();
+      }
+    }, false);
 
+    function resumeOrPauseGame() {
+      if (game_loop !== undefined) {
+        stopGame();
+      } else {
+        resumeGame();
+      }
+    }
+    $(document).on('click', '.play-again', init);
     {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+      /**
+       * Event Listener On Submit - Submits the score to the server
+       * @param {eventOnSubmit} e will target the event on Form Submit
+       * @returns false
+       */
       $(document).on('submit', '#scoreForm', function (e) {
         e.preventDefault();
         var url = $(this).attr("action");
         $.ajax({
           type: "POST",
-          url: url, // Or your url generator like Routing.generate('discussion_create')
+          url: url,
           data: $(this).serializeArray(),
           dataType: "html",
           success: function (msg) {
@@ -189,32 +261,33 @@
           }
         });
         return false;
-
       });
     {% endif %}
-
+      /**
+       * End the game and show GAME OVER Modal
+       * @returns void
+       */
       function gameover() {
         stopGame();
         $('#gameover').modal('show');
       }
-
-      $(document).on('change', '#initialSpeed', function () {
-        if ($(this).val() * 1 > 200) {
-          $(this).val(200);
-        } else if ($(this).val() * 1 < 0) {
-          $(this).val(0);
-        }
-        speedInitial = (200 - $(this).val() * 1);
-        init();
-      })
+      /**
+       * Refresh DOM Score and call AnimateScore and Check Level for speed 
+       * change
+       * @returns void
+       */
       function refleshScore() {
-        if (score != 0) {
+        if (score !== 0) {
           soundManager(3);
         }
         $('.score').html(score);
         animateScore();
         checkLevel();
       }
+      /**
+       * Animate the Score on the DOM
+       * @returns void
+       */
       function animateScore() {
         var wow = new WOW(
                 {
@@ -227,10 +300,15 @@
         );
         wow.init();
       }
+
+      /**
+       * Check the Level if Level UP Call Change Speed and Animate Level DOM
+       * @returns void
+       */
       function checkLevel() {
         if (score % 3 === 0) {
           level++;
-          if (score != 0) {
+          if (score !== 0) {
             speed = Math.floor((speed * 0.90));
           }
           animateLevel();
@@ -239,26 +317,50 @@
         $('#speed').html((200 - speed) * 1);
         $('.level').html(level);
       }
+      /**
+       * Animate Level Tag on the DOM
+       * @returns void
+       */
+
       function animateLevel() {
         var wowLevel = new WOW(
                 {
-                  boxClass: 'level', // default
+                  boxClass: 'level'
                 }
         );
         wowLevel.init();
       }
+      /**
+       * Refresh speed has to pause the game and resume it again with 
+       * the new speed setTimeout time.
+       * @returns void
+       */
       function speedReflesh() {
         stopGame();
         resumeGame();
       }
+      /**
+       * Stop the game interval from looping
+       * @returns {Boolean}
+       */
       function stopGame() {
-        if (typeof game_loop !== undefined)
+        if (typeof game_loop !== undefined) {
           clearInterval(game_loop);
+          game_loop = undefined;
+        }
       }
+      /**
+       * Resume the game from the last state
+       * @returns void
+       */
       function resumeGame() {
         game_loop = setInterval(paint, speed);
       }
-
+      /**
+       * manage sound - mute/pause/reset 
+       * @param {int} status
+       * @returns {undefined}
+       */
       function soundManager(status) {
         console.log(status);
         if (mute === true) {
@@ -285,11 +387,12 @@
           case 3:
             document.getElementById('eat').play();
             break;
-
         }
-
       }
-
+      /**
+       * Initialize the game as you were starting for the first time
+       * @returns void
+       */
       function init() {
         d = "right"; //default direction
         create_snake();
@@ -303,7 +406,10 @@
         paint();
         refleshScore();
       }
-      $(document).on('click', '.play-again', init);
+      /**
+       * Create a Snake
+       * @returns void
+       */
       function create_snake() {
         var length = 2; //length of the snake
         snake_array = []; //empty array to start with
@@ -312,6 +418,10 @@
           snake_array.push({x: i, y: 0});
         }
       }
+      /**
+       * Generate a new randomly positioned food
+       * @returns void
+       */
       function create_food() {
         //This will create a cell with x/y between 0-44 because there are 45(450/10) positions across the rows and columns
         food = {
@@ -319,7 +429,10 @@
           y: Math.round(Math.random() * (h - cw) / cw)
         };
       }
-      //Let's paint the snake now
+      /**
+       * Game rate of drawing - this draws everithing on the canvas on loop
+       * @returns void
+       */
       function paint() {
         //To avoid the snake trail we need to paint the BG on every frame
         //Let's paint the canvas now
@@ -353,7 +466,7 @@
         //this will restart the game if the snake hits the wall
         //Let's add the code for body collision
         //now if the head of the snake bumps into the body, the game will restart
-        if (nx == -1 || nx == w / cw || ny == -1 || ny == h / cw || check_collision(nx, ny, snake_array)) {
+        if (nx === -1 || nx === w / cw || ny === -1 || ny === h / cw || check_collision(nx, ny, snake_array)) {
           //restart game
     {% if is_granted('IS_AUTHENTICATED_FULLY') %}
           $('#game_score').val(score);
@@ -367,7 +480,7 @@
         }
         //Let's write the code to make the snake eat the food
         //The logic is simple: if the new head position matches with that of the food, create a new head instead of moving the tail
-        if (nx == food.x && ny == food.y) {
+        if (nx === food.x && ny === food.y) {
           var tail = {x: nx, y: ny};
           score++;
           refleshScore();
@@ -389,47 +502,34 @@
         paint_cell(food.x, food.y);
         //Let's paint the score
       }
-      //Let's first create a generic function to paint cells
+      /**
+       * Draw a pixelated squere on the canvas    
+       * @param {int} x
+       * @param {int} y
+       * @returns void     
+       */
       function paint_cell(x, y) {
         ctx.fillStyle = "black";
         ctx.fillRect(x * cw, y * cw, cw, cw);
         ctx.strokeStyle = "red";
         ctx.strokeRect(x * cw, y * cw, cw, cw);
       }
+      /**
+       * Colletion detection
+       * @param {int} x
+       * @param {int} y
+       * @param {array} array
+       * @returns {Boolean}       
+       */
       function check_collision(x, y, array) {
         //This function will check if the provided x/y coordinates exists in an array of cells or not
         for (var i = 0; i < array.length; i++) {
-          if (array[i].x == x && array[i].y == y)
+          if (array[i].x === x && array[i].y === y)
             return true;
         }
         return false;
       }
-      $(document).keydown(function (event) {
-        var key = event.which;
-        //we will add another clause to prevent reverse gear
-        if (key == "37" && currentMove != "right")
-          d = "left";
-        else if (key == "38" && currentMove != "down")
-          d = "up";
-        else if (key == "39" && currentMove != "left")
-          d = "right";
-        else if (key == "40" && currentMove != "up")
-          d = "down";
-      });
-      $(document).ready(function () {
-        canvas = $("#canvas")[0];
-        ctx = canvas.getContext("2d");
-        w = $("#canvas").width();
-        h = $("#canvas").height();
-        init();
-      });
-      /* --- Prevent Scroll with keyboard keys ------------------------------ */
-      window.addEventListener("keydown", function (e) {
-        // space and arrow keys
-        if ([32, 37, 38, 39, 40].indexOf(e.keyCode) > -1) {
-          e.preventDefault();
-        }
-      }, false);
+
 
   </script>
 
