@@ -33,3 +33,7 @@ api:
 blog:
     path:     /blog
     defaults: { _controller: MainPageFrontendBundle:Blog:index }  
+    
+personal:
+    path:     /pesonal-branding
+    defaults: { _controller: MainPageFrontendBundle:Default:personalBranding }

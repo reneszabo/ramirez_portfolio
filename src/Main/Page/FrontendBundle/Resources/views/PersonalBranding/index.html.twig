@@ -1,0 +1,437 @@
+{% extends 'MainPageFrontendBundle:Default:base.html.twig' %}
+{% block stylesheets %}
+  {{ parent() }}
+  <style type="text/css">
+    html,body{
+      font-size: 1em;
+    }
+    #know{
+      padding-top: 0px;
+    }
+    #know .container-fluid{
+      padding-left: 0px;
+      padding-right: 0px;
+    }
+    #know aside{
+      background: lightslategray;
+      height: 100%;
+      color: white;
+    }
+    .aside-padding{
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+    .aside-padding h1{
+      text-align: right;
+    }
+    article ul li {
+      font-size: 0.8em;
+    }
+    .content-padding{
+      padding-left: 30px;
+      padding-right: 30px;
+      font-size: 1.3em;
+    }
+    .content-padding h2{
+      margin-bottom: 30px;
+    }
+    .orange{
+      color: orangered;
+    }
+    .body {
+      display: table;
+      width: 100%;
+    }
+    .left-side {
+      float: none;
+      display: table-cell;
+    }
+
+    .right-side {
+      float: none;
+      display: table-cell;
+    }
+  </style>
+{% endblock stylesheets %}
+{% block body %}
+  {{ include('MainPageFrontendBundle:Default:header.html.twig') }}
+  <section id="hero">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="box-text">
+            <h1 class=" light text-center">Personal Branding Campaign</h1>
+            <h2 class="text-center light">WEBD 251 Assigment 01</h2>
+            <h1 class="bolder text-center">Rene Ramirez - The Latino Guy - Hola !</h1>
+            <h2 class="text-center light">Developer/Project Manager</h2>
+          </div>
+          <div class="me hidden-sm hidden-xs">
+            <img src="/img/portfolio/me.png" alt="" class="" />
+          </div>
+          <div class="box-image">
+            <img src="/img/portfolio/responsive.png" alt="" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="know">
+    <div class="container-fluid">
+      <div class="row body">
+        <aside class="col-md-4 left-side">
+          <div class="aside-padding">
+            <h1 class="light ">Marketing Plan</h1>
+          </div>
+        </aside>
+        <div class="col-md-6 right-side">
+          <div class="content-padding">
+
+            <h2 class="">Objective</h2>
+
+            <p>
+              Open the best Canadian Studios, to help and work with Canadian 
+              StartUps. The Studio will have proactive and talented people to provide 
+              StartUps with the best tools for their success on the market.  
+            </p>
+            <hr>
+            <div class="row">
+              <div class="col-md-6">
+                <h2>Product/Service</h2>
+                <ul>
+                  <li>
+                    <b>Project Management</b>
+                    <ul>
+                      <li>Time Management</li>
+                      <li>Architectural Development</li>
+                    </ul>
+                  </li>
+                  <li>
+                    <b>Front-end development</b>
+                    <ul>
+                      <li>HTML, CSS, JavaScript...</li>
+                      <li>LESS, SASS, PostCSS... </li>
+                      <li>AngularJS, Backbone, React, Ionic, Phonegap...</li>
+                      <li>Bootstrap, Bourbon.io...</li>
+                    </ul>
+                  </li>
+                  <li>
+                    <b>Back-end development</b>
+                    <ul>
+                      <li>PHP, Ruby, NodeJS and .Net</li>
+                      <li>
+                        <i>Content Management Systems</i>
+                        <div class="row">
+                          <div class="col-md-6">
+                            <ul>
+                              <li>Wordpress </li>
+                              <li>Drupal </li>
+                            </ul>
+                          </div>
+                          <div class="col-md-6">
+                            <ul>
+                              <li>Plone </li>
+                              <li>Joomla </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </li>
+                      <li>
+                        <i>Frameworks</i>
+                        <div class="row">
+                          <div class="col-md-6">
+                            <ul>
+                              <li>Symfony</li>
+                              <li>Laravel</li>
+                            </ul>
+                          </div>
+                          <div class="col-md-6">
+                            <ul>
+                              <li>Doctrine</li>
+                              <li>Propel</li>
+                            </ul>
+                          </div>
+                        </div>
+                      </li>
+                      <li>
+                        <i>Databases</i>
+                        <div class="row">
+                          <div class="col-md-6">
+                            <ul>
+                              <li>MySQL </li>
+                              <li>PostgreSQL </li>
+                              <li>SQLite</li>
+                            </ul>
+                          </div>
+                          <div class="col-md-6">
+                            <ul>
+                              <li>MongoDB</li>
+                              <li>SQL Server</li>
+                            </ul>
+                          </div>
+                        </div>
+                      </li>
+
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+              <div class="col-md-6">
+                <h2>Customers</h2>
+                <ul>
+                  <li>Network on Humber College staff and friends </li>
+                  <li>Family and friend</li>
+                  <li>People that I have met networking on Meetup.com</li>
+                  <li>Venezuelan clients that are still active with the company Fersz</li>
+                  <li>Any new people I meet on social events done by family or friends</li>
+                  <li>Friends families that will like some technology related work</li>
+                  <li>Companies that my friends or family work</li>
+                  <li>Social media contacts</li>
+                </ul>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-md-6">
+                <h2>Competitors</h2>
+                <ul>
+                  <li>India, China, USA ...</li>
+                  <li>Classmates and same or related programs on Humber</li>
+                  <li>Developer Studios/Productions</li>
+                  <li>CMS Build your own website pages</li>
+                </ul>
+              </div>
+              <div class="col-md-6">
+                <h2>Positioning</h2>
+                <ul>
+                  <li>Networking</li>
+                  <li>Branding with people I know</li>
+                  <li>Sell my work</li>
+                  <li>Show my work</li>
+                  <li>Talk about my work</li>
+                  <li>Social media my work (Github, Dribbble, Instagram, Facebook, Twitter)</li>
+                </ul>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-md-6">
+                <h2>Pricing</h2>
+                <ul>
+                  <li>$85k to $150k a year</li>
+                  <li>60$/hr. to 120$/hr.</li>
+                </ul>
+              </div>
+              <div class="col-md-6">
+                <h2>Sales & Support</h2>
+                <ul>
+                  <li>Networking</li>
+                  <li>Headhunters</li>
+                  <li>Job Boards</li>
+                </ul>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-md-6">
+                <h2>Promotion</h2>
+                <ul>
+                  <li>Networking: talking to my friend about my work and what I do</li>
+                  <li>Social Media: Publish my work and some interesting 
+                    challenges I have cross with, as well technology related discoveries</li>
+                  <li>Post on my personal Blog</li>
+                  <li>User SEO and Marketing tools online</li>
+                </ul>
+              </div>
+              <div class="col-md-6">
+                <h2>Budget</h2>
+                <ul>
+                  <li>5$ for Business cards</li>
+                  <li>9$/yr. domain name</li>
+                  <li>170$/yr. VPS Server</li>
+                  <li>30$/month cloth</li>
+                  <li>20$/month hear cut</li>
+                  <li>25$/month Marketing Tools</li>
+                  <li>50$/month miscellaneous</li>
+                </ul>
+              </div>
+            </div>
+            <hr>
+            <h2 class="orange bolder">Action Plan</h2>
+
+            <ol>
+              <li>
+                Keep showing <i>impressive work</i> with customers
+              </li>
+              <li>
+                Graduate from humber to achieve a <i>Full Time Work Permit</i>
+              </li>
+              <li>
+                Keep working with new <i>StartUps</i> as a consultant or a developer
+              </li>
+              <li>
+                Be more active on social media with work related skills
+              </li>
+            </ol>
+            <hr>
+
+
+          </div>
+        </div>
+        <div class="col-md-2"></div>
+      </div>
+    </div>
+    <div class="container-fluid">
+      <div class="row body">
+        <aside class="col-md-4 left-side">
+          <div class="aside-padding">
+            <h1 class="light ">Goals</h1>
+          </div>
+        </aside>
+        <div class="col-md-6 right-side">
+          <div class="content-padding">
+            <h2>Within 1 year I plan to...</h2>
+            <ul>
+              <li>Create my networking groups</li>
+              <li>Impress the most people I can with my work</li>
+              <li>Redesign my Portfolio page</li>
+              <li>Have my business cards</li>
+              <li>Finish two StartUp and add them to my Portfolio</li>
+              <li><b><i>GRADUATE</i></b></li>
+              <li>Start my working permits process</li>
+            </ul>
+            <h2>Within 3 year I plan to...</h2>
+            <ul>
+              <li>More networking</li>
+              <li>Work</li>
+              <li>Gather savings</li>
+              <li>Open a Studio</li>
+            </ul>
+            <h2>Within 5 year I plan to...</h2>
+            <ul>
+              <li>More networking</li>
+              <li>Have a known Developer Studio of StartUps in Toronto</li>
+            </ul>
+            <hr>
+            <h2>Social Goals</h2>
+            <ul>
+              <li>Improve portfolio page</li>
+              <li>Improve social network posting</li>
+              <li>Improve communication skills on meetups </li>
+            </ul>
+            <hr>
+            <h2 class="orange bolder">Inspiration Campaigns</h2>
+            {#--- ONE ONE ONE ----------------------------------------------------------- #}
+            <div class="row">
+
+              <div class="col-md-4 ">
+                <article class="sample panel panel-default">
+                  <div class="panel-body">
+                    <legend>Verlas Inc </legend>
+                    <a href="http://verlasinc.com"  target="_blank">
+                      <img src="/img/portfolio/lo/ramirez-portfolio-verlas-lo.jpg" alt="Fitrition" class="img-responsive"/>
+                    </a>
+                    <br>
+                    <ul>
+                      <li>PoP/Logo recognition</li>
+                    </ul>
+                    <br>
+                  </div>
+                </article>
+              </div>
+
+              {#--- TWO TWO TWO ----------------------------------------------------------- #}
+
+              <div class="col-md-4">
+
+                <article class="sample panel panel-default">
+                  <div class="panel-body">
+                    <legend>MCG </legend>
+                    <a href="http://mirandacg.com/" target="_blank">
+                      <img src="/img/portfolio/lo/ramirez-portfolio-mirandacg-lo.jpg" alt="Miranda Consulting Group" class="img-responsive"/>
+                    </a>
+                    <br>
+                    <ul>
+                      <li>Social Media</li>
+                      <li>Talk about me</li>
+                    </ul>
+                  </div>
+                </article>
+              </div>
+
+              {#--- THREE THREE THREE ----------------------------------------------------- #}
+
+              <div class="col-md-4">
+                <article class="sample panel panel-default">
+                  <div class="panel-body">
+
+                    <legend>CLAD</legend>
+                    <a href="http://www.clad.org/"  target="_blank">
+                      <img src="/img/portfolio/lo/ramirez-portfolio-clad-lo.jpg" alt="Fitrition" class="img-responsive"/>
+                    </a>
+                    <br>
+                    <br>
+                    <ul>
+                      <li>Social Media</li>
+                      <li>Email subscriptions</li>
+                    </ul>
+                  </div>
+                </article>
+              </div>
+
+            </div>
+            <p>
+              All the companies had the same goal, boost their recognition as much as they can, and also I had the opportunity to work with each client. The goal was simple, get people talking. About the company, the measurement was visits on the website. 
+            </p>
+            <p>
+              Verlas Inc approach was to use the client's budget on PoP material to brand the logo and website of the company. As well as create a email template that renders a unique look and feel on the email; the forward of the email will rapidly spread the logo brand with a hover like to the website. 
+            </p>
+            <p>
+              MCG social media campaign was great success, with social media management tools we created a whole month to month publishing itinerary. On the other hand, me created a meeting on which we re-enforced MCG workers to be proud of the company and start talking about the company with friends and families. 
+            </p>
+            <p>
+              CLAD had the same approach on social media, based on my experience on the previews project and the same experience on email campaign, but because is a non-profit organization and the change from nothing to those two strategies the exponential grow on visitors on the website was massive.  
+            </p>
+            <p>
+              Looking back on the the campaigns, they required hard work, but at the end, they are so simple and the tools are free. I strongly belive I can use this tools and knowledge to create my personal branding campaign  
+            </p>
+          </div>
+        </div>
+        <div class="col-md-2"></div>
+      </div>
+    </div>
+  </section>   
+{% endblock body %}
+{% block javascripts %}
+  {{ parent() }}
+  <script src="/libs/jquery-localScroll/jquery.localScroll.min.js" type="text/javascript"></script>
+  <script src="/libs/jquery-scrollTo/jquery.scrollTo.min.js" type="text/javascript"></script>
+  <script src="/libs/jquery-parallax/jquery-parallax.js" type="text/javascript"></script>
+  <script src="/libs/waypoints/waypoints.min.js" type="text/javascript"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      $('body > header').localScroll({offset: -50});
+      $('#know').waypoint(function (direction) {                                    // WAYPOINT PLUGIN
+        if (direction === 'down') {
+          $('#know').addClass('active');
+          $('#know .thumbnail img').addClass('active');
+        } else {
+          $('#know').removeClass('active');
+          $('#know .thumbnail img').removeClass('active');
+        }
+      }, {offset: 450});
+      $('body > section:nth-of-type(1) h1:nth-of-type(1)').waypoint(function (direction) {
+        if (direction === "down") {
+          $('body > header .navbar-default').addClass('down');
+        } else {
+          $('body > header .navbar-default').removeClass('down');
+        }
+      }, {offset: 50});
+    });
+    $('#ramirez-menu').on('hidden.bs.collapse', function () {
+      $('body > header .navbar-default').removeClass('down-togle');
+    });
+    $('#ramirez-menu').on('show.bs.collapse', function () {
+      $('body > header .navbar-default').addClass('down-togle');
+    });
+  </script>
+{% endblock javascripts %}

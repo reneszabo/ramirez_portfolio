@@ -167,5 +167,9 @@ class DefaultController extends Controller {
     $response = new Response('thx api <3', Response::HTTP_OK);
     return $response;
   }
+  
+  public function personalBrandingAction(){
+    return $this->render('MainPageFrontendBundle:PersonalBranding:index.html.twig', array()); 
+  }
 
 }
