@@ -4,7 +4,7 @@
   {% set url = path('homepage')  %}
 {% endif %}  
 <header>
-  <div id="content" class="navbar navbar-default navbar-fixed-top {% if url!='' %}down{% endif %}" id="top" role="banner">
+  <div class="navbar navbar-default navbar-fixed-top {% if url!='' %}down{% endif %}" id="top" role="banner">
     <div class="container">
       <div class="navbar-header">
         <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".ramirez-navbar-collapse">
@@ -21,12 +21,11 @@
         <ul class="nav navbar-nav navbar-right">
           <li><a href="{{url}}#hero">Home</a></li>
           <li><a href="{{url}}#know">Skills</a></li>
+          <li><a href="{{url}}#services">Services</a></li>
           <li><a href="{{url}}#samples">Samples</a></li>
           <li><a href="{{url}}#direction">Contact</a></li>
           <li><a href="{{ path('blog_homepage') }}">Blog</a></li>
           <li class="social"><a href="http://ca.linkedin.com/in/reneszabo" target="_blank"><i class="fa fa-linkedin"></i></a></li>
-          <li class="social"><a href="https://twitter.com/reneszabo" target="_blank"><i class="fa fa-twitter"></i></a></li>
-          <li class="social"><a href="https://www.facebook.com/rene.roberto.ramirez.szabo" target="_blank"><i class="fa fa-facebook"></i></a></li>
           <li class="social"><a href="https://github.com/reneszabo" target="_blank"><i class="fa fa-github-alt"></i></a></li>
         </ul>
       </nav>

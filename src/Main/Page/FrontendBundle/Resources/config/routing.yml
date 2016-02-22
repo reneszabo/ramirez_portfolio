@@ -35,5 +35,5 @@ blog:
     defaults: { _controller: MainPageFrontendBundle:Blog:index }  
     
 personal:
-    path:     /pesonal-branding
+    path:     /personal-branding
     defaults: { _controller: MainPageFrontendBundle:Default:personalBranding }

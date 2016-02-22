@@ -18,7 +18,23 @@ class RamirezPortfolioTwigExtention extends \Twig_Extension {
   public function getFilters() {
     return array(
         new \Twig_SimpleFilter('timeKnow', array($this, 'getTimeKnow')),
+        new \Twig_SimpleFilter('age', array($this, 'getAge')),
     );
+  }
+
+  public function getAge($date) {
+    if (!$date instanceof \DateTime) {
+      // turn $date into a valid \DateTime object
+      $date = date($date);
+      $date = new \DateTime($date);
+    }
+
+    $referenceDate = date('01-01-Y');
+    $referenceDateTimeObject = new \DateTime($referenceDate);
+
+    $diff = $referenceDateTimeObject->diff($date);
+
+    return $diff->y;
   }
 
   public function getTimeKnow($date, $date2 = null) {

@@ -2,32 +2,24 @@
     Created on : Nov 21, 2014, 7:27:05 AM
     Author     : Rene R Ramirez S
 */
-@import "variables";
-@import "mixins/opacity";
-@import "mixins/vendor-prefixes";
+@import "bootstrap-sass/assets/stylesheets/bootstrap";
+$color-primary: $gray-base;
+$color-primary-rgba: rgba($color-primary,0.2);
+$shadow-color-primary:  darken($color-primary,5%); //lighten($color-primary,  10%);
+$font-family-change: 'Raleway', "Helvetica Neue", Helvetica, Arial, sans-serif;
 
-$color-blue-light: #37808f;//#7abecc BEFORE
-$color-blue-light-rgba: rgba($color-blue-light,0.2);
-$shadow-color-blue:  darken($color-blue-light,5%); //lighten($color-blue-light,  10%);
-body,html{
-  height: 100%;
-}
-body{
-  font-family: 'Raleway', "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
-a{
-  color: $color-blue-light;
+a{ 
+  color: $color-primary;
 }
 h1,h2,h3,h4,h5,h6{
+  font-family: $font-family-change;
+  margin:0;
 }
 .light{
   font-weight: 100;
 }
 .bolder{
   font-weight: bolder;
-}
-.hi{
-  display: block;
 }
 .text-dark{
   color: $text-color;
@@ -36,15 +28,15 @@ pre[class*="language-"] {
   max-height: 30em !important;
 }
 body > header{
-  min-height: 50px;
   .navbar-default{
-    background: $color-blue-light;
+    background: rgba(0,0,0,.4);
     border-bottom: none;
-    text-shadow: 2px 2px 0 $shadow-color-blue;
+    padding-top: 15px;
+    @include transition(all 0.3s ease); 
     a#logo {
-      font-weight: 600;
       color: white;
-      @include transition(all 0.3s 0 ease);
+      font-family: $font-family-change;
+      @include transition(all 0.3s  ease);
       &:hover { 
         text-decoration: none; 
       }
@@ -71,13 +63,17 @@ body > header{
     }
     .navbar-right{
       li a{
-        color:white;
-        @include transition(all 0.3s 0 ease);
+        color: white;
+        @include transition(all 0.3s ease);
+        &:hover{
+          color: darken(white ,10%);
+        }
       }
     }
     &.down, &.down-togle{
       text-shadow: none;
       background: white;
+      padding-top: 0px;
       -webkit-box-shadow: 0 0 10px $text-color;
       -moz-box-shadow: 0 0 10px $text-color;
       box-shadow: 0 0 10px $text-color;
@@ -98,102 +94,178 @@ body > header{
 body > section{
   padding-top: 30px;
   padding-bottom: 30px;
-  min-height:200px;
+  min-height:100px;
 
+   &#hero2{
+    height: 50vh;
+
+    background: url(../img/hero.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
   &#hero:nth-of-type(1){
-    margin-top: -50px;
-    padding-bottom: 0;
-    padding-top: 100px;
-    height: 100%;
-    color:white;
-    background-color: $color-blue-light;
-    overflow: hidden;
-    h2{
-      text-shadow: 2px 2px 0 $shadow-color-blue;
+    height: 50vh;
+
+    background: url(../img/hero.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+
+    background-color: $color-primary;
+    overflow: inherit;
+    margin-bottom: 22.5em;
+
+    h2.position {
+      font-size:1.2em;
+      line-height: 1.7;
+      margin: 0;
     }
-    .box-text{
-      position: relative;
-      z-index: 100;
+    h1.same-size ,h2.same-size{
+      font-size: 3em;
+      display: inline;
     }
-    .me{
-      position: absolute;
-      bottom: 0;
-    }
-    .container{
-      height: 100%;
-      .row{
-        height: 100%;
-        .col-md-12{
-          height: 100%;
-          position: relative;
+
+    .panel{
+      margin-top: 14vh;
+
+      &:before{
+        width: 80%;
+        height: 5px;
+        background-color: #ed2553;
+      }
+      table{
+        font-size: .9em !important;
+        th,td{
+          border-top: none;
+
+        }
+        th{
+          text-transform: uppercase;
+        }
+        td{
+          color: $gray-light;
+          font-weight: 200;
+        }
+      }
+      .panel-body{
+        padding-bottom: 0;
+      }
+      .fill-parent{
+        padding-left: 0;
+        padding-right: 0;
+        border-top: 1px solid $gray-dark;
+        .footer{
+          background-color: $color-primary;
+          padding: 15px 0;
+          .social{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            li{
+              display: inline-block;
+              margin: 5px 15px;
+              a{
+                width: 45px;
+                height: 45px;
+                display: inline-block;
+                background-color: transparent;
+                color: white;
+                font-size: 1.5em;
+              }
+            }
+          }
         }
       }
     }
-    .box-image{
-      position: absolute;
-      bottom: 10%;
-      right: 5%;
-      display: block;
-      width: 70%;
-      img{
-        width: 100%;
+    @media (max-width: 477px) { 
+      margin-bottom: 19.5em;
+      table{
+        border: none;
       }
+    } 
+    @media (min-width: 477px) and (max-width: 600px) { 
+      margin-bottom: 14.5em;
+      table{
+        border: none;
+      }
+    }
+    @media (min-width: 600px) and (max-width: $screen-xs-max) { 
+      margin-bottom: 9.5em;
+      table{
+        border: none;
+      }
+    } 
+    @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) { 
+      margin-bottom: 13.5em;
+      h1.same-size ,h2.same-size{
+        font-size: 2.5em;
+      }
+      .panel-body{
+        position: relative;
+        .col-sm-4{
+          height: 100%;
+        }
+        .profile-image{
+          position: absolute;
+          bottom:0;
+          left: 0px;
+          width: 33.3%;
+        }
+      }
+    }
+    @media (min-width: $screen-md-min) and (max-width: $screen-md-max) { 
+      margin-bottom: 17em;
+    }
+    @media (min-width: $screen-lg-min) { 
+      margin-bottom: 22.5em;
     }
   }
   @media (max-width: $screen-xs-max) { 
-    &:nth-of-type(1){
-      h1{
-        font-size: 24px;
-      } 
-      h2{
-        font-size: 21px;
-      }
-      .box-image{
-        right: 0;
-        width: 100%;
-        text-align: center;
-        img{
-          width: 90%;
-        }
-      }
-      height: 500px;
-    } 
+
   } 
   @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) { 
-    &:nth-of-type(1){
-      h1{
-        font-size: 34px;
-      }
-      h2{
-        font-size: 24px;
-      }
-      .box-image{
-        right: 13%;
-      }
-      height: 550px;
-    }
   }
   @media (min-width: $screen-md-min) and (max-width: $screen-md-max) { 
-    &:nth-of-type(1){
-      h1{
-        font-size: 44px;
-      }
-      h2{
-        font-size: 30px;
-      }
-      min-height: 780px;
-    }
   }
   @media (min-width: $screen-lg-min) { 
-    &:nth-of-type(1){
-      h1{
-        font-size: 52px;
-      }
-      h2{
-        font-size: 30px;
-      }
-      min-height: 786px;
-    }
+  }
+}
+@media (min-width: $screen-sm-min) {
+  .body {
+    display: table;
+    width: 100%;
+  }
+  .left-side, .right-side {
+    float: none;
+    display: table-cell;
+    text-align: left;
+    vertical-align: top;
+  }
+  .panel-no-padding{
+    padding: 0;
+  }
+  .padding-top{
+    padding-top: 15px;
+  }
+  .padding-left{
+    padding-left: 15px;
+  }
+  .padding-right{
+    padding-right: 15px;
+  }
+  .padding-bottom{
+    padding-bottom: 15px;
+  }
+}
+
+
+#objective{
+  p{
+    font-size: 1.2em;
+    font-weight: 300;
   }
 }
 
@@ -207,12 +279,12 @@ body > section{
     }
   }
   .thumbnail{
-    @include transition(all 0.3s 0 ease);
+    @include transition(all 0.3s ease);
     &:hover{
       @include scale(1.1);
     }
     img{
-      @include transition(all 0.5s 0 ease);
+      @include transition(all 0.5s ease);
       -webkit-filter: grayscale(100%);
       filter: grayscale(100%);
     }
@@ -220,7 +292,7 @@ body > section{
 }
 #analytics-api{
   color:white;
-  background-color: $color-blue-light;
+  background-color: $color-primary;
   position: relative;
   overflow: hidden;
   #heart{
@@ -230,11 +302,8 @@ body > section{
   }
   #analyticsLogo{
     opacity: 0.5;
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    opacity: 0.5;
     width: 200px;
+    display: inline-block;
   }
   .box-image{
     position: absolute;
@@ -260,29 +329,10 @@ body > section{
   position: relative;
   z-index: 100;
 }
-#success{
-  padding-top: 0;
-}
 #git{
-  background: $color-blue-light url(/img/portfolio/separator/git-diagram.jpg) 50% 0 no-repeat fixed;
-  background-size: 1980px auto;
-  -moz-box-shadow:    inset 0px -4px 20px -2px rgba(0,0,0,0.74);
-  -webkit-box-shadow: inset 0px -4px 20px -2px rgba(0,0,0,0.74);
-  box-shadow:         inset 0px -4px 20px -2px rgba(0,0,0,0.74);
-  .git-center{
-    width: 100%;
-    height: 100%;
-    position: relative;
-  }
-  .h2{
-    margin: 0;
-    position: relative;
-    z-index: 100;
-    top: 42%;
-  }
 }
 #direction{ 
-  background-color: $color-blue-light;
+  background-color: $color-primary;
   padding-top:120px; 
   padding-bottom:120px;
   color: white;
@@ -348,7 +398,7 @@ article.post{
       }
     }
     .entry-meta {
-      font-size: 14px;
+      font-size: .8em;
       line-height: 24px;
       margin-bottom: 24px;
       span {
@@ -512,4 +562,38 @@ article.post{
 
 .bs-callout-info h4 {
   color: #1b809e;
+}
+
+.panel{
+  border-radius: 0px;
+}
+
+.rr-tool-tip{
+  span{
+    color: #fff;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.1;
+    display: inline-block;
+    padding: 7px 12px;
+    text-transform: uppercase;
+    position: relative;
+    background-color: $color-primary;
+    &:before{
+      content: '';
+      width: 0;
+      height: 0;
+      top: 100%;
+      left: 5px;
+      display: block;
+      position: absolute;
+      border-style: solid;
+      border-width: 0 0 8px 8px;
+      border-color: transparent;
+      border-left-color: $color-primary;
+    }
+  }
+}
+.text-white{
+  color:white;
 }
