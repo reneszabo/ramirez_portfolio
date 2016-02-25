@@ -8,7 +8,7 @@
     </div>
     <script src="http://autobahn.s3.amazonaws.com/js/autobahn.min.js"></script>
     <script>
-      var conn = new ab.Session('ws://socket.localhost.com:8080',
+      var conn = new ab.Session('ws://socket.localhost.com:1234',
               function () {
                 conn.subscribe('kittensCategory', function (topic, data) {
                   // This is where you would add the new article to the DOM (beyond the scope of this tutorial)
