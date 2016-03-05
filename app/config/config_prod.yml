@@ -26,4 +26,4 @@ monolog:
 
 twig:
   globals:
-    ws_url: ws://ramirez-portfolio.com:8080
+    ws_url: ws://ramirez-portfolio.com:1234
