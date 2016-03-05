@@ -1,50 +1,303 @@
-/*
-Error: File to import not found or unreadable: ../variables.
-        on line 2 of /home/asus/www/ramirez/web/scss/fitrition/fitrition.scss
+body, html {
+  height: 100%; }
 
-1: 
-2: @import "../variables";
-3: 
-4: $color-green-strong: #1fa149;
-5: $color-green-strong-rgba: rgba(31, 161, 73, 0.5);
-6: $color-green-light: #acd373;
-7: $color-green-light-rgba: rgba(172,211,155,0.5);
+body {
+  font-family: 'Raleway', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #333; }
 
-Backtrace:
-/home/asus/www/ramirez/web/scss/fitrition/fitrition.scss:2
-/usr/lib/ruby/vendor_ruby/sass/tree/import_node.rb:67:in `rescue in import'
-/usr/lib/ruby/vendor_ruby/sass/tree/import_node.rb:45:in `import'
-/usr/lib/ruby/vendor_ruby/sass/tree/import_node.rb:28:in `imported_file'
-/usr/lib/ruby/vendor_ruby/sass/tree/import_node.rb:37:in `css_import?'
-/usr/lib/ruby/vendor_ruby/sass/tree/visitors/perform.rb:311:in `visit_import'
-/usr/lib/ruby/vendor_ruby/sass/tree/visitors/base.rb:36:in `visit'
-/usr/lib/ruby/vendor_ruby/sass/tree/visitors/perform.rb:158:in `block in visit'
-/usr/lib/ruby/vendor_ruby/sass/stack.rb:79:in `block in with_base'
-/usr/lib/ruby/vendor_ruby/sass/stack.rb:115:in `with_frame'
-/usr/lib/ruby/vendor_ruby/sass/stack.rb:79:in `with_base'
-/usr/lib/ruby/vendor_ruby/sass/tree/visitors/perform.rb:158:in `visit'
-/usr/lib/ruby/vendor_ruby/sass/tree/visitors/base.rb:52:in `block in visit_children'
-/usr/lib/ruby/vendor_ruby/sass/tree/visitors/base.rb:52:in `map'
-/usr/lib/ruby/vendor_ruby/sass/tree/visitors/base.rb:52:in `visit_children'
-/usr/lib/ruby/vendor_ruby/sass/tree/visitors/perform.rb:167:in `block in visit_children'
-/usr/lib/ruby/vendor_ruby/sass/tree/visitors/perform.rb:179:in `with_environment'
-/usr/lib/ruby/vendor_ruby/sass/tree/visitors/perform.rb:166:in `visit_children'
-/usr/lib/ruby/vendor_ruby/sass/tree/visitors/base.rb:36:in `block in visit'
-/usr/lib/ruby/vendor_ruby/sass/tree/visitors/perform.rb:186:in `visit_root'
-/usr/lib/ruby/vendor_ruby/sass/tree/visitors/base.rb:36:in `visit'
-/usr/lib/ruby/vendor_ruby/sass/tree/visitors/perform.rb:157:in `visit'
-/usr/lib/ruby/vendor_ruby/sass/tree/visitors/perform.rb:8:in `visit'
-/usr/lib/ruby/vendor_ruby/sass/tree/root_node.rb:36:in `css_tree'
-/usr/lib/ruby/vendor_ruby/sass/tree/root_node.rb:29:in `render_with_sourcemap'
-/usr/lib/ruby/vendor_ruby/sass/engine.rb:378:in `_render_with_sourcemap'
-/usr/lib/ruby/vendor_ruby/sass/engine.rb:295:in `render_with_sourcemap'
-/usr/lib/ruby/vendor_ruby/sass/exec/sass_scss.rb:406:in `run'
-/usr/lib/ruby/vendor_ruby/sass/exec/sass_scss.rb:63:in `process_result'
-/usr/lib/ruby/vendor_ruby/sass/exec/base.rb:52:in `parse'
-/usr/lib/ruby/vendor_ruby/sass/exec/base.rb:19:in `parse!'
-/usr/bin/sass:8:in `<main>'
-*/
-body:before {
-  white-space: pre;
-  font-family: monospace;
-  content: "Error: File to import not found or unreadable: ../variables.\A         on line 2 of /home/asus/www/ramirez/web/scss/fitrition/fitrition.scss\A \A 1: \A 2: @import \"../variables\";\A 3: \A 4: $color-green-strong: #1fa149;\A 5: $color-green-strong-rgba: rgba(31, 161, 73, 0.5);\A 6: $color-green-light: #acd373;\A 7: $color-green-light-rgba: rgba(172,211,155,0.5);"; }
+.light {
+  font-weight: 100; }
+
+.btn-success {
+  background-color: #1fa149;
+  border-color: #1fa149; }
+
+body > header .navbar-fitrition {
+  background: #000;
+  background: rgba(0, 0, 0, 0.5);
+  border-bottom: 0px solid #000;
+  border-bottom: 0px solid rgba(0, 0, 0, 0.5); }
+body > header .fitrition-navbar-brand {
+  float: none;
+  padding: 15px 15px;
+  font-size: 40px;
+  font-weight: 100;
+  line-height: 78px;
+  position: relative; }
+  body > header .fitrition-navbar-brand span {
+    position: relative;
+    z-index: 2;
+    color: white;
+    margin-left: 24px; }
+  body > header .fitrition-navbar-brand img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1; }
+  body > header .fitrition-navbar-brand:hover, body > header .fitrition-navbar-brand:focus {
+    text-decoration: none; }
+body > header #logo {
+  height: 75px; }
+body > header .navbar-default .navbar-nav > li > a {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  color: white;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  transition: all 0.3s ease; }
+  body > header .navbar-default .navbar-nav > li > a:hover {
+    color: white;
+    background-color: #acd373;
+    background-color: rgba(172, 211, 155, 0.5); }
+body > header .navbar-default .navbar-nav > .active > a {
+  color: white;
+  background-color: #1fa149;
+  background-color: rgba(31, 161, 73, 0.5); }
+
+body > section {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  min-height: 200px;
+  overflow: hidden; }
+  body > section:nth-of-type(1) {
+    text-align: center;
+    padding-top: 100px;
+    height: 100%;
+    min-height: 500px;
+    color: white; }
+    body > section:nth-of-type(1) .container {
+      height: 100%; }
+      body > section:nth-of-type(1) .container .row {
+        height: 100%; }
+        body > section:nth-of-type(1) .container .row .col-md-12 {
+          height: 100%;
+          position: relative; }
+          body > section:nth-of-type(1) .container .row .col-md-12 .fitrition-box {
+            position: absolute;
+            bottom: 15%;
+            width: 97%; }
+            body > section:nth-of-type(1) .container .row .col-md-12 .fitrition-box .nav-pills {
+              display: inline-block; }
+              body > section:nth-of-type(1) .container .row .col-md-12 .fitrition-box .nav-pills a {
+                color: white;
+                font-size: 22px; }
+                body > section:nth-of-type(1) .container .row .col-md-12 .fitrition-box .nav-pills a:hover {
+                  background-color: #1fa149;
+                  background-color: rgba(31, 161, 73, 0.5); }
+  body > section.green {
+    background-color: #c4df9b; }
+
+#hero {
+  background: url(/img/fitrition/hero-background.jpg) no-repeat;
+  background-size: auto 100%;
+  background-position: center top; }
+
+#features .section-subtitle {
+  margin-bottom: 50px; }
+#features .margin-top {
+  margin-top: 30px; }
+#features .fitrition-feature-title {
+  font-size: 15px;
+  display: table; }
+  #features .fitrition-feature-title span {
+    font-size: 24px;
+    color: gray;
+    margin-right: 15px; }
+  #features .fitrition-feature-title strong {
+    vertical-align: middle;
+    display: table-cell; }
+
+#work {
+  background: url(/img/fitrition/work.jpg) no-repeat;
+  background-size: 1980px auto;
+  background-position: center center;
+  padding-top: 120px;
+  padding-bottom: 120px;
+  position: relative;
+  overflow: hidden;
+  color: white; }
+
+#gallery .text-danger {
+  color: red; }
+
+#food {
+  background: url(/img/fitrition/food.jpg) no-repeat;
+  background-size: 1980px auto;
+  background-position: center center;
+  padding-top: 120px;
+  padding-bottom: 120px;
+  position: relative;
+  overflow: hidden;
+  color: white; }
+
+#compare {
+  padding-bottom: 0px;
+  margin-bottom: 0px; }
+  #compare .small {
+    font-size: 11px; }
+  #compare .have-table {
+    padding-bottom: 30px; }
+  #compare .container {
+    height: 100%;
+    background: url(/img/fitrition/girl-shirt-logo.jpg) 0 60px no-repeat; }
+    @media (max-width: 767px) {
+      #compare .container {
+        background: white; } }
+    @media (min-width: 768px) and (max-width: 991px) {
+      #compare .container {
+        background: white; } }
+    @media (min-width: 992px) and (max-width: 1199px) {
+      #compare .container .title {
+        margin-bottom: 50px; } }
+    @media (min-width: 1200px) {
+      #compare .container .title {
+        margin-bottom: 150px; } }
+  #compare .btn-success {
+    margin-top: 20px; }
+  #compare table {
+    width: 100%; }
+  #compare th, #compare td {
+    border: 1px solid #d8d8d8;
+    text-align: center;
+    vertical-align: middle;
+    width: 152px; }
+  #compare th {
+    font-weight: 300;
+    font-size: 18px;
+    padding: 15px 0px;
+    border-top: 0; }
+  #compare th:first-child {
+    border-left: 0; }
+  #compare th:last-child, #compare td:last-child {
+    border-right: 0; }
+  #compare th.moves, #compare td.moves {
+    position: relative;
+    background-color: #00d55a;
+    border-right: 0;
+    border-left: 0;
+    border-bottom: 1px solid #FFF; }
+  #compare td.table-rowlabel {
+    text-align: right;
+    width: 244px;
+    padding: 15px 30px 15px 10px;
+    border-left: 0;
+    font-size: 16px;
+    color: #555; }
+  #compare .fa-check {
+    font-size: 25px; }
+  #compare .moves {
+    color: white; }
+
+#team-crew {
+  position: relative;
+  overflow: hidden; }
+  #team-crew .title {
+    margin-bottom: 40px; }
+  #team-crew .nav-pills {
+    display: inline-block; }
+
+.text-white {
+  color: white; }
+  .text-white a {
+    color: white; }
+    .text-white a:hover {
+      color: #1fa149; }
+
+.text-green a {
+  color: #1fa149; }
+
+.green_block {
+  transform: rotate(350deg);
+  -ms-transform: rotate(350deg);
+  -webkit-transform: rotate(350deg);
+  background-color: #1fa149;
+  width: 5000px;
+  height: 1000px;
+  position: absolute;
+  top: 330px;
+  z-index: 0; }
+
+.video-overlay {
+  background: url(/img/fitrition/dot.png) rgba(0, 0, 0, 0.5);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 34;
+  opacity: 0.7; }
+
+.section-video-content {
+  z-index: 35;
+  position: relative;
+  opacity: 0.98; }
+
+#run {
+  padding: 0; }
+  #run .video {
+    position: relative;
+    overflow: hidden;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    background: #fff;
+    color: white;
+    padding-top: 120px;
+    padding-bottom: 120px; }
+  #run .section-video {
+    position: absolute;
+    z-index: 33;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%; }
+  #run .section-video-player {
+    position: absolute;
+    top: -100px;
+    width: auto !important; }
+    @media (max-width: 767px) {
+      #run .section-video-player {
+        top: -50px;
+        height: 450px; } }
+    @media (min-width: 768px) and (max-width: 991px) {
+      #run .section-video-player {
+        height: 560px; } }
+    @media (min-width: 992px) and (max-width: 1199px) {
+      #run .section-video-player {
+        height: 670px; } }
+    @media (min-width: 1200px) {
+      #run .section-video-player {
+        height: 1100px; } }
+
+#direction {
+  background: url(/img/fitrition/toronto.jpg) no-repeat;
+  background-size: 1980px auto;
+  background-position: center center;
+  padding-top: 120px;
+  padding-bottom: 120px;
+  position: relative;
+  overflow: hidden;
+  color: white; }
+  #direction .container {
+    z-index: 100;
+    position: relative; }
+    #direction .container .box {
+      background: #acd373;
+      background: rgba(172, 211, 155, 0.5);
+      padding-bottom: 20px; }
+    #direction .container a, #direction .container i {
+      color: #333; }
+    #direction .container .punch {
+      background: #1fa149;
+      color: #fff;
+      margin: 0;
+      padding: 10px 0; }
+    #direction .container .directions {
+      display: block;
+      margin: 20px 20px;
+      color: white; }
+      #direction .container .directions a, #direction .container .directions i {
+        color: white; }
+      #direction .container .directions a:hover {
+        text-decoration: none; }
+
+/*# sourceMappingURL=fitrition.css.map */

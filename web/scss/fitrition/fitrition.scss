@@ -1,5 +1,5 @@
 
-@import "../variables";
+@import "../bootstrap-sass/assets/stylesheets/bootstrap/variables";
 
 $color-green-strong: #1fa149;
 $color-green-strong-rgba: rgba(31, 161, 73, 0.5);
@@ -133,9 +133,6 @@ body > section{
   }
   .margin-top{
     margin-top: 30px;
-  }
-  .col-md-4{
-    height: 100px;
   }
   .fitrition-feature-title{
     font-size: 15px;
@@ -337,7 +334,7 @@ body > section{
     top: -100px;
     width: auto !important ;
     @media (max-width: $screen-xs-max) { 
-    top: -50px;
+      top: -50px;
       height: 450px;
     }
     @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) { 
