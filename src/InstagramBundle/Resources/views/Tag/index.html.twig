@@ -97,10 +97,23 @@
 
       </div>
       <div class="col-md-3">
-        {#<div class="well">
-                    ASIDE RIGHT
-        </div>#}
-
+        <h4>
+          Information
+        </h4>
+        <div class="info-box">
+          <table class="table table-responsive table-bordered table-condensed table-striped">
+            <tbody>
+              <tr>
+                <th>Limit:</th>
+                <td>{{instagramInfo.limit}}</td>
+              </tr>
+              <tr>
+                <th>Remaining:</th>
+                <td class="remaining">{{instagramInfo.remaining}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>

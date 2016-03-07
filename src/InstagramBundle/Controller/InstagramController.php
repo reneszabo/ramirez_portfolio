@@ -22,27 +22,22 @@ class InstagramController extends Controller {
 
   public function tagAction(Request $request, $query) {
     /* @var $serializer \JMS\Serializer\Serializer */
-    /* @var $api InstaphpAdapter */
-    /* @var $tags \Instaphp\Instagram\Tags */
     /* @var $em \Doctrine\ORM\EntityManager */
     /* @var $instagramRepository \Main\EntityBundle\Entity\InstagramImageRepository */
+    /* @var $user \Main\EntityBundle\Entity\User */
+    /* @var $api InstagramAdapter */
     $user = $this->getUser();
     $api = $this->get('instagram');
-    $userInfo = $this->getUser();
-    $tags = $api->Tags;
-    try {
-      $tagsRecent = $tags->Recent($query);
-    } catch (RequestException $ex) {
-      $this->get('logger')->info('CURL ERROR');
-    }
+    $response = $api->getTagRecent($query, $user->getInstagramAuthCode(), 10);
+//    var_dump($response->data);
     $em = $this->getDoctrine()->getManager();
     $instagramRepository = $em->getRepository('Main\EntityBundle\Entity\InstagramImage');
-    $this->storeInstagramResponse($tagsRecent, $em, $this->get('jms_serializer'), $instagramRepository, 'tag', $query);
+    $this->storeInstagramResponse($response, $em, $this->get('jms_serializer'), $instagramRepository, 'tag', $query);
     $tags = $instagramRepository->findByTag($query);
 
     $form = $this->getFormRankDate($query);
     $usersRace = $this->managePostTagDate($request, $query, $form);
-    return $this->render('InstagramBundle:Tag:index.html.twig', array('tagName' => $query, 'tags' => $tags, 'userInfo' => $userInfo, 'form' => $form->createView(), 'usersRace' => $usersRace));
+    return $this->render('InstagramBundle:Tag:index.html.twig', array('tagName' => $query, 'tags' => $tags, 'user' => $user, 'form' => $form->createView(), 'usersRace' => $usersRace, 'instagramInfo' => $response));
   }
 
   public function tagImagesAction(Request $request, $query, $page) {
@@ -153,26 +148,6 @@ class InstagramController extends Controller {
     return $this->renderView('InstagramBundle:Tag:rank_list_carts.html.twig', array('usersRace' => $usersRace));
   }
 
-  public function callbackAction(Request $request) {
-    /* @var $api InstagramAdapter */
-    $code = $request->get('code');
-    if (!empty($code)) {
-      $api = $this->get('instaphp');
-      try {
-        $success = $api->Users->Authorize($code);
-        $token = $api->getAccessToken();
-        $isLoggedIn = $this->get('instaphp_token_handler')->setToken($token);
-        $this->get('session')->getFlashBag()->add('loggedin', 'Thanks for logging in');
-        return $this->redirect($this->generateUrl($this->container->getParameter('instaphp.redirect_route_login')));
-      } catch (Exception $e) {
-        throw $this->createNotFoundException('Invalid Request', $e);
-      } catch (\Exception $e) {
-        throw $this->createNotFoundException('Error', $e);
-      }
-    }
-    throw $this->createNotFoundException('Invalid Request');
-  }
-
   public function subscription_updateAction(Request $request) {
     /* @var $api InstagramAdapter */
     /* @var $subscriptions \Instaphp\Instagram\Subscriptions  */
@@ -184,26 +159,26 @@ class InstagramController extends Controller {
     $logger->info("-----------------------------------------------------------");
     $logger->info("-----------------------------------------------------------");
     $logger->info($request->getMethod());
-    if ('POST' === $request->getMethod()) {
-      $api = $this->get('instagram');
-      $subscriptions = $api->Subscriptions;
-      $logger->info($request->getContent());
-      try {
-        $instagramResponse = $subscriptions->Recieve($request->getContent());
-        $this->get('logger')->info($request->getContent());
-      } catch (RequestException $ex) {
-        $this->get('logger')->info('CURL ERROR');
-      }
-      foreach ($instagramResponse as $type => $querys) {
-        foreach ($querys as $query => $responses) {
-          foreach ($responses as $response) {
-            $em = $this->getDoctrine()->getManager();
-            $instagramRepository = $em->getRepository('Main\EntityBundle\Entity\InstagramImage');
-            $this->storeInstagramResponse($response, $em, $this->get('jms_serializer'), $instagramRepository, $type, $query);
-          }
-        }
-      }
-    }
+//    if ('POST' === $request->getMethod()) {
+//      $api = $this->get('instagram');
+//      $subscriptions = $api->Subscriptions;
+//      $logger->info($request->getContent());
+//      try {
+//        $instagramResponse = $subscriptions->Recieve($request->getContent());
+//        $this->get('logger')->info($request->getContent());
+//      } catch (RequestException $ex) {
+//        $this->get('logger')->info('CURL ERROR');
+//      }
+//      foreach ($instagramResponse as $type => $querys) {
+//        foreach ($querys as $query => $responses) {
+//          foreach ($responses as $response) {
+//            $em = $this->getDoctrine()->getManager();
+//            $instagramRepository = $em->getRepository('Main\EntityBundle\Entity\InstagramImage');
+//            $this->storeInstagramResponse($response, $em, $this->get('jms_serializer'), $instagramRepository, $type, $query);
+//          }
+//        }
+//      }
+//    }
     $token = $request->get('hub_challenge', "Rene <3 API");
     $logger->info($token);
     $responseBack = new Response($token, Response::HTTP_OK);
@@ -244,10 +219,11 @@ class InstagramController extends Controller {
     /* @var $api InstagramAdapter */
     /* @var $subscriptions \Instaphp\Instagram\Subscriptions  */
     $api = $this->get('instagram');
-    $redirectTo = $this->generateUrl('instagram_subscription_update', array(), true);
-    $subscriptions = $api->Subscriptions;
-    $token = $this->container->getParameter('instagram.subscription.token');
-    $subscriptions->Create($type, $redirectTo, $token, array('object_id' => $query));
+    $redirectTo = $this->get('router')->generate('instagram_subscription_update', array(), true);
+//    $subscriptions = $api->Subscriptions;
+    $verifyToken = $this->container->getParameter('instagram.subscription.token');
+//    $subscriptions->Create($type, $redirectTo, $token, array('object_id' => $query));
+    $api->postSubscription($type, $redirectTo, $verifyToken, array('object_id' => $query));
     $response = new Response('thx api <3', Response::HTTP_OK);
     return $response;
   }
@@ -304,6 +280,26 @@ class InstagramController extends Controller {
       $socket->connect("tcp://localhost:5555");
       $socket->send(json_encode($entryData));
     }
+  }
+
+  public function callbackAction(Request $request) {
+    /* @var $api InstagramAdapter */
+    $code = $request->get('code');
+    if (!empty($code)) {
+      $api = $this->get('instaphp');
+      try {
+        $success = $api->Users->Authorize($code);
+        $token = $api->getAccessToken();
+        $isLoggedIn = $this->get('instaphp_token_handler')->setToken($token);
+        $this->get('session')->getFlashBag()->add('loggedin', 'Thanks for logging in');
+        return $this->redirect($this->generateUrl($this->container->getParameter('instaphp.redirect_route_login')));
+      } catch (Exception $e) {
+        throw $this->createNotFoundException('Invalid Request', $e);
+      } catch (\Exception $e) {
+        throw $this->createNotFoundException('Error', $e);
+      }
+    }
+    throw $this->createNotFoundException('Invalid Request');
   }
 
 }

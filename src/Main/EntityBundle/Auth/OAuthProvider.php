@@ -71,7 +71,7 @@ class OAuthProvider extends OAuthUserProvider {
         $instagram_auth_code = $response->getAccessToken();
         break;
     }
-
+    
     $nickname = $response->getNickname();
     $realname = $response->getRealName();
     $avatar = $response->getProfilePicture();
