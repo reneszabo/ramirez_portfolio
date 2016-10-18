@@ -35,13 +35,3 @@ instagram_subscription_list:
 instagram_subscription_update:
     path:     /subscription/update
     defaults: { _controller: InstagramBundle:Instagram:subscription_update }
-#LOGIN AND OUT URLs
-instagram_thanks:
-    path:     /thanks
-    defaults: { _controller: InstagramBundle:Instagram:thanks }
-instagram_logout:
-    path:     /logout
-    defaults: { _controller: InstagramBundle:Instagram:logout }
-instagram_check:
-    pattern: /checkInstagram
-    defaults: { _controller: InstagramBundle:Instagram:check }

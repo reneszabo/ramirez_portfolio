@@ -3,9 +3,9 @@
 namespace InstagramBundle\Adapter;
 
 use Symfony\Component\Routing\RouterInterface;
-use Monolog\Logger;
 use GuzzleHttp\Client;
 use InstagramBundle\Adapter\InstagramResponse;
+use Symfony\Bridge\Monolog\Logger;
 
 class InstagramAdapter {
 
@@ -15,11 +15,13 @@ class InstagramAdapter {
   protected $config = [];
   protected $client;
   protected $token = "";
+  protected $logger;
 
   /**
    * Different construct to integrate better with Symfony2
    */
-  public function __construct($config = array(), RouterInterface $router = null) {
+  public function __construct($config = array(), RouterInterface $router = null, Logger $logger) {
+    $this->logger = $logger;
     $ua = sprintf('Ramirez-Portfolio/1.0; cURL/%s; (+http://ramirez-portfolio.com)', curl_version()['version']);
     $defaults = [
         'client_id' => '',
@@ -79,6 +81,7 @@ class InstagramAdapter {
 
   /**
    * @param \GuzzleHttp\Psr7\Response $response
+   * @return InstagramResponse;
    */
   protected function handleResponse($response) {
 
@@ -152,9 +155,34 @@ class InstagramAdapter {
     return $aux;
   }
 
+  public function getSubscription() {
+    $q = [];
+    $q['client_secret'] = $this->config['client_secret'];
+    $q['client_id'] = $this->config['client_id'];
+    $response = $this->client->request("GET", $this->buildPath('subscriptions'), [
+        'query' => $q
+    ]);
+    $aux = $this->handleResponse($response);
+    return $aux;
+  }
+
+  public function deleteSubscription($params) {
+    $q = [];
+    $q['client_secret'] = $this->config['client_secret'];
+    $q['client_id'] = $this->config['client_id'];
+    foreach ($params as $param => $value) {
+      $q[$param] = $value;
+    }
+    $response = $this->client->request("DELETE", $this->buildPath('subscriptions'), [
+        'query' => $q
+    ]);
+    $aux = $this->handleResponse($response);
+    return $aux;
+  }
+
   public function postSubscription($type, $redirectTo, $verifyToken, $params) {
     /* @var $request \Guzzle\Http\Message\Request */
-    $signature = $this->buildBasePath() . $this->buildPath('subscriptions');
+    $signature = $this->buildPath('subscriptions', false);
     $q = [];
     $q['client_secret'] = $this->config['client_secret'];
     $q['client_id'] = $this->config['client_id'];
@@ -165,23 +193,13 @@ class InstagramAdapter {
     foreach ($params as $param => $value) {
       $q[$param] = $value;
     }
+    ksort($q);
     foreach ($q as $k => $v) {
       $signature.= "|$k=$v";
     }
-//    var_dump($signature);
-    $signature = hash_hmac('sha256', $signature, $this->config['client_secret'], false);
-    $q['sig'] = $signature;
-    var_dump($q);
+    $q['sig'] = hash_hmac('sha256', $signature, $this->config['client_secret'], false);
+    ;
     try {
-//      $request = new \GuzzleHttp\Psr7\Request(
-//              "POST"
-//              ,  $this->buildPath('subscriptions')
-//              , [
-//          'form_params' => $q
-//              ]
-//      );
-//      var_dump($request);
-//      $response = $this->client->send($request);
       $response = $this->client->request(
               "POST"
               , $this->buildBasePath() . $this->buildPath('subscriptions')
@@ -191,10 +209,13 @@ class InstagramAdapter {
               ]
       );
     } catch (\GuzzleHttp\Exception\RequestException $ex) {
-      var_dump($ex->getResponse()->getBody()->getContents());
-      var_dump($ex->getResponse());
+//      var_dump($ex->getResponse()->getBody()->getContents());
+//      var_dump($ex->getResponse());
+      $response = $ex->getResponse();
     }
-    return "";
+    $aux = $this->handleResponse($response);
+//    var_dump($response->getBody()->getContents());
+    return $aux;
   }
 
   /**

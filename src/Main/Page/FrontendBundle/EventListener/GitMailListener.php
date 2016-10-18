@@ -77,7 +77,7 @@ class GitMailListener {
 
         $message
                 ->setSubject('GITHUB Push - ' . $params->pusher->name)
-                ->setFrom('rene.ramirez@fersz.com')
+                ->setFrom('rene.ramirez@pixels.co')
                 ->setTo($this->emails)
                 ->setContentType("text/html")
                 ->setBody(

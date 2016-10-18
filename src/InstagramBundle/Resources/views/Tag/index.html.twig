@@ -59,6 +59,7 @@
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li><a class="download-modal" href="#download" data-toggle="modal" data-target="#download-modal">Download</a></li>
+          <li><a class="switchPause" href="#pause">Pause</a></li>
           <li><a class="switchHD" href="#hd">Turn on HD Image</a></li>
           <li><a class="ajaxRanking" href="#ranking">Turn on Rankings</a></li>
           <li><a class="ajax" href="{{path('instagram_subscription',{'type':'tag','query': tagName})}}">Turn on Live</a></li>
@@ -113,6 +114,9 @@
               </tr>
             </tbody>
           </table>
+        </div>
+        <div>
+          <input type="number" min="0" max="10000" step="100" class="timeOutLength" value="2000" />
         </div>
       </div>
     </div>
@@ -216,6 +220,7 @@
     var downloadOpen = false;
     var numberImagesZiped = 0;
     var pageIn = 0;
+    var pause = false;
 
     $('#rank-search').on('hidden.bs.modal', function (e) {
       if (downloadOpen === true) {
@@ -347,31 +352,35 @@
        var ranking = false;
        var hd = false;
        function pushLive() {
-         if ($('#hide-list .item-for').length > 0) {
-           $obj = $('#hide-list .item-for:first-child');
-           $obj.hide();
-           if (true) {
-             $('#instagram-timeline').prepend($obj);
-             $obj.slideDown('fast');
-             $('#instagram-timeline .item-for:last-child').remove();
-           }
+         if (pause == 0) {
            if ($('#hide-list .item-for').length > 0) {
-             $('#instagram-waiting-to-show').removeClass('hidden');
-             $('#instagram-count').html("+" + $('#hide-list .item-for').length);
-           } else {
-             $('#instagram-waiting-to-show').addClass('hidden');
-           }
-           if (ranking) {
-             getRankUsers();
+             $obj = $('#hide-list .item-for:first-child');
+             $obj.hide();
+             if (true) {
+               $('#instagram-timeline').prepend($obj);
+               $obj.slideDown('fast');
+               $('#instagram-timeline .item-for:last-child').remove();
+             }
+
+             if (ranking) {
+               getRankUsers();
+             }
            }
          }
-         setTimeout(pushLive, 2000);
+         if ($('#hide-list .item-for').length > 0) {
+           $('#instagram-waiting-to-show').removeClass('hidden');
+           $('#instagram-count').html("+" + $('#hide-list .item-for').length);
+         } else {
+           $('#instagram-waiting-to-show').addClass('hidden');
+         }
+         setTimeout(pushLive, $('.timeOutLength').val());
        }
        function connectLiveFeed() {
          conn = new ab.Session('{{ ws_url }}',
                  function () {
                    conn.subscribe('tag_{{tagName}}', function (topic, data) {
                      // This is where you would add the new article to the DOM (beyond the scope of this tutorial)
+                     $('table .remaining').html(data.title.remaining);
                      data.title.data.forEach(function (element, index, array) {
                        var $obj = $('.item-for-' + element.id);
                        if ($obj.length == 0) {
@@ -388,6 +397,7 @@
                          }
                          $objClone.find('.item-for-image-profile').attr('src', element.user.profile_picture);
                          var user = element.user.full_name + " (" + element.user.username + ")";
+                         $objClone.find('.item-for-link').attr("href", element.link);
                          $objClone.find('.item-for-username').html(user);
                          $objClone.find('.item-for-date').attr('data-time', element.created_time);
                          var myObj = $.parseJSON('{"date_created":"' + element.created_time + '"}'),
@@ -425,6 +435,14 @@
          } else {
            $(this).html('Turn on Live');
            closeLiveFeed();
+         }
+       });
+       $(document).on('click', '.switchPause', function (e) {
+         pause = !pause;
+         if (pause == 0) {
+           $(this).html('Pause');
+         } else {
+           $(this).html('Pause <scpan class="label label-success">ON</span>');
          }
        });
        $(document).on('click', '.switchHD', function (e) {

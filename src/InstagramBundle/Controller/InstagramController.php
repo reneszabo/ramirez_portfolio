@@ -150,37 +150,59 @@ class InstagramController extends Controller {
 
   public function subscription_updateAction(Request $request) {
     /* @var $api InstagramAdapter */
-    /* @var $subscriptions \Instaphp\Instagram\Subscriptions  */
-    /* @var $response \Instaphp\Instagram\Response  */
+    /* @var $response \InstagramBundle\Adapter\InstagramResponse  */
+    /* @var $instagramSubscription \Main\EntityBundle\Entity\InstagramSubscription */
     $type = '';
     $query = '';
-    $instagramResponse = array();
     $logger = $this->get('logger');
-    $logger->info("-----------------------------------------------------------");
-    $logger->info("-----------------------------------------------------------");
-    $logger->info($request->getMethod());
-//    if ('POST' === $request->getMethod()) {
-//      $api = $this->get('instagram');
-//      $subscriptions = $api->Subscriptions;
-//      $logger->info($request->getContent());
-//      try {
-//        $instagramResponse = $subscriptions->Recieve($request->getContent());
-//        $this->get('logger')->info($request->getContent());
-//      } catch (RequestException $ex) {
-//        $this->get('logger')->info('CURL ERROR');
-//      }
-//      foreach ($instagramResponse as $type => $querys) {
-//        foreach ($querys as $query => $responses) {
-//          foreach ($responses as $response) {
-//            $em = $this->getDoctrine()->getManager();
-//            $instagramRepository = $em->getRepository('Main\EntityBundle\Entity\InstagramImage');
-//            $this->storeInstagramResponse($response, $em, $this->get('jms_serializer'), $instagramRepository, $type, $query);
-//          }
-//        }
-//      }
-//    }
+    if ('POST' === $request->getMethod()) {
+      $dataString = $request->getContent();
+      $data = json_decode($dataString, true);
+      $em = $this->getDoctrine()->getManager();
+      $instagramSubscriptionRepository = $em->getRepository('Main\EntityBundle\Entity\InstagramSubscription');
+      $instagramRepository = $em->getRepository('Main\EntityBundle\Entity\InstagramImage');
+      $api = $this->get('instagram');
+      foreach ($data as $index => $value) {
+        $instagramSubscription = $instagramSubscriptionRepository->findOneBy(array('instagramId' => $value["subscription_id"], 'isActive' => false));
+        if ($instagramSubscription) {
+          $instagramSubscription->setIsActive(true);
+          $em->persist($instagramSubscription);
+          $em->flush();
+          $token = $instagramSubscription->getUser()->getInstagramAuthCode();
+          $type = $instagramSubscription->getObject();
+          $query = $instagramSubscription->getObjectId();
+          $lastMinId = $instagramSubscription->getLastMinId();
+          if (is_null($lastMinId)) {
+            $lastMinId = "yeap";
+          }
+          $response = null;
+          while ($lastMinId != null) {
+            if ($lastMinId === "yeap") {
+              $response = $api->getTagRecent($query, $token, 100);
+            } else {
+              $response = $api->getTagRecent($query, $token, 100, $lastMinId);
+            }
+            if (array_key_exists("min_tag_id", $response->pagination)) {
+              $lastMinId = $response->pagination['min_tag_id'];
+              $instagramSubscription->setLastMinId($lastMinId);
+            } else {
+              $lastMinId = null;
+            }
+            if (!is_null($response)) {
+              $this->storeInstagramResponse($response, $em, $this->get('jms_serializer'), $instagramRepository, 'tag', $query);
+            }
+            $logger->info($lastMinId);
+          }
+          $instagramSubscription->setLastMinId($lastMinId);
+          $instagramSubscription->setIsActive(false);
+          $em->persist($instagramSubscription);
+          $em->flush();
+        } else {
+          $logger->info("NOP");
+        }
+      }
+    }
     $token = $request->get('hub_challenge', "Rene <3 API");
-    $logger->info($token);
     $responseBack = new Response($token, Response::HTTP_OK);
     $responseBack->headers->set('Content-Type', 'application/json');
     return $responseBack;
@@ -188,53 +210,54 @@ class InstagramController extends Controller {
 
   public function subscription_listAction() {
     /* @var $api InstagramAdapter */
-    /* @var $subscriptions \Instaphp\Instagram\Subscriptions  */
-    /* @var $response \Instaphp\Instagram\Response  */
     $api = $this->get('instagram');
-    $subscriptions = $api->Subscriptions;
-    try {
-      $response = $subscriptions->ListSubscriptions();
-    } catch (Exception $ex) {
-      $this->get('logger')->info('CURL ERROR');
-    }
+    $response = $api->getSubscription();
     return $this->render('InstagramBundle:Subscription:list.html.twig', array('data' => $response->data));
   }
 
   public function subscription_deleteAction(Request $request, $type, $query) {
     /* @var $api InstagramAdapter */
-    /* @var $subscriptions \Instaphp\Instagram\Subscriptions  */
-    /* @var $response \Instaphp\Instagram\Response  */
     $api = $this->get('instagram');
-    $subscriptions = $api->Subscriptions;
     $params = array('object' => $type);
     if ($query != 0) {
       $params = array('id' => $query);
     }
-
-    $response = $subscriptions->Destroy($params);
+    $response = $api->deleteSubscription($params);
     return $this->redirect($this->get('request')->server->get('HTTP_REFERER'));
   }
 
   public function subscriptionsAction($type, $query) {
     /* @var $api InstagramAdapter */
-    /* @var $subscriptions \Instaphp\Instagram\Subscriptions  */
+    /* @var $response \InstagramBundle\Adapter\InstagramResponse */
     $api = $this->get('instagram');
+    $em = $this->getDoctrine()->getManager();
+    $instagramSubscriptionRepository = $em->getRepository('Main\EntityBundle\Entity\InstagramSubscription');
     $redirectTo = $this->get('router')->generate('instagram_subscription_update', array(), true);
-//    $subscriptions = $api->Subscriptions;
     $verifyToken = $this->container->getParameter('instagram.subscription.token');
-//    $subscriptions->Create($type, $redirectTo, $token, array('object_id' => $query));
-    $api->postSubscription($type, $redirectTo, $verifyToken, array('object_id' => $query));
+    $response = $api->postSubscription($type, $redirectTo, $verifyToken, array('object_id' => $query));
+    $this->get('logger')->info(json_encode($response->data));
+    if ($response->meta['code'] == 200) {
+      $instagramSubscription = $instagramSubscriptionRepository->findOneBy(array('instagramId' => $response->data['id']));
+      if (!$instagramSubscription) {
+        $this->get('logger')->info(json_encode("CRE"));
+        $instagramSubscription = new \Main\EntityBundle\Entity\InstagramSubscription();
+        $instagramSubscription->setAspect($response->data['aspect']);
+        $instagramSubscription->setCallbackUrl($response->data['callback_url']);
+        $instagramSubscription->setInstagramId($response->data['id']);
+        $instagramSubscription->setObject($response->data['object']);
+        $instagramSubscription->setObjectId($response->data['object_id']);
+        $instagramSubscription->setType($response->data['type']);
+        $instagramSubscription->setUser($this->getUser());
+        $instagramSubscription->setIsActive(false);
+        $em->persist($instagramSubscription);
+        $em->flush();
+      }
+
+//    $instagramSubscription = new \Main\EntityBundle\Entity\InstagramSubscription();
+//    $instagramSubscription->setUser($this->getUser());
+    }
     $response = new Response('thx api <3', Response::HTTP_OK);
     return $response;
-  }
-
-  public function logoutAction() {
-    $isLoggedIn = $this->get('instaphp_token_handler')->logout();
-    return $this->redirect($this->generateUrl($this->container->getParameter('instaphp.redirect_route_logout')));
-  }
-
-  public function thanksAction() {
-    return $this->render('InstagramBundle:Default:thankyou.html.twig', array());
   }
 
   public function checkAction() {
@@ -249,10 +272,12 @@ class InstagramController extends Controller {
         $ii = $instagramRepository->find($tag['id']);
         $tagSerialized = $serializer->serialize($tag, 'json');
         $iin = $serializer->deserialize($tagSerialized, "Main\EntityBundle\Entity\InstagramImage", 'json');
-        if (is_null($ii)) {
+        if (is_null($ii)) { 
+          $fb = new \Firebase\FirebaseLib('https://torrid-torch-1189.firebaseio.com/','I9kTlESj2EbtrUTaNrypX96iG54r6ozmKlJlehIR');
           $ii = $iin;
           $store = true;
           $em->persist($ii);
+          $fb->set('images/'.$query.'/'.$ii->getId(),$tag);
         } else {
 //        $ii->updateAll($iin); // IF UPDATE INFO
         }

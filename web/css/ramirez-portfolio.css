@@ -5891,15 +5891,8 @@ body > section {
     -o-background-size: cover;
     background-size: cover; }
   body > section#hero:nth-of-type(1) {
-    height: 50vh;
-    background: url(../img/hero.jpg) no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    background-color: #000;
     overflow: inherit;
-    margin-bottom: 22.5em; }
+    /*margin-bottom: 22.5em;*/ }
     body > section#hero:nth-of-type(1) h2.position {
       font-size: 1.2em;
       line-height: 1.7;
@@ -5907,6 +5900,22 @@ body > section {
     body > section#hero:nth-of-type(1) h1.same-size, body > section#hero:nth-of-type(1) h2.same-size {
       font-size: 3em;
       display: inline; }
+    body > section#hero:nth-of-type(1) .bg-hero {
+      height: 50vh;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+      background: url(../img/hero.jpg) no-repeat center center fixed;
+      background-color: #000;
+      z-index: 0; }
+    body > section#hero:nth-of-type(1) .container {
+      z-index: 1;
+      position: relative; }
     body > section#hero:nth-of-type(1) .panel {
       margin-top: 14vh; }
       body > section#hero:nth-of-type(1) .panel:before {
@@ -5947,22 +5956,22 @@ body > section {
                 font-size: 1.5em; }
     @media (max-width: 477px) {
       body > section#hero:nth-of-type(1) {
-        margin-bottom: 19.5em; }
+        /*margin-bottom: 19.5em;*/ }
         body > section#hero:nth-of-type(1) table {
           border: none; } }
     @media (min-width: 477px) and (max-width: 600px) {
       body > section#hero:nth-of-type(1) {
-        margin-bottom: 14.5em; }
+        /*margin-bottom: 14.5em;*/ }
         body > section#hero:nth-of-type(1) table {
           border: none; } }
     @media (min-width: 600px) and (max-width: 767px) {
       body > section#hero:nth-of-type(1) {
-        margin-bottom: 9.5em; }
+        /*margin-bottom: 9.5em;*/ }
         body > section#hero:nth-of-type(1) table {
           border: none; } }
     @media (min-width: 768px) and (max-width: 991px) {
       body > section#hero:nth-of-type(1) {
-        margin-bottom: 13.5em; }
+        /*margin-bottom: 13.5em;*/ }
         body > section#hero:nth-of-type(1) h1.same-size, body > section#hero:nth-of-type(1) h2.same-size {
           font-size: 2.5em; }
         body > section#hero:nth-of-type(1) .panel-body {
@@ -5976,10 +5985,10 @@ body > section {
             width: 33.3%; } }
     @media (min-width: 992px) and (max-width: 1199px) {
       body > section#hero:nth-of-type(1) {
-        margin-bottom: 17em; } }
+        /*margin-bottom: 17em;*/ } }
     @media (min-width: 1200px) {
       body > section#hero:nth-of-type(1) {
-        margin-bottom: 22.5em; } }
+        /*margin-bottom: 22.5em;*/ } }
 
 @media (min-width: 768px) {
   .body {

@@ -1,0 +1,113 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 25-Apr-2016, 6:17:34 PM
+    Author     : Rene Ramirez <rene.ramirez@4pixels.co>
+*/
+#personal-branding{
+  html,body{ 
+    font-size: 1em;
+  }
+  #know{
+    margin-top: 30px;
+  }
+  #know .container-fluid{
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+  #know aside{
+    color: white;
+  }
+  .panel-body aside{
+    background: rgba(0,0,0,.8);
+    background-color: #000000;
+    /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
+  }
+  #know .panel-body aside{
+    background-image: url("http://www.transparenttextures.com/patterns/dark-leather.png");
+  }
+  .aside-padding{
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  .aside-padding h1{
+    text-align: right;
+  }
+  article ul li {
+    font-size: 0.8em;
+  }
+  .content-padding{
+    padding-left: 30px;
+    padding-right: 30px;
+    font-size: 1.3em;
+  }
+  .content-padding h2{
+    margin-bottom: 30px;
+  }
+  .orange{
+    color: orangered;
+  }
+
+
+
+  #hero2{
+    color: black !important;
+    p{
+      text-align: justify;
+    }
+  }
+
+  padding-bottom: 1em; 
+  .col-sm-9{
+    text-align: justify;
+    h3{
+      margin-top: 1em;
+      margin-bottom: 1em;
+      &:nth-child(1){
+        margin-top: 0;
+      }
+    }
+    h2{
+      margin-top: 1em;
+      margin-bottom: 1.3em;
+      &:nth-child(1){
+        margin-top: 0;
+      }
+    }
+    
+  }
+  .content-padding{
+    padding-bottom: 2em;
+  }
+  .bis-card{
+    width: 75%; 
+  }
+  .fill-parent{
+    padding-left: 0;
+    padding-right: 0;
+    .footer{
+      padding: 15px 0; 
+      .social{
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        li{
+          display: inline-block;
+          margin: 5px 15px;
+          a{
+            width: 45px;
+            height: 45px;
+            display: inline-block;
+            background-color: transparent;
+            color: white;
+            font-size: 1.5em;
+            color: black;
+          }
+        }
+      }
+    }
+  }
+} 

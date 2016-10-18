@@ -1,0 +1,83 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 25-Apr-2016, 6:17:34 PM
+    Author     : Rene Ramirez <rene.ramirez@4pixels.co>
+*/
+#personal-branding {
+  padding-bottom: 1em; }
+  #personal-branding html, #personal-branding body {
+    font-size: 1em; }
+  #personal-branding #know {
+    margin-top: 30px; }
+  #personal-branding #know .container-fluid {
+    padding-left: 0px;
+    padding-right: 0px; }
+  #personal-branding #know aside {
+    color: white; }
+  #personal-branding .panel-body aside {
+    background: rgba(0, 0, 0, 0.8);
+    background-color: #000000;
+    /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */ }
+  #personal-branding #know .panel-body aside {
+    background-image: url("http://www.transparenttextures.com/patterns/dark-leather.png"); }
+  #personal-branding .aside-padding {
+    padding-left: 15px;
+    padding-right: 15px; }
+  #personal-branding .aside-padding h1 {
+    text-align: right; }
+  #personal-branding article ul li {
+    font-size: 0.8em; }
+  #personal-branding .content-padding {
+    padding-left: 30px;
+    padding-right: 30px;
+    font-size: 1.3em; }
+  #personal-branding .content-padding h2 {
+    margin-bottom: 30px; }
+  #personal-branding .orange {
+    color: orangered; }
+  #personal-branding #hero2 {
+    color: black !important; }
+    #personal-branding #hero2 p {
+      text-align: justify; }
+  #personal-branding .col-sm-9 {
+    text-align: justify; }
+    #personal-branding .col-sm-9 h3 {
+      margin-top: 1em;
+      margin-bottom: 1em; }
+      #personal-branding .col-sm-9 h3:nth-child(1) {
+        margin-top: 0; }
+    #personal-branding .col-sm-9 h2 {
+      margin-top: 1em;
+      margin-bottom: 1.3em; }
+      #personal-branding .col-sm-9 h2:nth-child(1) {
+        margin-top: 0; }
+  #personal-branding .content-padding {
+    padding-bottom: 2em; }
+  #personal-branding .bis-card {
+    width: 75%; }
+  #personal-branding .fill-parent {
+    padding-left: 0;
+    padding-right: 0; }
+    #personal-branding .fill-parent .footer {
+      padding: 15px 0; }
+      #personal-branding .fill-parent .footer .social {
+        margin: 0;
+        padding: 0;
+        list-style: none; }
+        #personal-branding .fill-parent .footer .social li {
+          display: inline-block;
+          margin: 5px 15px; }
+          #personal-branding .fill-parent .footer .social li a {
+            width: 45px;
+            height: 45px;
+            display: inline-block;
+            background-color: transparent;
+            color: white;
+            font-size: 1.5em;
+            color: black; }
+
+/*# sourceMappingURL=personalBranding.css.map */

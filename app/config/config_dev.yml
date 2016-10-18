@@ -36,4 +36,5 @@ assetic:
 #    delivery_address: me@example.com
 twig:
   globals:
-    ws_url: ws://localhost:1234
+     ws_url: ws://ramirez-portfolio.com:1234
+#    ws_url: ws://localhost:1234

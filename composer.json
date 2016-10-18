@@ -25,7 +25,8 @@
         "jms/serializer-bundle": "^0.13.0",
         "guzzlehttp/guzzle": "~6.1",
         "cboden/ratchet": "dev-master",
-        "react/zmq": "^0.3.0"
+        "react/zmq": "^0.3.0",
+        "ktamas77/firebase-php": "dev-master"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"

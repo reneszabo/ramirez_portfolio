@@ -1,7 +1,5 @@
 parameters:
   instagram.subscription.token: RamirezPortfolio1984
-  instagram.redirect_route_login: instagram_check
-  instagram.redirect_route_logout: instagram_thanks
 
   instaphp.config:
     version: v1
@@ -18,4 +16,4 @@ parameters:
 services:
     instagram:
         class:            InstagramBundle\Adapter\InstagramAdapter
-        arguments:        [%instaphp.config%, @router]
+        arguments:        [%instaphp.config%, @router,'@logger']

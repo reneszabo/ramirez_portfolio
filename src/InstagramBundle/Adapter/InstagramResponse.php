@@ -11,7 +11,7 @@ namespace InstagramBundle\Adapter;
 /**
  * Description of InstagramResponse
  *
- * @author Rene Ramirez <rene.ramirez@4pixles.co>
+ * @author Rene Ramirez <rene.ramirez@4pixels.co>
  */
 class InstagramResponse {
 
@@ -67,9 +67,6 @@ class InstagramResponse {
 //    var_dump($this->json);
     $this->data = isset($this->json['data']) ? $this->json['data'] : [];
     $this->meta = isset($this->json['meta']) ? $this->json['meta'] : [];
-    if (isset($this->json['code']) && $this->json['code'] !== 200) {
-      $this->meta = $this->json;
-    }
     $this->pagination = isset($this->json['pagination']) ? $this->json['pagination'] : [];
     $this->user = isset($this->json['user']) ? $this->json['user'] : [];
     $this->limit = (isset($this->headers[self::RATE_LIMIT_HEADER])) ? $this->headers[self::RATE_LIMIT_HEADER][0] : 0;
