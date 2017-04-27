@@ -132,7 +132,7 @@ body > section{
       -moz-background-size: cover;
       -o-background-size: cover;
       background-size: cover;
-      background: url(../img/hero.jpg) no-repeat center center fixed;  
+      background: url(../img/bg3.jpg) no-repeat center center fixed;
       background-color: $color-primary;
       z-index:0;
     }
@@ -358,7 +358,7 @@ body > section{
   }
 }
 .dot-overlay {
-  background: url(/img/fitrition/dot.png) rgba(0,0,0,0.2);
+  background: url(../img/fitrition/dot.png) rgba(0,0,0,0.2);
   position: absolute;
   top: 0;
   left: 0;

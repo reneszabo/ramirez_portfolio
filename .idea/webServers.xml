@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="9c64cdf9-699a-4d12-b01d-80a52febd64a" name="Aviro Server - Developer" url="http://ramirez-portfolio.com">
+        <fileTransfer host="vps.aviro.io" port="22" privateKey="$USER_HOME$/.ssh/2016/id_rsa" rootFolder="/srv/www" accessType="SFTP" keyPair="true">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

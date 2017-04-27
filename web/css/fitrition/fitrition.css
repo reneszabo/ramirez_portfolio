@@ -131,6 +131,7 @@ body > section {
   color: white; }
 
 #compare {
+  background: white;
   padding-bottom: 0px;
   margin-bottom: 0px; }
   #compare .small {
@@ -300,4 +301,3 @@ body > section {
       #direction .container .directions a:hover {
         text-decoration: none; }
 
-/*# sourceMappingURL=fitrition.css.map */

@@ -23,13 +23,22 @@
       padding-top: 10px;
       padding-bottom: 10px;
       font-size: 3em;
-    }  
+    }
     #services .nav {
 
       line-height: 3.2;
       margin-bottom: 1em;
     }
-
+    .sample a{
+      text-decoration: underline;
+    }
+    .bg-white{
+      background: white;
+    }
+    #hero .thumbnail{
+      background: white;
+      border: none;
+    }
   </style>
 {% endblock stylesheets %}
 {% block body %}
@@ -38,13 +47,13 @@
     <div class="container">
       <div class="panel panel-default ">
         <div class="panel-body">
-          <div class="profile-image text-right visible-sm">
-            <div class="rr-tool-tip ">
-              <span>Hello</span>
-            </div>
-            <img class="img-responsive" src="/img/portfolio/me.png" alt="" class="" />
-          </div>
-          <div class=" col-sm-4  hidden-xs">
+          {#<div class="profile-image text-right visible-sm">#}
+            {#<div class="rr-tool-tip ">#}
+              {#<span>Hello</span>#}
+            {#</div>#}
+            {#<img class="img-responsive" src="/img/portfolio/me.png" alt="" class="" />#}
+          {#</div>#}
+          <div class=" col-lg-4  hidden-xs hidden-sm hidden-md">
             <div class="profile-image text-right hidden-sm">
               <div class="rr-tool-tip ">
                 <span>Hello</span>
@@ -52,34 +61,30 @@
               <img class="img-responsive" src="/img/portfolio/me.png" alt="" class="" />
             </div>
           </div>
-          <div class="col-sm-8">
-            <div class="hidden-xs">
-              <br>
+          <div class="col-lg-8">
+            <div class="hidden-xs hidden-sm hidden-md">
               <br>
             </div>
-            <h2 class="light same-size">I'm</h2> &nbsp;<h1 class="bolder same-size">Rene Ramirez</h1>
-            <h2 class="position">Developer and Startup entrepreneur</h2>
+            <div class="hidden-xs hidden-sm" >
+              <br>
+            </div>
+            <h2 class="light same-size">I'm</h2> &nbsp; <br class="visible-xs-inline"><h1 class="bolder same-size">Rene Ramirez</h1>
+            <h2 class="position">Full stack developer</h2>
             <hr>
-            <table class="table table-responsive">
-              <tbody>
-                <tr>
-                  <th>Age</th>
-                  <td>{{ "1984-11-16"|age }}</td>
-                </tr>
-                <tr>
-                  <th>Address</th>
-                  <td>1701 Lampman Avenue, Burlington ON, Canada</td>
-                </tr>
-                <tr>
-                  <th>E-mail</th>
-                  <td>rene.ramirez@4pixels.co</td>
-                </tr>
-                <tr>
-                  <th>Phone</th>
-                  <td>+1-647-772-1613</td>
-                </tr>
-              </tbody>
-            </table>
+            {#<p class="text-justify">#}
+              {#I'm a full stack developer (based in Toronto).#}
+              {#Although my strength is centred primarily on back end development and creating RESTful web services,#}
+              {#I have eagerly worked my way into the front end world.#}
+            {#</p>#}
+            <p class="text-justify">
+              I have been around for some while as developer, back when flash was a thing. Yeap, Flash ( I know ).
+              I have a wide breadth of expertise working on a range of projects using different technologies,
+              both small and large scale deployment, and local and remote teams. In combination with my experience,
+              holistic perspective, and a passion for optimization, I can infuse your project with comprehensive
+              analysis and expert advice to <b>maximize performance</b> and <b>ensure its success</b>.
+              Finally, I’m an excellent communicator, seek out challenges, and thrive in team environments.
+              Give me a shout if you want to add confidence to your team.
+            </p>
           </div>
         </div>
         <div class="fill-parent text-center">
@@ -98,22 +103,8 @@
       </div>
     </div>
     <div class="bg-hero"></div>
-  </section>    <!-- HERO -->  
-  <section id="objective">     
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-10  col-sm-offset-1 text-center">
-          <p> 
-            Hey there! I'm Rene Ramirez, my objective is to open the best 
-            Canadian Studios, to help and work with Canadian Startups. The 
-            Studio will have proactive and talented people to provide Startups 
-            with the best tools for their success on the market. 
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>    <!-- OBJECTIVE -->  
-  <section id="know">     
+  </section>    <!-- HERO -->
+  <section id="know">
     <div class="container">
       <div class="panel panel-default ">
         <div class="panel-body panel-no-padding body">
@@ -125,6 +116,46 @@
             </aside>
             <div class="col-sm-8 right-side">
               <div class="padding-bottom padding-left padding-top">
+
+                <br>
+                {#<div class="col-xs-12">#}
+                  {#<h3 class="light" style="margin: 30px 0">Core Skills</h3>#}
+                {#</div>#}
+
+                <div class=" col-md-3 col-sm-4 col-xs-6">
+                  <div class="thumbnail">
+                    <a href="https://angular.io/" target="_blank">
+                      <img class="img-responsive-ramirez bg-white" src="{{ asset('img/portfolio/logo/angular.svg') }}" alt="Angular Js"/>
+                    </a>
+                  </div>
+                </div>
+                <div class="col-md-3 col-sm-4 col-xs-6">
+                  <div class="thumbnail">
+                    <a href="http://getbootstrap.com/" target="_blank">
+                      <img class="img-responsive-ramirez" src="/img/portfolio/logo/bootstrap.jpg" alt="Bootstrap 3"/>
+                    </a>
+                  </div>
+                </div>
+                <div class="col-md-3 col-sm-4 col-xs-6">
+                  <div class="thumbnail">
+                    <a href="http://symfony.com/" target="_blank">
+                      <img class="img-responsive-ramirez" src="/img/portfolio/logo/symfony.jpg" alt="Symfony"/>
+                    </a>
+                  </div>
+                </div>
+                <div class="col-md-3 col-sm-4 col-xs-6">
+                  <div class="thumbnail">
+                    <a href="http://www.doctrine-project.org/" target="_blank">
+                      <img class="img-responsive-ramirez" src="/img/portfolio/logo/doctrine_orm.jpg" alt="Doctrine ORM"/>
+                    </a>
+                  </div>
+                </div>
+
+
+
+                {#<div class="col-xs-12">#}
+                  {#<h3 class="light" style="margin: 30px 0">Plus Skills</h3>#}
+                {#</div>#}
                 <div class=" col-md-3 col-sm-4 col-xs-6">
                   <div class="thumbnail">
                     <a href="http://www.w3.org/html/" target="_blank">
@@ -136,6 +167,35 @@
                   <div class="thumbnail">
                     <a href="http://www.w3.org/Style/CSS/" target="_blank">
                       <img class="img-responsive-ramirez" src="/img/portfolio/logo/css3.jpg" alt="CSS3"/>
+                    </a>
+                  </div>
+                </div>
+                <div class="col-md-3 col-sm-4 col-xs-6">
+                  <div class="thumbnail">
+                    <a href="http://sass-lang.com/" target="_blank">
+                      <img class="img-responsive-ramirez" src="/img/portfolio/logo/sass.jpg" alt="SASS grade CSS extension"/>
+                    </a>
+                  </div>
+                </div>
+                <div class="col-md-3 col-sm-4 col-xs-6">
+                  <div class="thumbnail">
+                    <a href="http://lesscss.org/" target="_blank">
+                      <img class="img-responsive-ramirez" src="/img/portfolio/logo/less.jpg" alt="less CSS pre-processor"/>
+                    </a>
+                  </div>
+                </div>
+
+                <div class="col-md-3 col-sm-4 col-xs-6">
+                  <div class="thumbnail">
+                    <a href="http://php.net/" target="_blank">
+                      <img class="img-responsive-ramirez" src="/img/portfolio/logo/php.jpg" alt="PHP"/>
+                    </a>
+                  </div>
+                </div>
+                <div class="col-md-3 col-sm-4 col-xs-6">
+                  <div class="thumbnail">
+                    <a href="https://getcomposer.org/" target="_blank">
+                      <img class="img-responsive-ramirez" src="/img/portfolio/logo/composer.jpg" alt="Composer"/>
                     </a>
                   </div>
                 </div>
@@ -153,34 +213,8 @@
                     </a>
                   </div>
                 </div>
-                <div class="col-md-3 col-sm-4 col-xs-6">
-                  <div class="thumbnail">
-                    <a href="https://getcomposer.org/" target="_blank">
-                      <img class="img-responsive-ramirez" src="/img/portfolio/logo/composer.jpg" alt="Composer"/>
-                    </a>
-                  </div>
-                </div>
-                <div class="col-md-3 col-sm-4 col-xs-6">
-                  <div class="thumbnail">
-                    <a href="http://getbootstrap.com/" target="_blank">
-                      <img class="img-responsive-ramirez" src="/img/portfolio/logo/bootstrap.jpg" alt="Bootstrap 3"/>
-                    </a>
-                  </div>
-                </div>
-                <div class="col-md-3 col-sm-4 col-xs-6">
-                  <div class="thumbnail">
-                    <a href="http://php.net/" target="_blank">
-                      <img class="img-responsive-ramirez" src="/img/portfolio/logo/php.jpg" alt="PHP"/>
-                    </a>
-                  </div>
-                </div>
-                <div class="col-md-3 col-sm-4 col-xs-6">
-                  <div class="thumbnail">
-                    <a href="http://symfony.com/" target="_blank">
-                      <img class="img-responsive-ramirez" src="/img/portfolio/logo/symfony.jpg" alt="Symfony"/>
-                    </a>
-                  </div>
-                </div>
+
+
                 <div class="col-md-3 col-sm-4 col-xs-6">
                   <div class="thumbnail">
                     <a href="http://jquery.com/" target="_blank">
@@ -205,8 +239,8 @@
                 </div>
                 <div class="col-md-3 col-sm-4 col-xs-6">
                   <div class="thumbnail">
-                    <a href="http://www.doctrine-project.org/" target="_blank">
-                      <img class="img-responsive-ramirez" src="/img/portfolio/logo/doctrine_orm.jpg" alt="Doctrine ORM"/>
+                    <a href="http://www.microsoft.com/en-ca/server-cloud/products/sql-server/" target="_blank">
+                      <img class="img-responsive-ramirez" src="/img/portfolio/logo/sql_server.jpg" alt="SQL Server"/>
                     </a>
                   </div>
                 </div>
@@ -217,13 +251,7 @@
                     </a>
                   </div>
                 </div>
-                <div class="col-md-3 col-sm-4 col-xs-6">
-                  <div class="thumbnail">
-                    <a href="http://sass-lang.com/" target="_blank">
-                      <img class="img-responsive-ramirez" src="/img/portfolio/logo/sass.jpg" alt="SASS grade CSS extension"/>
-                    </a>
-                  </div>
-                </div> 
+
                 <div class="col-md-3 col-sm-4 col-xs-6">
                   <div class="thumbnail">
                     <a href="http://cordova.apache.org/" target="_blank">
@@ -238,27 +266,8 @@
                     </a>
                   </div>
                 </div>
-                <div class="col-md-3 col-sm-4 col-xs-6">
-                  <div class="thumbnail">
-                    <a href="http://lesscss.org/" target="_blank">
-                      <img class="img-responsive-ramirez" src="/img/portfolio/logo/less.jpg" alt="less CSS pre-processor"/>
-                    </a>
-                  </div>
-                </div>
-                <div class="col-md-3 col-sm-4 col-xs-6">
-                  <div class="thumbnail">
-                    <a href="http://www.microsoft.com/net" target="_blank">
-                      <img class="img-responsive-ramirez" src="/img/portfolio/logo/logo_net.jpg" alt=".Net"/>
-                    </a>
-                  </div>
-                </div>
-                <div class="col-md-3 col-sm-4 col-xs-6">
-                  <div class="thumbnail">
-                    <a href="http://www.microsoft.com/en-ca/server-cloud/products/sql-server/" target="_blank">
-                      <img class="img-responsive-ramirez" src="/img/portfolio/logo/sql_server.jpg" alt="SQL Server"/>
-                    </a>
-                  </div>
-                </div>
+
+
                 <div class="col-md-3 col-sm-4 col-xs-6">
                   <div class="thumbnail">
                     <a href="http://nodejs.org/" target="_blank">
@@ -274,7 +283,6 @@
       </div>
     </div>
   </section>
-
   <section id="analytics-api" class="text-center">
     <div class="container">
       <div class="row">
@@ -285,158 +293,28 @@
             {{ storedAnalytics.sessions }}
           </h1>
           <div class="bolder">
-            {#              Top 6 Cities visits#}
+                          {#Top 6 Cities visits#}
           </div>
           <div class="">
             Last Update: {{ storedAnalytics.updatedAt|date('F jS, Y h:i a e', "America/Toronto") }}
           </div>
-          {#<div class="">
-            {% for cityVisit in cityVisits %}
-              <div class="col-sm-2">
-                {{ cityVisit[0] }} <br>
-                {{ cityVisit[1] }}
-              </div>
-            {% endfor %}
-          </div>#}
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="services"> 
-    <div class="container">
-      <div class="panel panel-default ">
-        <div class="panel-body panel-no-padding body">
-          <aside class="col-sm-4 left-side text-white panel-no-padding">
-            <div class="padding-bottom padding-top">
-              <h2 class="bold">Services</h2>
-            </div>
-          </aside>
-          <div class="col-sm-8 right-side">
-            <div class="padding-bottom padding-left padding-top" style="padding-top: 30px;">
-              <p>Chatting with some friends we once said, a good project is just more drags and drops. I will like to work with challenging people with incredible ideas. Ideas for me do not have to be big. Some time the smallest ideas can be the most challenging and exciting ones to build out. </p>
-              <p class="text-center">If you are someone who dreams big <br>
-                <i>I wanna work with you </i><br>
-                <b>Here’s how i can help</b></p>
-              <h2 class="bold">Project Managment</h2>
-              <br>
-              <p>Architecture Management help you understand all the resources you need in a project. It takes a moment to understand what the project is about “abstractly”. The result is a evolutive version of the project on which it can grow based on reusability, scalability and high quality. </p>
-              <p>Time Management , based on existing or researched documentation, agile methodology has been the key for all projects. Define activities with short cycles, identifying sequence activities, estimate activities resources, develop schedules and control schedules on many projects, have gave the the experience to help you achieve goals.  </p>
-              <h2 class="bold">Back-end Development</h2>
-              <br>
-              <p>I have been around for some while programming, ufff, back when flash was a thing. Yeap, Flash ( I know ). Here is small list of backend tools I know how to use. I group them into Languages, CMS, Frameworks and Databases.</p>
-              <ul class="nav">
-                <li>
-                  <b><i>Languages</i></b>
-                  <div class="row">
-                    <div class="col-md-4 col-sm-6">
-                      <ul>
-                        <li>PHP </li>
-                        <li>JavaScript/NodeJs </li>
-                      </ul>
-                    </div>
-                    <div class="col-md-4 col-sm-6">
-                      <ul>
-                        <li>ActionScript</li>
-                        <li>Ruby</li>
-                      </ul>
-                    </div>
-                    <div class="col-md-4 col-sm-6">
-                      <ul>
-                        <li>ASP.Net</li>
-                        <li>Python</li>
-                      </ul>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <b><i>Content Management Systems</i></b>
-                  <div class="row">
-                    <div class="col-md-4 col-sm-6">
-                      <ul>
-                        <li>Wordpress </li>
-                        <li>Joomla </li>
-                      </ul>
-                    </div>
-                    <div class="col-md-4 col-sm-6">
-                      <ul>
-                        <li>Drupal </li>
-                      </ul>
-                    </div>
-                    <div class="col-md-4 col-sm-6">
-                      <ul>
-                        <li>Plone </li>
-                      </ul>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <b><i>Frameworks</i></b>
-                  <div class="row">
-                    <div class="col-md-4 col-sm-6">
-                      <ul>
-                        <li>Symfony</li>
-                        <li>Propel</li>
-                      </ul>
-                    </div>
-                    <div class="col-md-4 col-sm-6">
-                      <ul>
-                        <li>Laravel</li>
-                      </ul>
-                    </div>
-                    <div class="col-md-4 col-sm-6">
-                      <ul>
-                        <li>Doctrine</li>
-                      </ul>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <b><i>Databases</i></b>
-                  <div class="row">
-                    <div class="col-md-4 col-sm-6">
-                      <ul>
-                        <li>MySQL </li>
-                        <li>MongoDB</li>
-                      </ul>
-                    </div>
-                    <div class="col-md-4 col-sm-6">
-                      <ul>
-                        <li>PostgreSQL </li>
-                        <li>SQL Server</li>
-                      </ul>
-                    </div>
-                    <div class="col-md-4 col-sm-6">
-                      <ul>
-                        <li>SQLite</li>
-                      </ul>
-                    </div>
-                  </div>
-                </li>
-
-              </ul>
-              <br>
-              <h2 class="bold">Front-end Development </h2>
-              <br>
-              <ul>
-                <li>HTML, CSS, JavaScript</li>
-                <li>LESS, SASS, PostCSS, Grunt, Gulp, Yo, webpack </li>
-                <li>AngularJS, BackboneJs, ReactJs, Ionic, Phonegap, ParseJs</li>
-                <li>Bootstrap, Bourbon.io, Foundation</li>
-                <li>Photoshop, Ilustrator, After Effects</li>
-              </ul>
-              <br>
-            </div>
-          </div>
+          {#<div class="">#}
+            {#{% for cityVisit in cityVisits %}#}
+              {#<div class="col-sm-2">#}
+                {#{{ cityVisit[0] }} <br>#}
+                {#{{ cityVisit[1] }}#}
+              {#</div>#}
+            {#{% endfor %}#}
+          {#</div>#}
         </div>
       </div>
     </div>
   </section>
   <section id="git"  class="text-center">
-    <h2 class="light">Portfolio</h2>
+    <h2 class="light">Projects</h2>
   </section>
   {% spaceless %}
-    <section id="samples">      
+    <section id="samples">
       <div class="container">
         <div class="row">
 
@@ -445,106 +323,108 @@
           <div class="col-md-6 ">
             <article class="sample panel panel-default">
               <div class="panel-body">
-                <legend>Verlas Inc </legend>
-                <a href="http://verlasinc.com"  target="_blank">
-                  <img src="/img/portfolio/lo/ramirez-portfolio-verlas-lo.jpg" alt="Fitrition" class="img-responsive"/>
+                <legend>ParticipAid</legend>
+                <a href="https://participaid.co/"  target="_blank">
+                  <img src="{{ asset('img/portfolio/lo/participaid-lo.jpg') }}" alt="ParticipAid" class="img-responsive"/>
                 </a>
                 <ul>
-                  <li>Website build on <a href="http://symfony.com/" target="_blank">Symfony2</a></li>
-                  <li>Frontend and Backend Development</li>
-                  <li>Design was provided from Verlas Inc</li>
+                  <li>Back end development rest API - Php <a href="http://symfony.com/" target="_blank">Symfony3</a></li>
+                  <li>V2 Front end development Angular 2.4</li>
+                  <li>V1 Front end development Twig with Symfony </li>
+                  <li>iOS Integration with the API</li>
                   <li>Responsive design with <a href="http://getbootstrap.com/" target="_blank">Bootstrap3</a></li>
-                  <li><a href="http://fancybox.net/" >FancyBox</a> for gallery</li>
-                  <li><a href="http://kenwheeler.github.io/slick/">Slick</a> Slider for carousel </li>
-                  <li>I18N translated in <b>Spanish</b> and <b>English</b></li>
+                  <li>Project Management Anthony Nazarov and Erica Tatham [co-founders]</li>
+                  <li>Design was provided Maroof Moral [co-founder]</li>
                 </ul>
                 <div class="text-center">
-                  <a class="btn btn-info" href="http://verlasinc.com" target="_blank">View website</a>
-                </div>  
-              </div>
-            </article>
-            <article class="sample panel panel-default">
-              <div class="panel-body">
-
-                <legend>Landing Page for Fitrition App </legend>
-                <a href="{{ path('samples_fitrition') }}"  target="_blank">
-                  <img src="/img/portfolio/lo/ramirez-portfolio-002-lo.jpg" alt="Fitrition" class="img-responsive"/>
-                </a>
-                <br>
-                <ul>
-                  <li>Final muck up of web look and feel, it is <strong>not intended to lunch commercially</strong></li>
-                  <li>Responsive design with <a href="http://getbootstrap.com/"  target="_blank">Bootstrap3</a></li>
-                  <li><a href="https://www.youtube.com/watch?v=gF0rrpMH-Jo"  target="_blank">Video</a> - Inspirational Running Video HD</li>
-                  <li>
-                    Created fast muck up based on:
-                    <ul>
-                      <li><a href="http://fitstar.com/" target="_blank">fitstar.com</a></li>
-                      <li><a href="https://www.codyapp.com/" target="_blank">codyapp.com</a></li>
-                      <li><a href="http://www.gym-pact.com/" target="_blank">gym-pact.com</a></li>
-                    </ul>
-                  </li>
-                  <li>
-                    Thanks to the team for pulling out the muck ups in such a short period:
-                    <ul>
-                      <li>Aegean Diker</li>
-                      <li>Ariel Villa-Veluz</li>
-                      <li>Eric Tai</li>
-                    </ul>
-                  </li>
-                </ul>
-                <div class="text-center">
-                  <a class="btn btn-info" href="{{ path('samples_fitrition') }}" target="_blank">View Demo</a>
-                </div>  
-              </div>
-            </article>
-            <article class="sample panel panel-default">
-              <div class="panel-body">
-
-                <legend>Meaghan Ogilvie-Symbiosis</legend>
-                <a href="{{ path('samples_symbiosis') }}" target="_blank">
-                  <img src="/img/portfolio/lo/ramirez-portfolio-003-lo.jpg" alt="Symbiosis" class="img-responsive"/>
-                </a>
-                <br>
-                <ul>
-                  <li>Promotional page for <a href="http://meaghanogilvie.com/" target="_blank">Meaghan Ogilvie</a></li>
-                  <li>All photos were provided by <a href="http://meaghanogilvie.com/" target="_blank">Meaghan Ogilvie</a></li>
-                  <li>Website <strong>NOT</strong> responsive</li>
-                  <li>Usage of <a href="http://www.ianlunn.co.uk/plugins/jquery-parallax" target="_blank">jQuery Parallax</a> for section separation </li>
-                  <li>
-                    This project was created with a awsome team, special thanks to: 
-                    <ul>
-                      <li>Jemela Vergara</li>
-                      <li>Nicole Ornales</li>
-                    </ul>
-                  </li>
-                  <br>
-                </ul>
-                <div class="text-center">
-                  <a class="btn btn-info" href="{{ path('samples_symbiosis') }}" target="_blank">View Demo</a>
+                  <a class="btn btn-info" href="https://participaid.co/" target="_blank">View website</a>
                 </div>
               </div>
             </article>
+            {#<article class="sample panel panel-default">#}
+              {#<div class="panel-body">#}
+
+                {#<legend>Landing Page for Fitrition App </legend>#}
+                {#<a href="{{ path('samples_fitrition') }}"  target="_blank">#}
+                  {#<img src="/img/portfolio/lo/ramirez-portfolio-002-lo.jpg" alt="Fitrition" class="img-responsive"/>#}
+                {#</a>#}
+                {#<br>#}
+                {#<ul>#}
+                  {#<li>Final muck up of web look and feel, it is <strong>not intended to lunch commercially</strong></li>#}
+                  {#<li>Responsive design with <a href="http://getbootstrap.com/"  target="_blank">Bootstrap3</a></li>#}
+                  {#<li><a href="https://www.youtube.com/watch?v=gF0rrpMH-Jo"  target="_blank">Video</a> - Inspirational Running Video HD</li>#}
+                  {#<li>#}
+                    {#Created fast muck up based on:#}
+                    {#<ul>#}
+                      {#<li><a href="http://fitstar.com/" target="_blank">fitstar.com</a></li>#}
+                      {#<li><a href="https://www.codyapp.com/" target="_blank">codyapp.com</a></li>#}
+                      {#<li><a href="http://www.gym-pact.com/" target="_blank">gym-pact.com</a></li>#}
+                    {#</ul>#}
+                  {#</li>#}
+                  {#<li>#}
+                    {#Thanks to the team for pulling out the muck ups in such a short period:#}
+                    {#<ul>#}
+                      {#<li>Aegean Diker</li>#}
+                      {#<li>Ariel Villa-Veluz</li>#}
+                      {#<li>Eric Tai</li>#}
+                    {#</ul>#}
+                  {#</li>#}
+                {#</ul>#}
+                {#<div class="text-center">#}
+                  {#<a class="btn btn-info" href="{{ path('samples_fitrition') }}" target="_blank">View Demo</a>#}
+                {#</div>#}
+              {#</div>#}
+            {#</article>#}
+            {#<article class="sample panel panel-default">#}
+              {#<div class="panel-body">#}
+
+                {#<legend>Meaghan Ogilvie-Symbiosis</legend>#}
+                {#<a href="{{ path('samples_symbiosis') }}" target="_blank">#}
+                  {#<img src="/img/portfolio/lo/ramirez-portfolio-003-lo.jpg" alt="Symbiosis" class="img-responsive"/>#}
+                {#</a>#}
+                {#<br>#}
+                {#<ul>#}
+                  {#<li>Promotional page for <a href="http://meaghanogilvie.com/" target="_blank">Meaghan Ogilvie</a></li>#}
+                  {#<li>All photos were provided by <a href="http://meaghanogilvie.com/" target="_blank">Meaghan Ogilvie</a></li>#}
+                  {#<li>Website <strong>NOT</strong> responsive</li>#}
+                  {#<li>Usage of <a href="http://www.ianlunn.co.uk/plugins/jquery-parallax" target="_blank">jQuery Parallax</a> for section separation </li>#}
+                  {#<li>#}
+                    {#This project was created with a awsome team, special thanks to:#}
+                    {#<ul>#}
+                      {#<li>Jemela Vergara</li>#}
+                      {#<li>Nicole Ornales</li>#}
+                    {#</ul>#}
+                  {#</li>#}
+                  {#<br>#}
+                {#</ul>#}
+                {#<div class="text-center">#}
+                  {#<a class="btn btn-info" href="{{ path('samples_symbiosis') }}" target="_blank">View Demo</a>#}
+                {#</div>#}
+              {#</div>#}
+            {#</article>#}
           </div>
 
           {#--- TWO TWO TWO ----------------------------------------------------------- #}
 
           <div class="col-md-6">
 
+
             <article class="sample panel panel-default">
               <div class="panel-body">
 
-                <legend>Miranda Consulting Group </legend>
-                <a href="http://mirandacg.com/" target="_blank">
-                  <img src="/img/portfolio/lo/ramirez-portfolio-mirandacg-lo.jpg" alt="Miranda Consulting Group" class="img-responsive"/>
+                <legend>CLAD</legend>
+                <a href="http://www.clad.org/"  target="_blank">
+                  <img src="/img/portfolio/lo/ramirez-portfolio-clad-lo.jpg" alt="Fitrition" class="img-responsive"/>
                 </a>
                 <br>
                 <ul>
-                  <li>Website build on <a href="http://symfony.com/" target="_blank">Symfony2</a></li>
-                  <li>Frontend Development</li>
+                  <li>Front end develop in  <a href="http://www.joomla.org/" target="_blank">Joomla</a></li>
+                  <li>Back end develop in <a href="http://symfony.com/" target="_blank">Symfony 1.4</a></li>
                   <li>Responsive design with <a href="http://getbootstrap.com/" target="_blank">Bootstrap3</a></li>
+                  <li>Designed by <a href="https://maigonzal.wordpress.com/" target="_blank">Mairim Gonzalez</a></li>
                 </ul>
                 <div class="text-center">
-                  <a class="btn btn-info" href="http://mirandacg.com/" target="_blank">View website</a>
+                  <a class="btn btn-info" href="http://www.clad.org/" target="_blank">View website</a>
                 </div>
               </div>
             </article>
@@ -562,32 +442,50 @@
                   <li>Responsive design with <a href="http://getbootstrap.com/" target="_blank">Bootstrap3</a></li>
                   <li>Animated with <a href="http://daneden.github.io/animate.css/" target="_blank">Animate.css</a> created by <a href="http://daneden.me/" target="_blank">Daniel Eden</a></li>
                   <li>List Design by <a href="http://sarasoueidan.com/blog/creative-list-effects/" target="_blank">Sara Soucidan</a></li>
-                  <li>Frontend development</li>
+                  <li>Front end development</li>
                 </ul>
                 <div class="text-center">
                   <a class="btn btn-info" href="{{ path('samples_to_do_list') }}" target="_blank">View Demo</a>
                 </div>
               </div>
-            </article>  
-            <article class="sample panel panel-default">
-              <div class="panel-body">
-
-                <legend>CLAD</legend>
-                <a href="http://www.clad.org/"  target="_blank">
-                  <img src="/img/portfolio/lo/ramirez-portfolio-clad-lo.jpg" alt="Fitrition" class="img-responsive"/>
-                </a>
-                <br>
-                <ul>
-                  <li>Frontend develop in  <a href="http://www.joomla.org/" target="_blank">Joomla</a></li>
-                  <li>Backend develop in <a href="http://symfony.com/" target="_blank">Symfony 1.4</a></li>
-                  <li>Responsive design with <a href="http://getbootstrap.com/" target="_blank">Bootstrap3</a></li>
-                  <li>Designed by <a href="https://maigonzal.wordpress.com/" target="_blank">Mairim Gonzalez</a></li>
-                </ul>
-                <div class="text-center">
-                  <a class="btn btn-info" href="http://www.clad.org/" target="_blank">View website</a>
-                </div>  
-              </div>
             </article>
+            {#<article class="sample panel panel-default">#}
+              {#<div class="panel-body">#}
+                {#<legend>Snake Game</legend>#}
+                {#<a href="/game"  target="_blank">#}
+                  {#<img src="{{ asset('img/portfolio/lo/game-lo.jpg') }}" alt="Snake Game" class="img-responsive"/>#}
+                {#</a>#}
+                {#<br>#}
+                {#<ul>#}
+                  {#<li>Javascript Game</li>#}
+                  {#<li>SVG Canvas development demostration</li>#}
+                  {#<li>Google OAuth Integration</li>#}
+                  {#<li>Database MySql to store the Score of authenticated players</li>#}
+                {#</ul>#}
+                {#<div class="text-center">#}
+                  {#<a class="btn btn-info" href="/game" target="_blank">View website</a>#}
+                {#</div>#}
+              {#</div>#}
+            {#</article>#}
+            {#<article class="sample panel panel-default">#}
+              {#<div class="panel-body">#}
+
+                {#<legend>Miranda Consulting Group </legend>#}
+                {#<a href="http://mirandacg.com/" target="_blank">#}
+                  {#<img src="/img/portfolio/lo/ramirez-portfolio-mirandacg-lo.jpg" alt="Miranda Consulting Group" class="img-responsive"/>#}
+                {#</a>#}
+                {#<br>#}
+                {#<ul>#}
+                  {#<li>Website build on <a href="http://symfony.com/" target="_blank">Symfony2</a></li>#}
+                  {#<li>Front end development</li>#}
+                  {#<li>Responsive design with <a href="http://getbootstrap.com/" target="_blank">Bootstrap3</a></li>#}
+                {#</ul>#}
+                {#<div class="text-center">#}
+                  {#<span class="label label-warning">no link - company closed</span>#}
+                  {#<a class="btn btn-info" href="http://mirandacg.com/" target="_blank">View website</a>#}
+                {#</div>#}
+              {#</div>#}
+            {#</article>#}
           </div>
 
 
@@ -606,11 +504,11 @@
           <h4 class="">
             Toronto, Canada
             <br>
-            <a href="mailto:rene.ramirez@4pixels.co" >
-              rene.ramirez@4pixels.co
+            <a href="mailto:rene.szabo@gmail.com" >
+              rene.szabo@gmail.com
             </a>
             <br>
-            +1 647-772-1613
+            {#+1 647-772-1613#}
           </h4>
         </div>
       </div>

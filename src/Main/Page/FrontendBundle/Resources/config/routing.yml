@@ -29,11 +29,9 @@ webhooks:
 api:
     path:     /api-callback
     defaults: { _controller: MainPageFrontendBundle:Default:apiCallback }
-
 blog:
     path:     /blog
     defaults: { _controller: MainPageFrontendBundle:Blog:index }  
-    
 personal:
     path:     /personal-branding
     defaults: { _controller: MainPageFrontendBundle:Default:personalBranding }

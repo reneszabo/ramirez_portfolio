@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" autoUpload="Always" serverName="Aviro Server - Developer">
+    <serverData>
+      <paths name="Aviro Server - Developer">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/ramirez" local="$PROJECT_DIR$" web="/" />
+          </mappings>
+          <excludedPaths>
+            <excludedPath local="true" path="$PROJECT_DIR$/vendor" />
+            <excludedPath local="true" path="$PROJECT_DIR$/app/cache" />
+            <excludedPath local="true" path="$PROJECT_DIR$/app/logs" />
+            <excludedPath path="/ramirez/vendor" />
+            <excludedPath path="/ramirez/app/cache" />
+            <excludedPath path="/ramirez/app/logs" />
+          </excludedPaths>
+        </serverdata>
+      </paths>
+    </serverData>
+    <option name="myAutoUpload" value="ALWAYS" />
+  </component>
+</project>
